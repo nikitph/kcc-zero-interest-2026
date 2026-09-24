@@ -24,6 +24,7 @@ ramp on paper, Noto Sans Devanagari + Heebo (vendored in `assets/fonts/`).
 ```bash
 # narration (only if SCRIPT.md changes) — key via env, never committed
 ELEVENLABS_API_KEY=... python3 scripts/elevenlabs-tts.py MF4J4IDTRo0AxOO4dpFR .
+# if a re-voiced line drifts from the cue timings, warp it back: scripts/warp-to-anchors.py (see its docstring)
 # then re-run the 1.08× tempo + padding step and audio_meta.json (see git history), and:
 npx hyperframes check
 npx hyperframes preview --background
