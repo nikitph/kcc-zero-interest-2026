@@ -1,0 +1,8 @@
+renders/
+snapshots/
+node_modules/
+.env
+.DS_Store
+.thumbnails/
+.waveform-cache/
+assets/audio/*.loop.mp3

@@ -1,0 +1,1621 @@
+{
+ "bgm": {
+  "path": "assets/audio/bgm.mp3",
+  "volume": 0.14,
+  "query": "warm acoustic guitar with subtle Indian flute, hopeful and institutional",
+  "duration_s": 56
+ },
+ "bgm_pending": false,
+ "voices": [
+  {
+   "frame": 1,
+   "path": "assets/vo/vo-01.wav",
+   "duration_s": 6.13,
+   "words": [
+    {
+     "id": "w0",
+     "text": "खरीफ़",
+     "start": 0.6,
+     "end": 1.03
+    },
+    {
+     "id": "w1",
+     "text": "की",
+     "start": 1.052,
+     "end": 1.159
+    },
+    {
+     "id": "w2",
+     "text": "अलग",
+     "start": 1.234,
+     "end": 1.46
+    },
+    {
+     "id": "w3",
+     "text": "सीमा…",
+     "start": 1.514,
+     "end": 2.03
+    },
+    {
+     "id": "w4",
+     "text": "रबी",
+     "start": 2.331,
+     "end": 2.621
+    },
+    {
+     "id": "w5",
+     "text": "की",
+     "start": 2.675,
+     "end": 2.782
+    },
+    {
+     "id": "w6",
+     "text": "अलग",
+     "start": 2.857,
+     "end": 3.094
+    },
+    {
+     "id": "w7",
+     "text": "तारीख़…",
+     "start": 3.148,
+     "end": 3.793
+    },
+    {
+     "id": "w8",
+     "text": "और",
+     "start": 3.986,
+     "end": 4.18
+    },
+    {
+     "id": "w9",
+     "text": "हर",
+     "start": 4.233,
+     "end": 4.362
+    },
+    {
+     "id": "w10",
+     "text": "बार",
+     "start": 4.448,
+     "end": 4.642
+    },
+    {
+     "id": "w11",
+     "text": "नया",
+     "start": 4.718,
+     "end": 4.921
+    },
+    {
+     "id": "w12",
+     "text": "हिसाब।",
+     "start": 4.965,
+     "end": 5.674
+    }
+   ],
+   "lead_s": 0.6
+  },
+  {
+   "frame": 2,
+   "path": "assets/vo/vo-02.wav",
+   "duration_s": 7.94,
+   "words": [
+    {
+     "id": "w0",
+     "text": "अब",
+     "start": 0.3,
+     "end": 0.472
+    },
+    {
+     "id": "w1",
+     "text": "यह",
+     "start": 0.58,
+     "end": 0.687
+    },
+    {
+     "id": "w2",
+     "text": "सब",
+     "start": 0.827,
+     "end": 1.009
+    },
+    {
+     "id": "w3",
+     "text": "बदल",
+     "start": 1.063,
+     "end": 1.31
+    },
+    {
+     "id": "w4",
+     "text": "गया",
+     "start": 1.375,
+     "end": 1.58
+    },
+    {
+     "id": "w5",
+     "text": "है।",
+     "start": 1.655,
+     "end": 1.967
+    },
+    {
+     "id": "w6",
+     "text": "शून्य",
+     "start": 2.321,
+     "end": 2.697
+    },
+    {
+     "id": "w7",
+     "text": "प्रतिशत",
+     "start": 2.762,
+     "end": 3.299
+    },
+    {
+     "id": "w8",
+     "text": "ब्याज",
+     "start": 3.654,
+     "end": 3.987
+    },
+    {
+     "id": "w9",
+     "text": "फसल",
+     "start": 4.062,
+     "end": 4.418
+    },
+    {
+     "id": "w10",
+     "text": "ऋण",
+     "start": 4.557,
+     "end": 4.922
+    },
+    {
+     "id": "w11",
+     "text": "योजना",
+     "start": 5.041,
+     "end": 5.449
+    },
+    {
+     "id": "w12",
+     "text": "में",
+     "start": 5.524,
+     "end": 5.696
+    },
+    {
+     "id": "w13",
+     "text": "चार",
+     "start": 6.105,
+     "end": 6.363
+    },
+    {
+     "id": "w14",
+     "text": "बड़े",
+     "start": 6.428,
+     "end": 6.643
+    },
+    {
+     "id": "w15",
+     "text": "बदलाव।",
+     "start": 6.696,
+     "end": 7.481
+    }
+   ],
+   "lead_s": 0.3
+  },
+  {
+   "frame": 3,
+   "path": "assets/vo/vo-03.wav",
+   "duration_s": 10.78,
+   "words": [
+    {
+     "id": "w0",
+     "text": "पहला",
+     "start": 0.3,
+     "end": 0.676
+    },
+    {
+     "id": "w1",
+     "text": "बदलाव",
+     "start": 0.741,
+     "end": 1.16
+    },
+    {
+     "id": "w2",
+     "text": "खरीफ़",
+     "start": 1.59,
+     "end": 2.084
+    },
+    {
+     "id": "w3",
+     "text": "और",
+     "start": 2.17,
+     "end": 2.331
+    },
+    {
+     "id": "w4",
+     "text": "रबी,",
+     "start": 2.396,
+     "end": 2.944
+    },
+    {
+     "id": "w5",
+     "text": "दोनों",
+     "start": 3.203,
+     "end": 3.557
+    },
+    {
+     "id": "w6",
+     "text": "के",
+     "start": 3.59,
+     "end": 3.665
+    },
+    {
+     "id": "w7",
+     "text": "लिए",
+     "start": 3.73,
+     "end": 3.987
+    },
+    {
+     "id": "w8",
+     "text": "अब",
+     "start": 4.148,
+     "end": 4.31
+    },
+    {
+     "id": "w9",
+     "text": "पूरे",
+     "start": 4.353,
+     "end": 4.675
+    },
+    {
+     "id": "w10",
+     "text": "साल",
+     "start": 4.74,
+     "end": 4.966
+    },
+    {
+     "id": "w11",
+     "text": "की",
+     "start": 5.052,
+     "end": 5.181
+    },
+    {
+     "id": "w12",
+     "text": "एक",
+     "start": 5.32,
+     "end": 5.493
+    },
+    {
+     "id": "w13",
+     "text": "ही",
+     "start": 5.535,
+     "end": 5.6
+    },
+    {
+     "id": "w14",
+     "text": "साख",
+     "start": 5.686,
+     "end": 5.965
+    },
+    {
+     "id": "w15",
+     "text": "सीमा।",
+     "start": 6.041,
+     "end": 6.545
+    },
+    {
+     "id": "w16",
+     "text": "नकद",
+     "start": 7.019,
+     "end": 7.363
+    },
+    {
+     "id": "w17",
+     "text": "और",
+     "start": 7.47,
+     "end": 7.567
+    },
+    {
+     "id": "w18",
+     "text": "वस्तु",
+     "start": 7.631,
+     "end": 7.976
+    },
+    {
+     "id": "w19",
+     "text": "ऋण,",
+     "start": 8.051,
+     "end": 8.524
+    },
+    {
+     "id": "w20",
+     "text": "दोनों",
+     "start": 8.685,
+     "end": 9.072
+    },
+    {
+     "id": "w21",
+     "text": "इसी",
+     "start": 9.158,
+     "end": 9.406
+    },
+    {
+     "id": "w22",
+     "text": "के",
+     "start": 9.469,
+     "end": 9.545
+    },
+    {
+     "id": "w23",
+     "text": "अंदर।",
+     "start": 9.588,
+     "end": 10.319
+    }
+   ],
+   "lead_s": 0.3
+  },
+  {
+   "frame": 4,
+   "path": "assets/vo/vo-04.wav",
+   "duration_s": 6.56,
+   "words": [
+    {
+     "id": "w0",
+     "text": "और",
+     "start": 0.3,
+     "end": 0.451
+    },
+    {
+     "id": "w1",
+     "text": "चुकाने",
+     "start": 0.505,
+     "end": 0.869
+    },
+    {
+     "id": "w2",
+     "text": "की",
+     "start": 0.913,
+     "end": 0.999
+    },
+    {
+     "id": "w3",
+     "text": "तारीख़?",
+     "start": 1.053,
+     "end": 1.569
+    },
+    {
+     "id": "w4",
+     "text": "पहली",
+     "start": 1.923,
+     "end": 2.278
+    },
+    {
+     "id": "w5",
+     "text": "बार",
+     "start": 2.343,
+     "end": 2.622
+    },
+    {
+     "id": "w6",
+     "text": "ऋण",
+     "start": 2.923,
+     "end": 3.213
+    },
+    {
+     "id": "w7",
+     "text": "लेने",
+     "start": 3.267,
+     "end": 3.482
+    },
+    {
+     "id": "w8",
+     "text": "के",
+     "start": 3.536,
+     "end": 3.621
+    },
+    {
+     "id": "w9",
+     "text": "दिन",
+     "start": 3.686,
+     "end": 3.837
+    },
+    {
+     "id": "w10",
+     "text": "से",
+     "start": 3.923,
+     "end": 4.094
+    },
+    {
+     "id": "w11",
+     "text": "पूरे",
+     "start": 4.589,
+     "end": 4.89
+    },
+    {
+     "id": "w12",
+     "text": "बारह",
+     "start": 4.955,
+     "end": 5.277
+    },
+    {
+     "id": "w13",
+     "text": "महीने।",
+     "start": 5.363,
+     "end": 6.105
+    }
+   ],
+   "lead_s": 0.3
+  },
+  {
+   "frame": 5,
+   "path": "assets/vo/vo-05.wav",
+   "duration_s": 13.23,
+   "words": [
+    {
+     "id": "w0",
+     "text": "दूसरा",
+     "start": 0.3,
+     "end": 0.741
+    },
+    {
+     "id": "w1",
+     "text": "बदलाव",
+     "start": 0.794,
+     "end": 1.214
+    },
+    {
+     "id": "w2",
+     "text": "नया",
+     "start": 1.858,
+     "end": 2.128
+    },
+    {
+     "id": "w3",
+     "text": "किसान",
+     "start": 2.181,
+     "end": 2.525
+    },
+    {
+     "id": "w4",
+     "text": "क्रेडिट",
+     "start": 2.601,
+     "end": 2.944
+    },
+    {
+     "id": "w5",
+     "text": "कार्ड,",
+     "start": 2.998,
+     "end": 3.471
+    },
+    {
+     "id": "w6",
+     "text": "अब",
+     "start": 3.665,
+     "end": 3.837
+    },
+    {
+     "id": "w7",
+     "text": "पूरी",
+     "start": 3.891,
+     "end": 4.17
+    },
+    {
+     "id": "w8",
+     "text": "तरह",
+     "start": 4.224,
+     "end": 4.6
+    },
+    {
+     "id": "w9",
+     "text": "ऑनलाइन।",
+     "start": 4.794,
+     "end": 5.546
+    },
+    {
+     "id": "w10",
+     "text": "समग्र",
+     "start": 6.428,
+     "end": 6.879
+    },
+    {
+     "id": "w11",
+     "text": "आईडी",
+     "start": 6.955,
+     "end": 7.244
+    },
+    {
+     "id": "w12",
+     "text": "से",
+     "start": 7.319,
+     "end": 7.545
+    },
+    {
+     "id": "w13",
+     "text": "केवाईसी,",
+     "start": 7.685,
+     "end": 8.492
+    },
+    {
+     "id": "w14",
+     "text": "और",
+     "start": 8.685,
+     "end": 8.857
+    },
+    {
+     "id": "w15",
+     "text": "भू-अभिलेख",
+     "start": 8.921,
+     "end": 9.588
+    },
+    {
+     "id": "w16",
+     "text": "से",
+     "start": 9.653,
+     "end": 9.868
+    },
+    {
+     "id": "w17",
+     "text": "ज़मीन",
+     "start": 10.061,
+     "end": 10.502
+    },
+    {
+     "id": "w18",
+     "text": "की",
+     "start": 10.544,
+     "end": 10.631
+    },
+    {
+     "id": "w19",
+     "text": "जानकारी",
+     "start": 10.706,
+     "end": 11.276
+    },
+    {
+     "id": "w20",
+     "text": "अपने",
+     "start": 11.835,
+     "end": 12.19
+    },
+    {
+     "id": "w21",
+     "text": "आप।",
+     "start": 12.265,
+     "end": 12.77
+    }
+   ],
+   "lead_s": 0.3
+  },
+  {
+   "frame": 6,
+   "path": "assets/vo/vo-06.wav",
+   "duration_s": 7.72,
+   "words": [
+    {
+     "id": "w0",
+     "text": "फसल",
+     "start": 0.3,
+     "end": 0.741
+    },
+    {
+     "id": "w1",
+     "text": "और",
+     "start": 0.848,
+     "end": 0.967
+    },
+    {
+     "id": "w2",
+     "text": "रकबा",
+     "start": 1.031,
+     "end": 1.343
+    },
+    {
+     "id": "w3",
+     "text": "भरिए",
+     "start": 1.396,
+     "end": 1.805
+    },
+    {
+     "id": "w4",
+     "text": "साख",
+     "start": 2.278,
+     "end": 2.59
+    },
+    {
+     "id": "w5",
+     "text": "सीमा",
+     "start": 2.655,
+     "end": 3.042
+    },
+    {
+     "id": "w6",
+     "text": "ख़ुद",
+     "start": 3.203,
+     "end": 3.439
+    },
+    {
+     "id": "w7",
+     "text": "गिनी",
+     "start": 3.482,
+     "end": 3.665
+    },
+    {
+     "id": "w8",
+     "text": "जाएगी।",
+     "start": 3.719,
+     "end": 4.256
+    },
+    {
+     "id": "w9",
+     "text": "अधिकतम,",
+     "start": 4.815,
+     "end": 5.524
+    },
+    {
+     "id": "w10",
+     "text": "तीन",
+     "start": 5.686,
+     "end": 5.997
+    },
+    {
+     "id": "w11",
+     "text": "लाख",
+     "start": 6.073,
+     "end": 6.309
+    },
+    {
+     "id": "w12",
+     "text": "रुपये",
+     "start": 6.363,
+     "end": 6.653
+    },
+    {
+     "id": "w13",
+     "text": "तक।",
+     "start": 6.707,
+     "end": 7.266
+    }
+   ],
+   "lead_s": 0.3
+  },
+  {
+   "frame": 7,
+   "path": "assets/vo/vo-07.wav",
+   "duration_s": 11.29,
+   "words": [
+    {
+     "id": "w0",
+     "text": "फिर",
+     "start": 0.3,
+     "end": 0.59
+    },
+    {
+     "id": "w1",
+     "text": "पैक्स",
+     "start": 0.655,
+     "end": 0.934
+    },
+    {
+     "id": "w2",
+     "text": "जाँच",
+     "start": 0.999,
+     "end": 1.268
+    },
+    {
+     "id": "w3",
+     "text": "करेगी,",
+     "start": 1.332,
+     "end": 1.902
+    },
+    {
+     "id": "w4",
+     "text": "संचालक",
+     "start": 2.128,
+     "end": 2.719
+    },
+    {
+     "id": "w5",
+     "text": "मंडल",
+     "start": 2.783,
+     "end": 3.063
+    },
+    {
+     "id": "w6",
+     "text": "अनुशंसा",
+     "start": 3.138,
+     "end": 3.686
+    },
+    {
+     "id": "w7",
+     "text": "करेगा,",
+     "start": 3.74,
+     "end": 4.374
+    },
+    {
+     "id": "w8",
+     "text": "और",
+     "start": 4.568,
+     "end": 4.815
+    },
+    {
+     "id": "w9",
+     "text": "ज़िला",
+     "start": 5.041,
+     "end": 5.331
+    },
+    {
+     "id": "w10",
+     "text": "बैंक",
+     "start": 5.439,
+     "end": 5.718
+    },
+    {
+     "id": "w11",
+     "text": "शाखा",
+     "start": 5.794,
+     "end": 6.212
+    },
+    {
+     "id": "w12",
+     "text": "स्वीकृति",
+     "start": 6.352,
+     "end": 6.836
+    },
+    {
+     "id": "w13",
+     "text": "देगी।",
+     "start": 6.89,
+     "end": 7.406
+    },
+    {
+     "id": "w14",
+     "text": "स्वीकृति",
+     "start": 7.631,
+     "end": 8.137
+    },
+    {
+     "id": "w15",
+     "text": "पत्र",
+     "start": 8.201,
+     "end": 8.524
+    },
+    {
+     "id": "w16",
+     "text": "सीधे",
+     "start": 8.965,
+     "end": 9.341
+    },
+    {
+     "id": "w17",
+     "text": "लॉगिन",
+     "start": 9.394,
+     "end": 9.717
+    },
+    {
+     "id": "w18",
+     "text": "से",
+     "start": 9.793,
+     "end": 9.932
+    },
+    {
+     "id": "w19",
+     "text": "डाउनलोड।",
+     "start": 10.007,
+     "end": 10.835
+    }
+   ],
+   "lead_s": 0.3
+  },
+  {
+   "frame": 8,
+   "path": "assets/vo/vo-08.wav",
+   "duration_s": 11.56,
+   "words": [
+    {
+     "id": "w0",
+     "text": "तीसरा",
+     "start": 0.3,
+     "end": 0.783
+    },
+    {
+     "id": "w1",
+     "text": "बदलाव",
+     "start": 0.837,
+     "end": 1.279
+    },
+    {
+     "id": "w2",
+     "text": "ऑनलाइन",
+     "start": 1.934,
+     "end": 2.439
+    },
+    {
+     "id": "w3",
+     "text": "केसीसी",
+     "start": 2.504,
+     "end": 3.106
+    },
+    {
+     "id": "w4",
+     "text": "अब",
+     "start": 3.579,
+     "end": 3.761
+    },
+    {
+     "id": "w5",
+     "text": "पाँच",
+     "start": 3.837,
+     "end": 4.127
+    },
+    {
+     "id": "w6",
+     "text": "साल",
+     "start": 4.192,
+     "end": 4.406
+    },
+    {
+     "id": "w7",
+     "text": "के",
+     "start": 4.481,
+     "end": 4.568
+    },
+    {
+     "id": "w8",
+     "text": "लिए",
+     "start": 4.632,
+     "end": 4.922
+    },
+    {
+     "id": "w9",
+     "text": "मान्य।",
+     "start": 5.116,
+     "end": 5.771
+    },
+    {
+     "id": "w10",
+     "text": "ज़मीन",
+     "start": 6.244,
+     "end": 6.675
+    },
+    {
+     "id": "w11",
+     "text": "या",
+     "start": 6.729,
+     "end": 6.825
+    },
+    {
+     "id": "w12",
+     "text": "फसल",
+     "start": 6.89,
+     "end": 7.244
+    },
+    {
+     "id": "w13",
+     "text": "न",
+     "start": 7.438,
+     "end": 7.578
+    },
+    {
+     "id": "w14",
+     "text": "बदले,",
+     "start": 7.664,
+     "end": 8.266
+    },
+    {
+     "id": "w15",
+     "text": "तो",
+     "start": 8.427,
+     "end": 8.578
+    },
+    {
+     "id": "w16",
+     "text": "हर",
+     "start": 8.664,
+     "end": 8.825
+    },
+    {
+     "id": "w17",
+     "text": "साल",
+     "start": 8.932,
+     "end": 9.255
+    },
+    {
+     "id": "w18",
+     "text": "नया",
+     "start": 9.556,
+     "end": 9.856
+    },
+    {
+     "id": "w19",
+     "text": "आवेदन",
+     "start": 9.964,
+     "end": 10.427
+    },
+    {
+     "id": "w20",
+     "text": "नहीं।",
+     "start": 10.448,
+     "end": 11.093
+    }
+   ],
+   "lead_s": 0.3
+  },
+  {
+   "frame": 9,
+   "path": "assets/vo/vo-09.wav",
+   "duration_s": 19.29,
+   "words": [
+    {
+     "id": "w0",
+     "text": "चौथा",
+     "start": 0.3,
+     "end": 0.848
+    },
+    {
+     "id": "w1",
+     "text": "बदलाव",
+     "start": 1.256,
+     "end": 1.762
+    },
+    {
+     "id": "w2",
+     "text": "ब्याज",
+     "start": 2.676,
+     "end": 3.009
+    },
+    {
+     "id": "w3",
+     "text": "की",
+     "start": 3.095,
+     "end": 3.17
+    },
+    {
+     "id": "w4",
+     "text": "शर्तें।",
+     "start": 3.245,
+     "end": 3.869
+    },
+    {
+     "id": "w5",
+     "text": "इस",
+     "start": 4.621,
+     "end": 4.805
+    },
+    {
+     "id": "w6",
+     "text": "साल",
+     "start": 4.869,
+     "end": 5.202
+    },
+    {
+     "id": "w7",
+     "text": "बेस",
+     "start": 5.61,
+     "end": 5.922
+    },
+    {
+     "id": "w8",
+     "text": "रेट,",
+     "start": 6.008,
+     "end": 6.545
+    },
+    {
+     "id": "w9",
+     "text": "नौ",
+     "start": 6.739,
+     "end": 6.932
+    },
+    {
+     "id": "w10",
+     "text": "दशमलव",
+     "start": 7.019,
+     "end": 7.535
+    },
+    {
+     "id": "w11",
+     "text": "सात",
+     "start": 7.89,
+     "end": 8.191
+    },
+    {
+     "id": "w12",
+     "text": "पाँच",
+     "start": 8.255,
+     "end": 8.513
+    },
+    {
+     "id": "w13",
+     "text": "प्रतिशत।",
+     "start": 8.588,
+     "end": 9.308
+    },
+    {
+     "id": "w14",
+     "text": "हर",
+     "start": 9.567,
+     "end": 9.76
+    },
+    {
+     "id": "w15",
+     "text": "किसान",
+     "start": 9.835,
+     "end": 10.222
+    },
+    {
+     "id": "w16",
+     "text": "को",
+     "start": 10.297,
+     "end": 10.512
+    },
+    {
+     "id": "w17",
+     "text": "सवा",
+     "start": 10.814,
+     "end": 11.146
+    },
+    {
+     "id": "w18",
+     "text": "प्रतिशत",
+     "start": 11.201,
+     "end": 11.706
+    },
+    {
+     "id": "w19",
+     "text": "ब्याज",
+     "start": 11.964,
+     "end": 12.286
+    },
+    {
+     "id": "w20",
+     "text": "अनुदान…",
+     "start": 12.372,
+     "end": 13.093
+    },
+    {
+     "id": "w21",
+     "text": "और",
+     "start": 13.652,
+     "end": 13.92
+    },
+    {
+     "id": "w22",
+     "text": "समय",
+     "start": 14.221,
+     "end": 14.533
+    },
+    {
+     "id": "w23",
+     "text": "पर",
+     "start": 14.597,
+     "end": 14.705
+    },
+    {
+     "id": "w24",
+     "text": "चुकाने",
+     "start": 14.769,
+     "end": 15.168
+    },
+    {
+     "id": "w25",
+     "text": "वालों",
+     "start": 15.231,
+     "end": 15.544
+    },
+    {
+     "id": "w26",
+     "text": "को,",
+     "start": 15.586,
+     "end": 15.963
+    },
+    {
+     "id": "w27",
+     "text": "चार",
+     "start": 16.124,
+     "end": 16.404
+    },
+    {
+     "id": "w28",
+     "text": "प्रतिशत",
+     "start": 16.457,
+     "end": 16.984
+    },
+    {
+     "id": "w29",
+     "text": "अतिरिक्त",
+     "start": 17.242,
+     "end": 17.747
+    },
+    {
+     "id": "w30",
+     "text": "प्रोत्साहन।",
+     "start": 17.812,
+     "end": 18.833
+    }
+   ],
+   "lead_s": 0.3
+  },
+  {
+   "frame": 10,
+   "path": "assets/vo/vo-10.wav",
+   "duration_s": 7.59,
+   "words": [
+    {
+     "id": "w0",
+     "text": "ध्यान",
+     "start": 0.3,
+     "end": 0.622
+    },
+    {
+     "id": "w1",
+     "text": "रहे",
+     "start": 0.687,
+     "end": 0.913
+    },
+    {
+     "id": "w2",
+     "text": "नए",
+     "start": 1.343,
+     "end": 1.536
+    },
+    {
+     "id": "w3",
+     "text": "केसीसी",
+     "start": 1.58,
+     "end": 2.009
+    },
+    {
+     "id": "w4",
+     "text": "के",
+     "start": 2.063,
+     "end": 2.138
+    },
+    {
+     "id": "w5",
+     "text": "लिए,",
+     "start": 2.192,
+     "end": 2.557
+    },
+    {
+     "id": "w6",
+     "text": "कम",
+     "start": 2.697,
+     "end": 2.88
+    },
+    {
+     "id": "w7",
+     "text": "से",
+     "start": 2.966,
+     "end": 3.052
+    },
+    {
+     "id": "w8",
+     "text": "कम",
+     "start": 3.106,
+     "end": 3.331
+    },
+    {
+     "id": "w9",
+     "text": "शून्य",
+     "start": 3.632,
+     "end": 3.987
+    },
+    {
+     "id": "w10",
+     "text": "दशमलव",
+     "start": 4.041,
+     "end": 4.525
+    },
+    {
+     "id": "w11",
+     "text": "एक",
+     "start": 4.751,
+     "end": 4.922
+    },
+    {
+     "id": "w12",
+     "text": "हेक्टेयर",
+     "start": 5.03,
+     "end": 5.449
+    },
+    {
+     "id": "w13",
+     "text": "ज़मीन",
+     "start": 5.514,
+     "end": 5.836
+    },
+    {
+     "id": "w14",
+     "text": "ज़रूरी",
+     "start": 6.137,
+     "end": 6.589
+    },
+    {
+     "id": "w15",
+     "text": "है।",
+     "start": 6.653,
+     "end": 7.137
+    }
+   ],
+   "lead_s": 0.3
+  },
+  {
+   "frame": 11,
+   "path": "assets/vo/vo-11.wav",
+   "duration_s": 11.31,
+   "words": [
+    {
+     "id": "w0",
+     "text": "तो",
+     "start": 0.3,
+     "end": 0.622
+    },
+    {
+     "id": "w1",
+     "text": "समय",
+     "start": 0.977,
+     "end": 1.289
+    },
+    {
+     "id": "w2",
+     "text": "पर",
+     "start": 1.364,
+     "end": 1.494
+    },
+    {
+     "id": "w3",
+     "text": "चुकाइए,",
+     "start": 1.569,
+     "end": 2.31
+    },
+    {
+     "id": "w4",
+     "text": "और",
+     "start": 2.611,
+     "end": 2.912
+    },
+    {
+     "id": "w5",
+     "text": "योजना",
+     "start": 3.213,
+     "end": 3.676
+    },
+    {
+     "id": "w6",
+     "text": "का",
+     "start": 3.74,
+     "end": 3.987
+    },
+    {
+     "id": "w7",
+     "text": "पूरा",
+     "start": 4.181,
+     "end": 4.514
+    },
+    {
+     "id": "w8",
+     "text": "लाभ",
+     "start": 4.589,
+     "end": 4.836
+    },
+    {
+     "id": "w9",
+     "text": "उठाइए।",
+     "start": 4.912,
+     "end": 5.643
+    },
+    {
+     "id": "w10",
+     "text": "ज़्यादा",
+     "start": 5.997,
+     "end": 6.352
+    },
+    {
+     "id": "w11",
+     "text": "जानकारी",
+     "start": 6.417,
+     "end": 6.955
+    },
+    {
+     "id": "w12",
+     "text": "के",
+     "start": 7.019,
+     "end": 7.126
+    },
+    {
+     "id": "w13",
+     "text": "लिए",
+     "start": 7.191,
+     "end": 7.47
+    },
+    {
+     "id": "w14",
+     "text": "अपनी",
+     "start": 8.072,
+     "end": 8.427
+    },
+    {
+     "id": "w15",
+     "text": "पैक्स",
+     "start": 8.513,
+     "end": 8.857
+    },
+    {
+     "id": "w16",
+     "text": "समिति",
+     "start": 9.082,
+     "end": 9.513
+    },
+    {
+     "id": "w17",
+     "text": "से",
+     "start": 9.567,
+     "end": 9.653
+    },
+    {
+     "id": "w18",
+     "text": "मिलिए।",
+     "start": 9.706,
+     "end": 10.405
+    }
+   ],
+   "lead_s": 0.3
+  },
+  {
+   "frame": 12,
+   "path": "assets/vo/vo-12.wav",
+   "duration_s": 6.95,
+   "words": [
+    {
+     "id": "w0",
+     "text": "सहकार",
+     "start": 0.3,
+     "end": 0.869
+    },
+    {
+     "id": "w1",
+     "text": "ए",
+     "start": 0.977,
+     "end": 1.117
+    },
+    {
+     "id": "w2",
+     "text": "आई",
+     "start": 1.193,
+     "end": 1.407
+    },
+    {
+     "id": "w3",
+     "text": "नियम,",
+     "start": 2.052,
+     "end": 2.525
+    },
+    {
+     "id": "w4",
+     "text": "आपकी",
+     "start": 2.719,
+     "end": 3.031
+    },
+    {
+     "id": "w5",
+     "text": "भाषा",
+     "start": 3.095,
+     "end": 3.418
+    },
+    {
+     "id": "w6",
+     "text": "में।",
+     "start": 3.482,
+     "end": 3.955
+    }
+   ],
+   "lead_s": 0.3
+  }
+ ],
+ "sfx": [
+  {
+   "frame": 1,
+   "file": "assets/audio/tick.mp3",
+   "offset_s": 1.45,
+   "duration_s": 0.26,
+   "volume": 0.25
+  },
+  {
+   "frame": 1,
+   "file": "assets/audio/tick.mp3",
+   "offset_s": 3.1,
+   "duration_s": 0.26,
+   "volume": 0.25
+  },
+  {
+   "frame": 1,
+   "file": "assets/audio/pop.mp3",
+   "offset_s": 4.9,
+   "duration_s": 0.58,
+   "volume": 0.2
+  },
+  {
+   "frame": 2,
+   "file": "assets/audio/pop.mp3",
+   "offset_s": 2.25,
+   "duration_s": 0.58,
+   "volume": 0.2
+  },
+  {
+   "frame": 2,
+   "file": "assets/audio/chime.mp3",
+   "offset_s": 6.05,
+   "duration_s": 4.3,
+   "volume": 0.22
+  },
+  {
+   "frame": 3,
+   "file": "assets/audio/whoosh.mp3",
+   "offset_s": 4.2,
+   "duration_s": 1.4,
+   "volume": 0.22
+  },
+  {
+   "frame": 3,
+   "file": "assets/audio/pop.mp3",
+   "offset_s": 4.9,
+   "duration_s": 0.58,
+   "volume": 0.2
+  },
+  {
+   "frame": 4,
+   "file": "assets/audio/tick.mp3",
+   "offset_s": 1.9,
+   "duration_s": 0.26,
+   "volume": 0.25
+  },
+  {
+   "frame": 4,
+   "file": "assets/audio/chime.mp3",
+   "offset_s": 4.95,
+   "duration_s": 4.3,
+   "volume": 0.22
+  },
+  {
+   "frame": 5,
+   "file": "assets/audio/pop.mp3",
+   "offset_s": 4.7,
+   "duration_s": 0.58,
+   "volume": 0.2
+  },
+  {
+   "frame": 5,
+   "file": "assets/audio/pop.mp3",
+   "offset_s": 7.6,
+   "duration_s": 0.58,
+   "volume": 0.2
+  },
+  {
+   "frame": 5,
+   "file": "assets/audio/pop.mp3",
+   "offset_s": 10.0,
+   "duration_s": 0.58,
+   "volume": 0.2
+  },
+  {
+   "frame": 5,
+   "file": "assets/audio/chime.mp3",
+   "offset_s": 11.8,
+   "duration_s": 4.3,
+   "volume": 0.22
+  },
+  {
+   "frame": 6,
+   "file": "assets/audio/chime.mp3",
+   "offset_s": 6.0,
+   "duration_s": 4.3,
+   "volume": 0.22
+  },
+  {
+   "frame": 7,
+   "file": "assets/audio/pop.mp3",
+   "offset_s": 0.6,
+   "duration_s": 0.58,
+   "volume": 0.2
+  },
+  {
+   "frame": 7,
+   "file": "assets/audio/pop.mp3",
+   "offset_s": 2.1,
+   "duration_s": 0.58,
+   "volume": 0.2
+  },
+  {
+   "frame": 7,
+   "file": "assets/audio/pop.mp3",
+   "offset_s": 5.0,
+   "duration_s": 0.58,
+   "volume": 0.2
+  },
+  {
+   "frame": 7,
+   "file": "assets/audio/whoosh.mp3",
+   "offset_s": 7.5,
+   "duration_s": 1.4,
+   "volume": 0.22
+  },
+  {
+   "frame": 7,
+   "file": "assets/audio/pop.mp3",
+   "offset_s": 9.95,
+   "duration_s": 0.58,
+   "volume": 0.2
+  },
+  {
+   "frame": 8,
+   "file": "assets/audio/pop.mp3",
+   "offset_s": 3.8,
+   "duration_s": 0.58,
+   "volume": 0.2
+  },
+  {
+   "frame": 8,
+   "file": "assets/audio/pop.mp3",
+   "offset_s": 5.1,
+   "duration_s": 0.58,
+   "volume": 0.2
+  },
+  {
+   "frame": 9,
+   "file": "assets/audio/tick.mp3",
+   "offset_s": 8.5,
+   "duration_s": 0.26,
+   "volume": 0.25
+  },
+  {
+   "frame": 9,
+   "file": "assets/audio/tick.mp3",
+   "offset_s": 11.15,
+   "duration_s": 0.26,
+   "volume": 0.25
+  },
+  {
+   "frame": 9,
+   "file": "assets/audio/chime.mp3",
+   "offset_s": 16.4,
+   "duration_s": 4.3,
+   "volume": 0.22
+  },
+  {
+   "frame": 10,
+   "file": "assets/audio/pop.mp3",
+   "offset_s": 0.25,
+   "duration_s": 0.58,
+   "volume": 0.2
+  },
+  {
+   "frame": 10,
+   "file": "assets/audio/pop.mp3",
+   "offset_s": 4.7,
+   "duration_s": 0.58,
+   "volume": 0.2
+  },
+  {
+   "frame": 11,
+   "file": "assets/audio/whoosh.mp3",
+   "offset_s": 0.05,
+   "duration_s": 1.4,
+   "volume": 0.22
+  },
+  {
+   "frame": 11,
+   "file": "assets/audio/chime.mp3",
+   "offset_s": 8.5,
+   "duration_s": 4.3,
+   "volume": 0.22
+  },
+  {
+   "frame": 12,
+   "file": "assets/audio/whoosh.mp3",
+   "offset_s": 0.25,
+   "duration_s": 1.4,
+   "volume": 0.22
+  },
+  {
+   "frame": 12,
+   "file": "assets/audio/chime.mp3",
+   "offset_s": 2.0,
+   "duration_s": 4.3,
+   "volume": 0.22
+  }
+ ]
+}

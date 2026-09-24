@@ -1,0 +1,240 @@
+<template>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 500; font-display: block; src: url("assets/fonts/noto-sans-devanagari-devanagari-500-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 500; font-display: block; src: url("assets/fonts/noto-sans-devanagari-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 600; font-display: block; src: url("assets/fonts/noto-sans-devanagari-devanagari-600-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 600; font-display: block; src: url("assets/fonts/noto-sans-devanagari-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/noto-sans-devanagari-devanagari-700-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/noto-sans-devanagari-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Heebo"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/heebo-latin-700-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Heebo"; font-style: normal; font-weight: 900; font-display: block; src: url("assets/fonts/heebo-latin-900-normal.woff2") format("woff2"); }
+
+    #root {
+      --paper: #f3f7fa; --paper-2: #dfe6ee; --ink: #0f172a; --body: #35455c; --muted: #64748b;
+      --faint: #94a3b8; --line: #e2e9f0; --card: #ffffff; --sky: #38bdf8; --sky-deep: #0284c7;
+      --teal: #0d9488; --emerald: #34d399; --emerald-deep: #059669; --mint: #e7f8f1; --skywash: #e6f5fd;
+      position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden;
+      font-family: "Noto Sans Devanagari", "Heebo", sans-serif; letter-spacing: normal;
+    }
+    #root * { box-sizing: border-box; }
+
+    /* ---------- ground ---------- */
+    #min-land-ground { position: absolute; inset: 0; background: var(--paper); overflow: hidden; }
+    .min-land-swell { position: absolute; border-radius: 50%; }
+    #min-land-swell-a { width: 1700px; height: 1700px; left: 380px; top: -1040px; background: var(--paper-2); opacity: .7; }
+    #min-land-swell-b { width: 2300px; height: 2300px; left: -610px; top: 1330px; background: var(--skywash); }
+    #min-land-swell-c { width: 1500px; height: 1500px; left: -1080px; top: 560px; background: var(--mint); opacity: .75; }
+
+    /* ---------- content layer ---------- */
+    #min-land-content { position: absolute; inset: 0; }
+
+    /* chrome */
+    #min-land-chrome { position: absolute; left: 80px; top: 96px; height: 28px; display: flex; align-items: center; }
+    .min-land-head { position: absolute; top: 3px; width: 22px; height: 22px; border-radius: 50%; }
+    #min-land-head-sky { left: 0; background: radial-gradient(circle at 35% 30%, #7dd3fc, #0284c7); }
+    #min-land-head-em { left: 14px; background: radial-gradient(circle at 35% 30%, #6ee7b7, #059669); }
+    #min-land-eyebrow { margin-left: 52px; font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 700; font-size: 24px; letter-spacing: .14em; color: var(--muted); line-height: 28px; white-space: nowrap; }
+
+    /* attention pill (centre y≈360) */
+    #min-land-pill-wrap { position: absolute; left: 0; right: 0; top: 318px; height: 84px; display: flex; justify-content: center; }
+    #min-land-pill {
+      height: 84px; display: flex; align-items: center; gap: 18px; padding: 0 38px 0 22px;
+      background: var(--card); border: 3px solid var(--sky); border-radius: 999px;
+      box-shadow: 0 2px 4px rgba(15,23,42,.04), 0 18px 48px -12px rgba(15,23,42,.14);
+      transform-origin: 50% 50%;
+    }
+    #min-land-pill svg { width: 48px; height: 48px; display: block; }
+    #min-land-pill-text { font-weight: 600; font-size: 38px; line-height: 1.3; padding: .12em 0; color: var(--ink); letter-spacing: normal; white-space: nowrap; }
+
+    /* headline */
+    #min-land-headline {
+      position: absolute; left: 80px; right: 80px; top: 424px; text-align: center;
+      font-weight: 700; font-size: 60px; line-height: 1.25; padding: .12em 0; color: var(--ink); letter-spacing: normal;
+    }
+
+    /* plot */
+    #min-land-plot-stage { position: absolute; left: 180px; top: 560px; width: 720px; height: 720px; transform-origin: 360px 280px; }
+    #min-land-plot {
+      position: absolute; left: 80px; top: 0; width: 560px; height: 560px; border-radius: 28px; overflow: hidden;
+      background: var(--mint); border: 1.5px solid var(--line);
+      box-shadow: 0 2px 4px rgba(15,23,42,.04), 0 30px 80px -20px rgba(13,148,136,.28);
+      transform-origin: 50% 100%;
+    }
+    #min-land-dots { position: absolute; left: 0; top: 0; width: 560px; height: 560px; display: block; }
+    #min-land-brackets { position: absolute; left: 0; top: 0; width: 720px; height: 720px; overflow: visible; }
+    #min-land-brackets path { fill: none; stroke: url(#min-land-ramp); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* value card on the plot */
+    #min-land-value {
+      position: absolute; left: 190px; top: 132px; width: 340px; height: 296px;
+      background: var(--card); border-radius: 36px; border: 1.5px solid var(--line);
+      box-shadow: 0 2px 4px rgba(15,23,42,.04), 0 18px 48px -12px rgba(15,23,42,.14);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transform-origin: 50% 50%;
+    }
+    #min-land-num {
+      display: inline-block; font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 900; font-size: 150px;
+      line-height: .95; color: var(--ink); font-variant-numeric: tabular-nums; transform-origin: 50% 60%; letter-spacing: -0.01em;
+    }
+    #min-land-unit { margin-top: 10px; font-weight: 600; font-size: 44px; line-height: 1.3; padding: .12em 0; color: var(--ink); letter-spacing: normal; white-space: nowrap; }
+
+    /* bottom line */
+    #min-land-line {
+      position: absolute; left: 80px; right: 80px; top: 1316px; text-align: center;
+      font-weight: 500; font-size: 40px; line-height: 1.5; padding: .12em 0; color: var(--body); letter-spacing: normal;
+    }
+    #min-land-line-chip {
+      display: inline-flex; align-items: center; gap: 18px; padding: 10px 36px 10px 26px; border-radius: 999px;
+      background: var(--card); border: 1.5px solid var(--line);
+      box-shadow: 0 2px 4px rgba(15,23,42,.04), 0 18px 48px -12px rgba(15,23,42,.14);
+    }
+    #min-land-line-dot { width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #6ee7b7, #059669); flex: none; }
+  </style>
+
+  <div data-hf-id="hf-7vcs" id="root" data-composition-id="10-min-land" data-start="0" data-duration="7.99" data-width="1080" data-height="1920">
+    <div data-hf-id="hf-xaj5" id="min-land-ground" class="clip" data-start="0" data-duration="7.99" data-track-index="0">
+      <div data-hf-id="hf-npig" id="min-land-swell-a" class="min-land-swell"></div>
+      <div data-hf-id="hf-sfaa" id="min-land-swell-c" class="min-land-swell"></div>
+      <div data-hf-id="hf-wdeb" id="min-land-swell-b" class="min-land-swell"></div>
+    </div>
+
+    <div data-hf-id="hf-m672" id="min-land-content" class="clip" data-start="0" data-duration="7.99" data-track-index="1">
+      <div data-hf-id="hf-ge02" id="min-land-chrome">
+        <div data-hf-id="hf-03bw" id="min-land-head-sky" class="min-land-head"></div>
+        <div data-hf-id="hf-rwsj" id="min-land-head-em" class="min-land-head"></div>
+        <div data-hf-id="hf-f0u7" id="min-land-eyebrow">SAHKARAI EXPLAINS</div>
+      </div>
+
+      <div data-hf-id="hf-ljji" id="min-land-pill-wrap">
+        <div data-hf-id="hf-yw85" id="min-land-pill">
+          <svg data-hf-id="hf-iwz0" viewBox="0 0 48 48" aria-hidden="true">
+            <circle data-hf-id="hf-u9yq" id="min-land-info-ring" cx="24" cy="24" r="20" fill="none" stroke="#0284c7" stroke-width="4" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 24 24)" />
+            <circle data-hf-id="hf-qgso" cx="24" cy="14.5" r="3" fill="#0284c7" />
+            <line data-hf-id="hf-1brc" x1="24" y1="21.5" x2="24" y2="34" stroke="#0284c7" stroke-width="4.5" stroke-linecap="round" />
+          </svg>
+          <div data-hf-id="hf-fbwu" id="min-land-pill-text">ध्यान रहे</div>
+        </div>
+      </div>
+
+      <div data-hf-id="hf-vjnq" id="min-land-headline">नए KCC के लिए</div>
+
+      <div data-hf-id="hf-xaus" id="min-land-plot-stage">
+        <div data-hf-id="hf-3a7d" id="min-land-plot">
+          <svg data-hf-id="hf-ogw0" id="min-land-dots" viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg" />
+        </div>
+        <svg data-hf-id="hf-prvl" id="min-land-brackets" viewBox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+          <defs data-hf-id="hf-mh0t">
+            <lineargradient data-hf-id="hf-9bl3" id="min-land-ramp" x1="0" y1="0" x2="720" y2="720" gradientUnits="userSpaceOnUse">
+              <stop data-hf-id="hf-urok" offset="0" stop-color="#0284c7" />
+              <stop data-hf-id="hf-ltpa" offset=".25" stop-color="#0ea5e9" />
+              <stop data-hf-id="hf-j8k6" offset=".45" stop-color="#0d9488" />
+              <stop data-hf-id="hf-dem6" offset=".65" stop-color="#10b981" />
+              <stop data-hf-id="hf-xvnc" offset="1" stop-color="#059669" />
+            </lineargradient>
+          </defs>
+          <!-- left side: vertical dimension bracket (x=40, plot spans y 0–560) -->
+          <path data-hf-id="hf-thiv" id="min-land-br-left" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M 58 6 L 36 6 L 36 554 L 58 554" />
+          <!-- bottom side: horizontal dimension bracket (y=600, plot spans x 80–640) -->
+          <path data-hf-id="hf-soln" id="min-land-br-bottom" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M 86 582 L 86 604 L 634 604 L 634 582" />
+        </svg>
+        <div data-hf-id="hf-alzr" id="min-land-value">
+          <span data-hf-id="hf-lam1" id="min-land-num">0.00</span>
+          <div data-hf-id="hf-somt" id="min-land-unit">हेक्टेयर</div>
+        </div>
+      </div>
+
+      <div data-hf-id="hf-ugoi" id="min-land-line">
+        <span data-hf-id="hf-magq" id="min-land-line-chip"><span data-hf-id="hf-4fnh" id="min-land-line-dot"></span>न्यूनतम भूमि आवश्यक</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var NS = "http://www.w3.org/2000/svg";
+      var svg = document.getElementById("min-land-dots");
+
+      // ---- deterministic halftone furrows (perspective rows converging to a horizon above the plot) ----
+      var W = 560, H = 560, PITCH = 16;
+      var VX = 280, VY = -260;           // vanishing point above the plot
+      var BANDS = 7;
+      var bands = [];
+      for (var b = 0; b < BANDS; b++) {
+        var g = document.createElementNS(NS, "g");
+        g.setAttribute("class", "min-land-band");
+        svg.appendChild(g);
+        bands.push(g);
+      }
+      // colour ramp teal (far) -> emerald (near)
+      var stops = [[13, 148, 136], [16, 185, 129], [52, 211, 153]];
+      function lerpColor(t) {
+        t = Math.max(0, Math.min(1, t));
+        var seg = t < 0.5 ? 0 : 1, lt = t < 0.5 ? t / 0.5 : (t - 0.5) / 0.5;
+        var a = stops[seg], c = stops[seg + 1];
+        return "rgb(" + Math.round(a[0] + (c[0] - a[0]) * lt) + "," + Math.round(a[1] + (c[1] - a[1]) * lt) + "," + Math.round(a[2] + (c[2] - a[2]) * lt) + ")";
+      }
+      var OX = 280, OY = 560, MAXD = Math.sqrt(280 * 280 + 560 * 560);
+      var row = 0;
+      for (var y = PITCH / 2; y < H; y += PITCH, row++) {
+        var off = (row % 2) ? PITCH / 2 : 0;
+        for (var x = PITCH / 2 + off - PITCH / 2; x < W + PITCH / 2; x += PITCH) {
+          var depth = y / H;                               // 0 far (top) -> 1 near (bottom)
+          var ang = Math.atan2(x - VX, y - VY);
+          var furrow = Math.pow(Math.cos(ang * 22), 2);
+          var r = (PITCH * 0.46) * (0.3 + 0.7 * depth) * (0.28 + 0.72 * furrow);
+          if (r < 0.9) continue;
+          var c = document.createElementNS(NS, "circle");
+          c.setAttribute("cx", x.toFixed(1));
+          c.setAttribute("cy", y.toFixed(1));
+          c.setAttribute("r", r.toFixed(2));
+          c.setAttribute("fill", lerpColor(depth * 0.85 + furrow * 0.15));
+          var d = Math.sqrt((x - OX) * (x - OX) + (y - OY) * (y - OY)) / MAXD;
+          bands[Math.min(BANDS - 1, Math.floor(d * BANDS))].appendChild(c);
+        }
+      }
+
+      var tl = gsap.timeline({ paused: true });
+
+      // Chrome (0–0.4s)
+      tl.fromTo("#min-land-chrome", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0);
+
+      // Scene 1 — @0.30 "ध्यान रहे": sky-outlined attention pill pops
+      tl.fromTo("#min-land-pill", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.4)" }, 0.18);
+      tl.to("#min-land-info-ring", { strokeDashoffset: 0, duration: 0.6, ease: "power2.out" }, 0.26);
+
+      // @1.58 "नए केसीसी के लिए": headline rises
+      tl.fromTo("#min-land-headline", { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 1.46);
+
+      // Scene 2 — @2.70 "कम से कम": plot blooms from the near edge outward
+      tl.fromTo("#min-land-plot", { opacity: 0, scale: 0.9, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "expo.out" }, 2.58);
+      tl.fromTo(".min-land-band", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.out", stagger: 0.09 }, 2.62);
+      // dimension brackets draw on two sides
+      tl.to("#min-land-br-left", { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 2.95);
+      tl.to("#min-land-br-bottom", { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 3.2);
+
+      // @3.63 "शून्य दशमलव एक": 0.10 counts in, landing @4.75
+      tl.fromTo("#min-land-value", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.4)" }, 3.5);
+      var num = document.getElementById("min-land-num");
+      var state = { v: 0 };
+      tl.fromTo(state, { v: 0 }, {
+        v: 0.10, duration: 1.25, ease: "power3.out",
+        onUpdate: function () { num.textContent = state.v.toFixed(2); }
+      }, 3.5);
+      tl.fromTo(num, { scale: 0.62 }, { scale: 1, duration: 1.25, ease: "power3.out" }, 3.5);
+
+      // @5.03 "हेक्टेयर": unit label
+      tl.fromTo("#min-land-unit", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 4.9);
+
+      // @6.14 "ज़रूरी": minimum-land line under the plot
+      tl.fromTo("#min-land-line", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 6.02);
+
+      // Hold: barely-perceptible slow push on the plot (camera micro-drift)
+      tl.fromTo("#min-land-plot-stage", { scale: 1 }, { scale: 1.02, duration: 7.59 - 4.75, ease: "none" }, 4.75);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["10-min-land"] = tl;
+    })();
+  </script>
+</template>

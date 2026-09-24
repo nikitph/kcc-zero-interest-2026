@@ -1,0 +1,204 @@
+<template>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 600; font-style: normal; font-display: block;
+      src: url("assets/fonts/noto-sans-devanagari-devanagari-600-normal.woff2") format("woff2");
+      unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 600; font-style: normal; font-display: block;
+      src: url("assets/fonts/noto-sans-devanagari-latin-600-normal.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 700; font-style: normal; font-display: block;
+      src: url("assets/fonts/noto-sans-devanagari-devanagari-700-normal.woff2") format("woff2");
+      unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 700; font-style: normal; font-display: block;
+      src: url("assets/fonts/noto-sans-devanagari-latin-700-normal.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 800; font-style: normal; font-display: block;
+      src: url("assets/fonts/noto-sans-devanagari-devanagari-800-normal.woff2") format("woff2");
+      unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 800; font-style: normal; font-display: block;
+      src: url("assets/fonts/noto-sans-devanagari-latin-800-normal.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Heebo"; font-weight: 700; font-style: normal; font-display: block;
+      src: url("assets/fonts/heebo-latin-700-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Heebo"; font-weight: 900; font-style: normal; font-display: block;
+      src: url("assets/fonts/heebo-latin-900-normal.woff2") format("woff2"); }
+
+    #root {
+      --paper: #f3f7fa; --paper-2: #dfe6ee; --ink: #0f172a; --body: #35455c; --muted: #64748b;
+      --faint: #94a3b8; --line: #e2e9f0; --card: #ffffff; --sky: #38bdf8; --sky-deep: #0284c7;
+      --teal: #0d9488; --emerald: #34d399; --emerald-deep: #059669; --mint: #e7f8f1; --skywash: #e6f5fd;
+      position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden;
+      font-family: "Noto Sans Devanagari", "Heebo", sans-serif;
+    }
+    .f02-dev { font-family: "Noto Sans Devanagari", "Heebo", sans-serif; letter-spacing: normal; }
+
+    /* ground */
+    #f02-bg { position: absolute; inset: 0; background: var(--paper); overflow: hidden; }
+    #f02-swell-mint { position: absolute; width: 1900px; height: 1900px; border-radius: 50%;
+      background: var(--mint); left: -1180px; top: 180px; }
+    #f02-swell-paper { position: absolute; width: 2200px; height: 2200px; border-radius: 50%;
+      background: var(--paper-2); left: 160px; top: 1180px; opacity: .55; }
+    #f02-swell-sky { position: absolute; width: 1500px; height: 1500px; border-radius: 50%;
+      background: var(--skywash); left: 520px; top: -1080px; }
+
+    /* chrome */
+    #f02-chrome { position: absolute; left: 80px; top: 96px; height: 36px; display: flex; align-items: center; }
+    .f02-heads { position: relative; width: 36px; height: 22px; margin-right: 16px; }
+    .f02-head { position: absolute; top: 0; width: 22px; height: 22px; border-radius: 50%; }
+    .f02-head.sky { left: 0; background: radial-gradient(circle at 35% 30%, #7dd3fc, #0284c7); }
+    .f02-head.em { left: 14px; background: radial-gradient(circle at 35% 30%, #6ee7b7, #059669); }
+    .f02-eyebrow { font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 700; font-size: 24px;
+      letter-spacing: .14em; color: var(--muted); line-height: 1; }
+
+    /* scene 1 headline */
+    #f02-headline { position: absolute; left: 80px; right: 80px; top: 290px; text-align: center;
+      font-weight: 700; font-size: 96px; line-height: 1.22; color: var(--ink); padding: 0.14em 0; }
+    .f02-word { display: inline-block; padding: 0.1em 0; }
+
+    /* scene 2 zero block */
+    #f02-zero { position: absolute; left: 0; right: 0; top: 540px; text-align: center; }
+    #f02-zero-num { font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 900; font-size: 230px;
+      line-height: 0.95; color: var(--ink); font-variant-numeric: tabular-nums; display: inline-block; }
+    #f02-zero-pct { color: var(--teal); }
+    #f02-zero-label { margin-top: 18px; font-weight: 700; font-size: 60px; line-height: 1.3; color: var(--ink);
+      padding: 0.12em 0; }
+
+    /* scheme pill card */
+    #f02-pill { position: absolute; z-index: 3; left: 0; right: 0; top: 960px; display: flex; justify-content: center; }
+    .f02-pill-in { display: flex; align-items: center; gap: 22px; background: var(--card);
+      border: 1.5px solid var(--line); border-radius: 999px; padding: 18px 48px 18px 36px;
+      box-shadow: 0 2px 4px rgba(15,23,42,.04), 0 18px 48px -12px rgba(15,23,42,.14); }
+    .f02-pill-dot { width: 26px; height: 26px; border-radius: 50%; flex: none;
+      background: radial-gradient(circle at 35% 30%, #6ee7b7, #059669); }
+    .f02-pill-text { font-weight: 600; font-size: 50px; line-height: 1.3; color: var(--ink); padding: 0.1em 0; }
+
+    /* scene 3 ring + numeral */
+    #f02-ring-wrap { position: absolute; left: 240px; top: 700px; width: 600px; height: 600px; }
+    #f02-ring-svg { position: absolute; inset: 0; width: 600px; height: 600px; overflow: visible; }
+    #f02-four { position: absolute; left: 0; top: 0; width: 600px; height: 600px; display: flex;
+      align-items: center; justify-content: center; font-weight: 800; font-size: 360px; line-height: 1.2;
+      color: var(--teal); padding-top: 0.04em; }
+    .f02-qdot { position: absolute; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%;
+      border: 6px solid var(--paper); box-sizing: border-box; }
+    #f02-changes { position: absolute; left: 80px; right: 80px; top: 1330px; text-align: center;
+      font-weight: 700; font-size: 84px; line-height: 1.24; color: var(--ink); padding: 0.12em 0; }
+  </style>
+
+  <div data-hf-id="hf-fdyw" id="root" data-composition-id="02-four-changes" data-width="1080" data-height="1920" data-start="0" data-duration="8.44">
+    <!-- ground -->
+    <div data-hf-id="hf-dztu" id="f02-bg" class="clip" data-start="0" data-duration="8.44" data-track-index="0">
+      <div data-hf-id="hf-hobu" id="f02-swell-paper"></div>
+      <div data-hf-id="hf-qlqr" id="f02-swell-sky"></div>
+      <div data-hf-id="hf-ms4c" id="f02-swell-mint"></div>
+    </div>
+
+    <!-- chrome -->
+    <div data-hf-id="hf-otlg" id="f02-chrome" class="clip" data-start="0" data-duration="8.44" data-track-index="1">
+      <div data-hf-id="hf-i2pm" class="f02-heads"><div data-hf-id="hf-3fyo" class="f02-head sky"></div><div data-hf-id="hf-h3en" class="f02-head em"></div></div>
+      <div data-hf-id="hf-kh16" class="f02-eyebrow">SAHKARAI EXPLAINS</div>
+    </div>
+
+    <!-- scene 1: headline -->
+    <div data-hf-id="hf-d8vz" id="f02-headline" class="clip f02-dev" data-start="0" data-duration="8.44" data-track-index="2">
+      <span data-hf-id="hf-7u6i" class="f02-word" id="f02-w1">अब</span>
+      <span data-hf-id="hf-h990" class="f02-word" id="f02-w2">सब</span>
+      <span data-hf-id="hf-bsab" class="f02-word" id="f02-w3">बदल</span>
+      <span data-hf-id="hf-uxf7" class="f02-word" id="f02-w4">गया है</span>
+    </div>
+
+    <!-- scene 2: 0% block -->
+    <div data-hf-id="hf-5nya" id="f02-zero" class="clip" data-start="0" data-duration="8.44" data-track-index="3">
+      <div data-hf-id="hf-nl3z" id="f02-zero-num">0<span data-hf-id="hf-kfci" id="f02-zero-pct">%</span></div>
+      <div data-hf-id="hf-eqzo" id="f02-zero-label" class="f02-dev">शून्य प्रतिशत ब्याज</div>
+    </div>
+
+    <!-- scheme pill -->
+    <div data-hf-id="hf-icv6" id="f02-pill" class="clip" data-start="0" data-duration="8.44" data-track-index="4">
+      <div data-hf-id="hf-gazg" class="f02-pill-in"><div data-hf-id="hf-4o7y" class="f02-pill-dot"></div><div data-hf-id="hf-3ewx" class="f02-pill-text f02-dev">फसल ऋण योजना</div></div>
+    </div>
+
+    <!-- scene 3: ring + ४ -->
+    <div data-hf-id="hf-a9t9" id="f02-ring-wrap" class="clip" data-start="0" data-duration="8.44" data-track-index="5">
+      <svg data-hf-id="hf-8oyz" id="f02-ring-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <defs data-hf-id="hf-mh0t">
+          <lineargradient data-hf-id="hf-kccw" id="f02-ramp" gradientUnits="userSpaceOnUse" x1="40" y1="0" x2="560" y2="0">
+            <stop data-hf-id="hf-7dpr" offset="0%" stop-color="#0284c7" />
+            <stop data-hf-id="hf-zvlx" offset="25%" stop-color="#0ea5e9" />
+            <stop data-hf-id="hf-4gkp" offset="45%" stop-color="#0d9488" />
+            <stop data-hf-id="hf-3bsp" offset="65%" stop-color="#10b981" />
+            <stop data-hf-id="hf-nhdp" offset="100%" stop-color="#059669" />
+          </lineargradient>
+        </defs>
+        <circle data-hf-id="hf-xxk9" cx="300" cy="300" r="260" fill="#ffffff" stroke="#e2e9f0" stroke-width="2" id="f02-ring-base" />
+        <circle data-hf-id="hf-apuh" id="f02-ring" cx="300" cy="300" r="260" fill="none" stroke="url(#f02-ramp)" stroke-width="24" stroke-linecap="round" transform="rotate(-90 300 300)" />
+      </svg>
+      <div data-hf-id="hf-5gbd" id="f02-four" class="f02-dev">४</div>
+      <div data-hf-id="hf-m7l0" class="f02-qdot" id="f02-q1" style="left:300px;top:40px;background:#0284c7"></div>
+      <div data-hf-id="hf-304d" class="f02-qdot" id="f02-q2" style="left:560px;top:300px;background:#0d9488"></div>
+      <div data-hf-id="hf-476i" class="f02-qdot" id="f02-q3" style="left:300px;top:560px;background:#10b981"></div>
+      <div data-hf-id="hf-lt9i" class="f02-qdot" id="f02-q4" style="left:40px;top:300px;background:#059669"></div>
+    </div>
+
+    <div data-hf-id="hf-jsd1" id="f02-changes" class="clip f02-dev" data-start="0" data-duration="8.44" data-track-index="6">बड़े बदलाव</div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var root = document.querySelector('[data-composition-id="02-four-changes"]');
+      var q = function (s) { return root.querySelector(s); };
+      var tl = gsap.timeline({ paused: true });
+
+      // ring draw setup (measured length)
+      var ring = q("#f02-ring");
+      var len = ring.getTotalLength();
+      ring.style.strokeDasharray = len + " " + len;
+
+      // ---- chrome 0–0.4s
+      tl.fromTo(q("#f02-chrome"), { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0);
+
+      // ---- scene 1: mint swell slides in from left, headline per-word
+      tl.fromTo(q("#f02-swell-mint"), { x: -520 }, { x: 0, duration: 1.8, ease: "expo.out" }, 0);
+      tl.fromTo(q("#f02-swell-sky"), { y: -160, opacity: 0 }, { y: 0, opacity: 1, duration: 1.6, ease: "power3.out" }, 0.1);
+      // slow barely-perceptible drift under the whole shot
+      tl.fromTo(q("#f02-swell-paper"), { x: 0, scale: 1 }, { x: -60, scale: 1.04, duration: 7.94, ease: "none" }, 0);
+
+      var wordIn = function (sel, at) {
+        tl.fromTo(q(sel), { opacity: 0, y: 46 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, at);
+      };
+      wordIn("#f02-w1", 0.18);   // @0.30 "अब"
+      wordIn("#f02-w2", 0.71);   // @0.83 "सब"
+      wordIn("#f02-w3", 0.94);   // @1.06 "बदल गया है"
+      wordIn("#f02-w4", 1.04);
+
+      // ---- scene 2: 0% pops @2.32, label builds, pill @4.06
+      tl.fromTo(q("#f02-zero-num"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.4)" }, 2.2);
+      tl.fromTo(q("#f02-zero-label"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 2.5);
+      tl.fromTo(q("#f02-pill"), { opacity: 0, y: 40, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.4)" }, 3.94);
+
+      // ---- scene 3 @6.11 "चार": 0% block lifts away, pill moves up (scheme name above), ring draws, ४ lands
+      tl.to(q("#f02-zero"), { opacity: 0, y: -90, duration: 0.4, ease: "power2.in" }, 5.5);
+      tl.to(q("#f02-pill"), { y: -380, duration: 0.55, ease: "power3.inOut" }, 5.6);
+      tl.fromTo(q("#f02-ring-base"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 5.95);
+      // hide the round-linecap dot that shows at dashoffset=len until the draw begins
+      tl.set(ring, { opacity: 0 }, 0);
+      tl.set(ring, { opacity: 1 }, 5.99);
+      tl.fromTo(ring, { strokeDashoffset: len },{ strokeDashoffset: 0, duration: 0.95, ease: "power2.out" }, 5.98);
+      tl.fromTo(q("#f02-four"), { opacity: 0, scale: 0.55 }, { opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.4)" }, 5.99);
+
+      // quarter-mark dots pop in sequence
+      ["#f02-q1", "#f02-q2", "#f02-q3", "#f02-q4"].forEach(function (s, i) {
+        tl.fromTo(q(s), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.4)" }, 6.2 + i * 0.16);
+      });
+
+      // @6.70 "बदलाव" — label slides up beneath the ring
+      tl.fromTo(q("#f02-changes"), { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 6.58);
+
+      // hold to end
+      tl.set({}, {}, 7.94);
+      window.__timelines["02-four-changes"] = tl;
+    })();
+  </script>
+</template>

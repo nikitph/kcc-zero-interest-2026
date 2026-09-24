@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="161 100 478 324" width="478" height="324" role="img" aria-labelledby="t">
+  <title id="t">SahkarAI</title>
+  <defs>
+    <linearGradient id="ribbon" gradientUnits="userSpaceOnUse" x1="230" y1="200" x2="570" y2="360">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="25%" stop-color="#0ea5e9"/>
+      <stop offset="45%" stop-color="#0d9488"/>
+      <stop offset="65%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <!-- axis matches the animation's wave bbox, so the heads keep the exact
+         colour ramp they end the animation on -->
+    <linearGradient id="head-sky" gradientUnits="userSpaceOnUse" x1="-121.2" y1="-110" x2="121.2" y2="70">
+      <stop offset="0%" stop-color="#7dd3fc"/><stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="head-em" gradientUnits="userSpaceOnUse" x1="-121.2" y1="-110" x2="121.2" y2="70">
+      <stop offset="0%" stop-color="#6ee7b7"/><stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="head-shadow" x="-60%" y="-60%" width="220%" height="220%">
+      <feDropShadow dx="3" dy="6" stdDeviation="8" flood-color="#000" flood-opacity=".45"/>
+    </filter>
+    <filter id="crossover" x="-35%" y="-35%" width="170%" height="170%">
+      <feDropShadow dx="-4" dy="4" stdDeviation="6" flood-color="#022c22" flood-opacity=".45"/>
+    </filter>
+  </defs>
+
+  <g id="mark" transform="translate(0 15)">
+    <path d="M237.5 216.4A85 85 0 1 0 340.1 350.1L459.9 229.9A85 85 0 0 1 477.5 216.4" fill="none" stroke="url(#ribbon)" stroke-width="44"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M562.5 216.4A85 85 0 1 1 459.9 350.1L340.1 229.9A85 85 0 0 0 322.5 216.4" fill="none" stroke="url(#ribbon)" stroke-width="44"
+          stroke-linecap="round" stroke-linejoin="round" filter="url(#crossover)"/>
+      <g transform="translate(280 132)" filter="url(#head-shadow)">
+        <circle r="34" fill="url(#head-sky)"/>
+        <circle r="34" fill="none" stroke="#38bdf8" stroke-width="2.5" opacity=".45"/>
+        <ellipse cx="-11" cy="-13" rx="11" ry="7.5" transform="rotate(-32)" fill="#fff" opacity=".16"/>
+      </g>
+      <g transform="translate(520 132)" filter="url(#head-shadow)">
+        <circle r="34" fill="url(#head-em)"/>
+        <circle r="34" fill="none" stroke="#34d399" stroke-width="2.5" opacity=".45"/>
+        <ellipse cx="-11" cy="-13" rx="11" ry="7.5" transform="rotate(-32)" fill="#fff" opacity=".16"/>
+      </g>
+  </g>
+</svg>

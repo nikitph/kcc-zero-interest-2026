@@ -1,0 +1,253 @@
+<template>
+  <meta charset="utf-8">
+  <style>
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 500; font-display: block; src: url("assets/fonts/noto-sans-devanagari-devanagari-500-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 500; font-display: block; src: url("assets/fonts/noto-sans-devanagari-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 600; font-display: block; src: url("assets/fonts/noto-sans-devanagari-devanagari-600-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 600; font-display: block; src: url("assets/fonts/noto-sans-devanagari-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/noto-sans-devanagari-devanagari-700-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/noto-sans-devanagari-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Heebo"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/heebo-latin-700-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Heebo"; font-style: normal; font-weight: 900; font-display: block; src: url("assets/fonts/heebo-latin-900-normal.woff2") format("woff2"); }
+
+    #root {
+      --paper: #f3f7fa; --paper-2: #dfe6ee; --ink: #0f172a; --body: #35455c; --muted: #64748b;
+      --faint: #94a3b8; --line: #e2e9f0; --card: #ffffff; --sky: #38bdf8; --sky-deep: #0284c7;
+      --teal: #0d9488; --emerald: #34d399; --emerald-deep: #059669; --mint: #e7f8f1; --skywash: #e6f5fd;
+      position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden;
+      font-family: "Noto Sans Devanagari", "Heebo", sans-serif; letter-spacing: normal; color: var(--ink);
+    }
+    #root * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ---------- ground ---------- */
+    .it09-bg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; background: var(--paper); overflow: hidden; }
+    .it09-swell { position: absolute; border-radius: 50%; }
+    .it09-swell-a { width: 2200px; height: 2200px; left: -1060px; top: 900px; background: var(--paper-2); }
+    .it09-swell-b { width: 1600px; height: 1600px; left: 560px; top: -1180px; background: var(--mint); opacity: .7; }
+
+    /* ---------- chrome ---------- */
+    .it09-brand { position: absolute; left: 80px; top: 96px; height: 28px; display: flex; align-items: center; }
+    .it09-heads { position: relative; width: 36px; height: 22px; margin-right: 16px; }
+    .it09-head { position: absolute; top: 0; width: 22px; height: 22px; border-radius: 50%; }
+    .it09-head-sky { left: 0; background: radial-gradient(circle at 35% 35%, #7dd3fc, #0284c7); }
+    .it09-head-em { left: 14px; background: radial-gradient(circle at 35% 35%, #6ee7b7, #059669); }
+    .it09-brand-txt { font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 700; font-size: 24px; letter-spacing: .14em; color: var(--muted); line-height: 1; }
+    .it09-chip-step { position: absolute; right: 80px; top: 84px; display: flex; align-items: center; gap: 12px; padding: 12px 24px; border-radius: 999px; background: var(--card);
+      box-shadow: 0 2px 4px rgba(15,23,42,.04), 0 18px 48px -12px rgba(15,23,42,.14); }
+    .it09-chip-step svg { width: 30px; height: 30px; display: block; }
+    .it09-chip-step span { font-weight: 600; font-size: 28px; line-height: 1.3; color: var(--ink); padding: 2px 0; }
+
+    /* ---------- headline block ---------- */
+    .it09-eyebrow { position: absolute; left: 80px; top: 196px; font-size: 32px; font-weight: 600; line-height: 1.4; color: var(--muted); padding: 4px 0; }
+    .it09-eyebrow i { display: inline-block; width: 14px; height: 14px; border-radius: 50%; background: var(--emerald-deep); margin-right: 14px; vertical-align: middle; position: relative; top: -3px; }
+    .it09-h1 { position: absolute; left: 80px; top: 256px; font-size: 84px; font-weight: 700; line-height: 1.2; color: var(--ink); padding: 12px 0; white-space: nowrap; }
+    .it09-sub { position: absolute; left: 80px; top: 382px; display: flex; align-items: center; gap: 14px; font-size: 32px; font-weight: 500; line-height: 1.4; color: var(--muted); padding: 4px 0; }
+    .it09-sub b { font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 700; color: var(--body); }
+    .it09-sub-rule { width: 64px; height: 6px; border-radius: 999px; background: linear-gradient(90deg,#0284c7 0%,#0ea5e9 25%,#0d9488 45%,#10b981 65%,#059669 100%); }
+
+    /* ---------- stage (slow camera drift) ---------- */
+    .it09-stage { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 540px 900px; }
+
+    /* ---------- cards ---------- */
+    .it09-card { position: absolute; left: 80px; width: 920px; background: var(--card); border-radius: 36px; border: 1.5px solid var(--line);
+      box-shadow: 0 2px 4px rgba(15,23,42,.04), 0 18px 48px -12px rgba(15,23,42,.14); overflow: hidden; }
+    .it09-card-a { top: 500px; height: 260px; }
+    .it09-card-b { top: 800px; height: 260px; }
+    .it09-card-c { top: 1100px; height: 300px; left: 64px; width: 952px; background: linear-gradient(180deg, #ffffff 0%, var(--mint) 100%);
+      box-shadow: 0 2px 4px rgba(15,23,42,.04), 0 30px 80px -20px rgba(13,148,136,.28); border-color: #cdeee0; }
+    .it09-bar { position: absolute; left: 32px; top: 40px; bottom: 40px; width: 14px; border-radius: 999px; background: var(--line); overflow: hidden; }
+    .it09-bar-fill { position: absolute; left: 0; top: 0; width: 100%; height: 100%; border-radius: 999px; transform-origin: 50% 100%; }
+    .it09-card-a .it09-bar-fill { background: linear-gradient(180deg, #38bdf8, #0284c7); }
+    .it09-card-b .it09-bar-fill { background: linear-gradient(180deg, #7dd3fc, #38bdf8); }
+    .it09-card-c .it09-bar-fill { background: linear-gradient(180deg, #34d399, #059669); }
+    .it09-lbl { position: absolute; left: 80px; top: 0; bottom: 0; width: 420px; display: flex; flex-direction: column; justify-content: center; }
+    .it09-lbl-k { font-size: 32px; font-weight: 500; line-height: 1.4; color: var(--muted); padding: 4px 0; }
+    .it09-lbl-v { font-size: 56px; font-weight: 700; line-height: 1.25; color: var(--ink); padding: 6px 0; white-space: nowrap; }
+    .it09-card-c .it09-lbl-v { font-size: 52px; }
+    .it09-lbl-yr { font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 700; }
+    .it09-num { position: absolute; right: 52px; top: 0; bottom: 0; width: 470px; display: flex; align-items: center; justify-content: flex-end;
+      font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 900; line-height: 0.9; color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+    .it09-card-a .it09-num, .it09-card-b .it09-num { font-size: 150px; }
+    .it09-card-c .it09-num { font-size: 210px; color: var(--teal); right: 56px; }
+    .it09-val { display: inline-block; transform-origin: 100% 60%; }
+    .it09-pct { display: inline-block; font-size: .62em; margin-left: 6px; position: relative; top: -0.28em; }
+    .it09-plus { display: inline-block; font-size: .7em; margin-right: 4px; position: relative; top: -0.12em; }
+
+    /* hero glow */
+    .it09-glow { position: absolute; left: 540px; top: 1250px; width: 1100px; height: 1100px; margin-left: -550px; margin-top: -550px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(52,211,153,.30) 0%, rgba(52,211,153,.12) 38%, rgba(52,211,153,0) 68%); }
+
+    /* due-date chip */
+    .it09-due { position: absolute; left: 80px; top: 1440px; display: flex; align-items: center; gap: 16px; padding: 14px 32px 14px 20px; border-radius: 999px;
+      background: var(--mint); border: 1.5px solid #bfe9d6; box-shadow: 0 2px 4px rgba(15,23,42,.04), 0 18px 48px -12px rgba(15,23,42,.14); transform-origin: 20% 50%; }
+    .it09-due svg { width: 52px; height: 52px; display: block; }
+    .it09-due span { font-size: 36px; font-weight: 600; line-height: 1.35; color: var(--ink); padding: 4px 0; }
+  </style>
+
+  <div data-hf-id="hf-v7vb" id="root" data-composition-id="09-interest-terms" data-start="0" data-duration="19.79" data-width="1080" data-height="1920">
+    <!-- background: paper + curved swells -->
+    <div data-hf-id="hf-gf20" id="it09-ground" class="it09-bg clip" data-start="0" data-duration="19.79" data-track-index="0">
+      <div data-hf-id="hf-zrty" class="it09-swell it09-swell-a"></div>
+      <div data-hf-id="hf-vtpx" class="it09-swell it09-swell-b"></div>
+    </div>
+
+    <!-- content -->
+    <div data-hf-id="hf-hc4b" id="it09-stage" class="it09-stage clip" data-start="0" data-duration="19.79" data-track-index="1">
+      <div data-hf-id="hf-28qs" class="it09-glow"></div>
+
+      <div data-hf-id="hf-1qt4" class="it09-eyebrow"><i data-hf-id="hf-wt6k"></i>चौथा बदलाव</div>
+      <div data-hf-id="hf-3z8t" class="it09-h1">ब्याज की शर्तें</div>
+      <div data-hf-id="hf-1s52" class="it09-sub"><span data-hf-id="hf-u11t" class="it09-sub-rule"></span>वर्ष <b data-hf-id="hf-w54t">2026-27</b></div>
+
+      <div data-hf-id="hf-3px2" class="it09-card it09-card-a">
+        <div data-hf-id="hf-05qm" class="it09-bar"><div data-hf-id="hf-mntc" class="it09-bar-fill"></div></div>
+        <div data-hf-id="hf-n41j" class="it09-lbl">
+          <div data-hf-id="hf-mejc" class="it09-lbl-k it09-lbl-yr">2026-27</div>
+          <div data-hf-id="hf-b9vz" class="it09-lbl-v">बेस रेट</div>
+        </div>
+        <div data-hf-id="hf-eeap" class="it09-num"><span data-hf-id="hf-7ga3" class="it09-val" id="it09-val-a">0.00</span><span data-hf-id="hf-j9zk" class="it09-pct">%</span></div>
+      </div>
+
+      <div data-hf-id="hf-xk79" class="it09-card it09-card-b">
+        <div data-hf-id="hf-xtea" class="it09-bar"><div data-hf-id="hf-qajs" class="it09-bar-fill"></div></div>
+        <div data-hf-id="hf-o307" class="it09-lbl">
+          <div data-hf-id="hf-lc51" class="it09-lbl-k">सभी किसानों को</div>
+          <div data-hf-id="hf-c0jc" class="it09-lbl-v">ब्याज अनुदान</div>
+        </div>
+        <div data-hf-id="hf-k8ol" class="it09-num"><span data-hf-id="hf-3yt0" class="it09-val" id="it09-val-b">0.00</span><span data-hf-id="hf-60bs" class="it09-pct">%</span></div>
+      </div>
+
+      <div data-hf-id="hf-wsjg" class="it09-card it09-card-c">
+        <div data-hf-id="hf-y7pb" class="it09-bar"><div data-hf-id="hf-p3mp" class="it09-bar-fill"></div></div>
+        <div data-hf-id="hf-nop6" class="it09-lbl">
+          <div data-hf-id="hf-w6pn" class="it09-lbl-k">समय पर चुकाने पर</div>
+          <div data-hf-id="hf-6ojz" class="it09-lbl-v">अतिरिक्त प्रोत्साहन</div>
+        </div>
+        <div data-hf-id="hf-lflo" class="it09-num"><span data-hf-id="hf-ox53" class="it09-val" id="it09-val-c"><span data-hf-id="hf-3qeh" class="it09-plus">+</span><span data-hf-id="hf-w6v5" id="it09-val-c-n">0</span></span><span data-hf-id="hf-4tep" class="it09-pct">%</span></div>
+      </div>
+
+      <div data-hf-id="hf-5ijj" class="it09-due">
+        <svg data-hf-id="hf-llxq" viewBox="0 0 52 52" aria-hidden="true">
+          <rect data-hf-id="hf-ke3i" x="6" y="10" width="40" height="36" rx="9" fill="#ffffff" stroke="#059669" stroke-width="3.5" />
+          <line data-hf-id="hf-qpgl" x1="6" y1="20" x2="46" y2="20" stroke="#059669" stroke-width="3.5" />
+          <line data-hf-id="hf-gin1" x1="17" y1="5" x2="17" y2="14" stroke="#059669" stroke-width="3.5" stroke-linecap="round" />
+          <line data-hf-id="hf-1zjl" x1="35" y1="5" x2="35" y2="14" stroke="#059669" stroke-width="3.5" stroke-linecap="round" />
+          <path data-hf-id="hf-xac4" class="it09-due-check" d="M17 33 L23.5 39 L35.5 27" fill="none" stroke="#0d9488" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span data-hf-id="hf-f8i7">देय तिथि तक चुकाएँ</span>
+      </div>
+    </div>
+
+    <!-- chrome (identical across frames) -->
+    <div data-hf-id="hf-qkqq" id="it09-chrome" class="it09-chrome clip" data-start="0" data-duration="19.79" data-track-index="2">
+      <div data-hf-id="hf-ovga" class="it09-brand">
+        <div data-hf-id="hf-t02o" class="it09-heads"><div data-hf-id="hf-9h7w" class="it09-head it09-head-sky"></div><div data-hf-id="hf-mwhf" class="it09-head it09-head-em"></div></div>
+        <div data-hf-id="hf-m7wb" class="it09-brand-txt">SAHKARAI EXPLAINS</div>
+      </div>
+      <div data-hf-id="hf-wauk" class="it09-chip-step">
+        <svg data-hf-id="hf-mlhm" viewBox="0 0 30 30" aria-hidden="true">
+          <defs data-hf-id="hf-mh0t">
+            <lineargradient data-hf-id="hf-q4mr" id="it09-ramp" x1="0" y1="0" x2="1" y2="0">
+              <stop data-hf-id="hf-7dpr" offset="0%" stop-color="#0284c7" /><stop data-hf-id="hf-zvlx" offset="25%" stop-color="#0ea5e9" /><stop data-hf-id="hf-4gkp" offset="45%" stop-color="#0d9488" /><stop data-hf-id="hf-3bsp" offset="65%" stop-color="#10b981" /><stop data-hf-id="hf-nhdp" offset="100%" stop-color="#059669" />
+            </lineargradient>
+          </defs>
+          <circle data-hf-id="hf-kd02" cx="15" cy="15" r="11" fill="none" stroke="#e2e9f0" stroke-width="5" />
+          <circle data-hf-id="hf-fnuj" cx="15" cy="15" r="11" fill="none" stroke="url(#it09-ramp)" stroke-width="5" transform="rotate(-90 15 15)" />
+        </svg>
+        <span data-hf-id="hf-hmwf">बदलाव ४ / ४</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      var FID = "09-interest-terms";
+      var root = document.querySelector('[data-composition-id="' + FID + '"]');
+      var q = function (s) { return root.querySelector(s); };
+      var D = 19.29;
+      var tl = gsap.timeline({ paused: true });
+
+      // ---- ground: slow circle swell (background) ----
+      tl.fromTo(q(".it09-swell-a"), { scale: 0.96 }, { scale: 1.05, duration: D, ease: "none" }, 0);
+      tl.fromTo(q(".it09-swell-b"), { scale: 1.0 }, { scale: 0.95, duration: D, ease: "none" }, 0);
+
+      // ---- camera: very slow continuous push-in on the content stage ----
+      tl.fromTo(q(".it09-stage"), { scale: 1.0 }, { scale: 1.018, duration: D, ease: "none" }, 0);
+
+      // ---- chrome 0–0.4s ----
+      tl.fromTo(q(".it09-brand"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0);
+      tl.fromTo(q(".it09-chip-step"), { opacity: 0, x: 16 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.02);
+
+      // ---- Scene 1: eyebrow @0.30, headline @2.68, sub @4.62 ----
+      tl.fromTo(q(".it09-eyebrow"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.19);
+      tl.fromTo(q(".it09-h1"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, ease: "expo.out" }, 2.56);
+      tl.fromTo(q(".it09-sub"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 4.5);
+      tl.fromTo(q(".it09-sub-rule"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, 4.5);
+
+      // resting baselines for shared-class targets
+      tl.set(root.querySelectorAll(".it09-bar-fill"), { scaleY: 0 }, 0);
+      tl.set(root.querySelectorAll(".it09-pct"), { opacity: 0, y: 20 }, 0);
+
+      // ---- count-up helper (counting-dynamic-scale) ----
+      function countUp(el, target, decimals, start, land, startScale, fmt) {
+        var st = { v: 0 };
+        var dur = land - start;
+        tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.18, ease: "none" }, start);
+        tl.fromTo(st, { v: 0 }, {
+          v: target, duration: dur, ease: "power3.out",
+          onUpdate: function () { el.textContent = fmt(st.v); }
+        }, start);
+        return dur;
+      }
+      var fmt2 = function (v) { return v.toFixed(2); };
+
+      // ---- Scene 2: card A @5.61, count 0.00→9.75 landing @8.59 ----
+      var A = q(".it09-card-a");
+      tl.fromTo(A, { opacity: 0, x: 140 }, { opacity: 1, x: 0, duration: 0.75, ease: "power3.out" }, 5.5);
+      var valA = q("#it09-val-a");
+      countUp(valA, 9.75, 2, 6.64, 8.59, 0.6, fmt2);
+      tl.fromTo(valA, { scale: 0.6 }, { scale: 1, duration: 8.59 - 6.64, ease: "power3.out" }, 6.64);
+      tl.fromTo(A.querySelector(".it09-bar-fill"), { scaleY: 0 }, { scaleY: 1, duration: 8.59 - 6.64, ease: "power3.out" }, 6.64);
+      tl.fromTo(A.querySelector(".it09-pct"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.4)" }, 8.5);
+
+      // ---- Scene 3: card B @9.84, count 0.00→1.25 landing @11.20 ----
+      var B = q(".it09-card-b");
+      tl.fromTo(B, { opacity: 0, x: 140 }, { opacity: 1, x: 0, duration: 0.75, ease: "power3.out" }, 9.73);
+      var valB = q("#it09-val-b");
+      countUp(valB, 1.25, 2, 10.70, 11.20, 0.6, fmt2);
+      tl.fromTo(valB, { scale: 0.6 }, { scale: 1, duration: 11.20 - 10.70, ease: "power3.out" }, 10.70);
+      tl.fromTo(B.querySelector(".it09-bar-fill"), { scaleY: 0 }, { scaleY: 1, duration: 1.1, ease: "power3.out" }, 10.70);
+      tl.fromTo(B.querySelector(".it09-pct"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.4)" }, 11.12);
+
+      // ---- Scene 4: hero card C @14.22, "+4%" landing @16.46, due chip @17.81 ----
+      var C = q(".it09-card-c");
+      tl.fromTo(C, { opacity: 0, x: 160, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.85, ease: "power3.out" }, 14.1);
+      var valC = q("#it09-val-c");
+      var valCn = q("#it09-val-c-n");
+      tl.fromTo(valC, { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "none" }, 16.0);
+      (function () {
+        var st = { v: 0 };
+        tl.fromTo(st, { v: 0 }, { v: 4, duration: 16.46 - 16.0, ease: "power3.out",
+          onUpdate: function () { valCn.textContent = String(Math.round(st.v)); } }, 16.0);
+      })();
+      tl.fromTo(valC, { scale: 0.55 }, { scale: 1, duration: 16.46 - 16.0, ease: "power3.out" }, 16.0);
+      tl.fromTo(C.querySelector(".it09-bar-fill"), { scaleY: 0 }, { scaleY: 1, duration: 1.2, ease: "power3.out" }, 16.0);
+      tl.fromTo(C.querySelector(".it09-pct"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.4)" }, 16.38);
+      // soft emerald glow blooms behind the hero as the number lands
+      tl.fromTo(q(".it09-glow"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 1.6, ease: "power2.out" }, 16.3);
+
+      // due-date chip pops @17.81, check draws
+      var due = q(".it09-due");
+      tl.fromTo(due, { opacity: 0, scale: 0.6, y: 12 }, { opacity: 1, scale: 1, y: 0, duration: 0.55, ease: "back.out(1.4)" }, 17.7);
+      var chk = q(".it09-due-check");
+      tl.fromTo(chk, { strokeDasharray: 30, strokeDashoffset: 30 }, { strokeDashoffset: 0, duration: 0.45, ease: "power2.out" }, 17.95);
+
+      // pad timeline to full duration (hold)
+      tl.set({}, {}, D);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines[FID] = tl;
+    })();
+  </script>
+</template>

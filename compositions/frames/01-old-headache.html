@@ -1,0 +1,219 @@
+<template>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 500; font-display: block; src: url("assets/fonts/noto-sans-devanagari-devanagari-500-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 500; font-display: block; src: url("assets/fonts/noto-sans-devanagari-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 600; font-display: block; src: url("assets/fonts/noto-sans-devanagari-devanagari-600-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 600; font-display: block; src: url("assets/fonts/noto-sans-devanagari-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/noto-sans-devanagari-devanagari-700-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/noto-sans-devanagari-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Heebo"; font-style: normal; font-weight: 500; font-display: block; src: url("assets/fonts/heebo-latin-500-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Heebo"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/heebo-latin-700-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Heebo"; font-style: normal; font-weight: 900; font-display: block; src: url("assets/fonts/heebo-latin-900-normal.woff2") format("woff2"); }
+
+    #root {
+      --paper: #f3f7fa; --paper-2: #dfe6ee; --ink: #0f172a; --body: #35455c; --muted: #64748b;
+      --faint: #94a3b8; --line: #e2e9f0; --card: #ffffff; --sky: #38bdf8; --sky-deep: #0284c7;
+      --teal: #0d9488; --emerald: #34d399; --emerald-deep: #059669; --mint: #e7f8f1; --skywash: #e6f5fd;
+      position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden;
+      font-family: "Noto Sans Devanagari", "Heebo", sans-serif; letter-spacing: normal;
+    }
+    #root * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ---------- ground ---------- */
+    #oh01-ground { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; background: var(--paper); overflow: hidden; }
+    #oh01-swell { position: absolute; width: 1800px; height: 1800px; left: 180px; top: -1050px; border-radius: 50%; background: var(--skywash); }
+    #oh01-swell2 { position: absolute; width: 2200px; height: 2200px; left: -1500px; top: 700px; border-radius: 50%; background: var(--paper-2); opacity: .55; }
+    #oh01-halftone { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: .35; }
+
+    /* ---------- chrome ---------- */
+    #oh01-chrome { position: absolute; left: 80px; top: 96px; display: flex; align-items: center; height: 28px; }
+    .oh01-heads { position: relative; width: 36px; height: 22px; margin-right: 16px; }
+    .oh01-head { position: absolute; top: 0; width: 22px; height: 22px; border-radius: 50%; }
+    .oh01-head.sky { left: 0; background: radial-gradient(circle at 35% 30%, #7dd3fc, #0284c7); }
+    .oh01-head.em { left: 14px; background: radial-gradient(circle at 35% 30%, #6ee7b7, #059669); }
+    .oh01-eyebrow { font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 700; font-size: 24px; letter-spacing: .14em; color: var(--muted); line-height: 1; }
+
+    /* ---------- split line ---------- */
+    #oh01-split { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+
+    /* ---------- season cards ---------- */
+    .oh01-card {
+      position: absolute; width: 600px; padding: 44px 48px 48px;
+      background: var(--card); border-radius: 36px; border: 1.5px solid var(--line);
+      box-shadow: 0 2px 4px rgba(15,23,42,.04), 0 18px 48px -12px rgba(15,23,42,.14);
+    }
+    #oh01-cardA { left: 80px; top: 300px; }
+    #oh01-cardB { left: 400px; top: 1010px; }
+    .oh01-title { display: flex; align-items: center; gap: 26px; }
+    .oh01-dot { width: 34px; height: 34px; border-radius: 50%; flex: none; }
+    .oh01-dot.sky { background: radial-gradient(circle at 35% 30%, #7dd3fc, #0284c7); }
+    .oh01-dot.em { background: radial-gradient(circle at 35% 30%, #6ee7b7, #059669); }
+    .oh01-h1 { font-size: 84px; font-weight: 700; line-height: 1.24; color: var(--ink); letter-spacing: normal; padding: .12em 0; }
+    .oh01-months { display: flex; gap: 12px; margin: 22px 0 30px; }
+    .oh01-m { width: 72px; height: 16px; border-radius: 999px; background: var(--line); }
+    .oh01-chip {
+      display: inline-flex; align-items: center; gap: 16px; padding: 12px 30px 12px 22px; border-radius: 999px;
+      font-size: 40px; font-weight: 600; line-height: 1.4; color: var(--ink); letter-spacing: normal;
+    }
+    .oh01-chip.sky { background: var(--skywash); }
+    .oh01-chip.em { background: var(--mint); }
+    .oh01-chipdot { width: 18px; height: 18px; border-radius: 50%; flex: none; }
+    .oh01-chip.sky .oh01-chipdot { background: var(--sky-deep); }
+    .oh01-chip.em .oh01-chipdot { background: var(--emerald-deep); }
+
+    /* ---------- ghost calculation marks ---------- */
+    .oh01-ghost {
+      position: absolute; font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 500;
+      font-size: 60px; line-height: 1.2; color: var(--faint); white-space: nowrap;
+    }
+    .oh01-rupee { font-family: "Noto Sans Devanagari", "Heebo", sans-serif; }
+
+    /* ---------- payoff ? ---------- */
+    #oh01-q {
+      position: absolute; left: 390px; top: 700px; width: 300px; height: 300px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 900; font-size: 300px; line-height: 1;
+      color: var(--ink);
+    }
+  </style>
+
+  <div data-hf-id="hf-7in2" id="root" data-composition-id="01-old-headache" data-width="1080" data-height="1920" data-duration="6.73">
+    <div data-hf-id="hf-zfem" id="oh01-ground" class="clip" data-start="0" data-duration="6.73" data-track-index="0">
+      <div data-hf-id="hf-uafd" id="oh01-swell"></div>
+      <div data-hf-id="hf-9t9d" id="oh01-swell2"></div>
+      <svg data-hf-id="hf-8n24" id="oh01-halftone" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" />
+    </div>
+
+    <div data-hf-id="hf-38sg" id="oh01-chrome">
+      <div data-hf-id="hf-f01m" class="oh01-heads"><span data-hf-id="hf-1bz7" class="oh01-head sky"></span><span data-hf-id="hf-fczi" class="oh01-head em"></span></div>
+      <span data-hf-id="hf-luc5" class="oh01-eyebrow">SAHKARAI EXPLAINS</span>
+    </div>
+
+    <svg data-hf-id="hf-ucsf" id="oh01-split" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+      <line data-hf-id="hf-o7fk" id="oh01-splitline" x1="400" y1="560" x2="400" y2="560" stroke="#94a3b8" stroke-width="3" stroke-dasharray="14 12" stroke-linecap="round" />
+    </svg>
+
+    <div data-hf-id="hf-n4d1" id="oh01-cardA" class="oh01-card">
+      <div data-hf-id="hf-u9sh" class="oh01-title"><span data-hf-id="hf-mxfs" class="oh01-dot sky"></span><span data-hf-id="hf-bvxg" class="oh01-h1">खरीफ़</span></div>
+      <div data-hf-id="hf-7qxo" class="oh01-months">
+        <span data-hf-id="hf-m9ak" class="oh01-m oh01-mA"></span><span data-hf-id="hf-9m04" class="oh01-m oh01-mA"></span><span data-hf-id="hf-8f31" class="oh01-m oh01-mA"></span>
+        <span data-hf-id="hf-8te2" class="oh01-m oh01-mA"></span><span data-hf-id="hf-asx7" class="oh01-m oh01-mA"></span><span data-hf-id="hf-wj3b" class="oh01-m"></span>
+      </div>
+      <div data-hf-id="hf-443e" id="oh01-chipA" class="oh01-chip sky"><span data-hf-id="hf-jj65" class="oh01-chipdot"></span>अलग सीमा</div>
+    </div>
+
+    <div data-hf-id="hf-r2h2" id="oh01-cardB" class="oh01-card">
+      <div data-hf-id="hf-72px" class="oh01-title"><span data-hf-id="hf-qp1z" class="oh01-dot em"></span><span data-hf-id="hf-ptld" class="oh01-h1">रबी</span></div>
+      <div data-hf-id="hf-z5zo" class="oh01-months">
+        <span data-hf-id="hf-se9z" class="oh01-m"></span><span data-hf-id="hf-qv7b" class="oh01-m oh01-mB"></span><span data-hf-id="hf-9f93" class="oh01-m oh01-mB"></span>
+        <span data-hf-id="hf-90y2" class="oh01-m oh01-mB"></span><span data-hf-id="hf-8mn1" class="oh01-m oh01-mB"></span><span data-hf-id="hf-bes8" class="oh01-m oh01-mB"></span>
+      </div>
+      <div data-hf-id="hf-gwzm" id="oh01-chipB" class="oh01-chip em"><span data-hf-id="hf-ytxd" class="oh01-chipdot"></span>अलग तारीख़</div>
+    </div>
+
+    <div data-hf-id="hf-54g9" class="oh01-ghost" id="oh01-g1" style="left: 730px; top: 360px;"><span data-hf-id="hf-q2xg" class="oh01-rupee">₹</span> 50,000</div>
+    <div data-hf-id="hf-m1ue" class="oh01-ghost" id="oh01-g2" style="left: 110px; top: 1040px;">+ 7%</div>
+    <div data-hf-id="hf-yt4j" class="oh01-ghost" id="oh01-g3" style="left: 760px; top: 560px;">÷ 12 …</div>
+    <div data-hf-id="hf-5m96" class="oh01-ghost" id="oh01-g4" style="left: 120px; top: 1240px;">= ?</div>
+    <div data-hf-id="hf-2488" class="oh01-ghost" id="oh01-g5" style="left: 730px; top: 800px; font-size: 48px;"><span data-hf-id="hf-e7ho" class="oh01-rupee">₹</span> … ?</div>
+
+    <div data-hf-id="hf-zlkk" id="oh01-q">?</div>
+  </div>
+
+  <script>
+    (function () {
+      var ID = "01-old-headache";
+      var root = document.querySelector('[data-composition-id="' + ID + '"]');
+      var $ = function (sel) { return root.querySelector(sel); };
+      var $$ = function (sel) { return root.querySelectorAll(sel); };
+      var NS = "http://www.w3.org/2000/svg";
+
+      /* ---- deterministic halftone: dawn glow over perspective furrows (lower 45%) ---- */
+      var svg = $("#oh01-halftone");
+      var HZ = 1130, CX = 540, PITCH = 16, TOP = 1000, BANDS = 6;
+      var bands = [];
+      for (var b = 0; b < BANDS; b++) {
+        var g = document.createElementNS(NS, "g");
+        g.setAttribute("class", "oh01-band");
+        svg.appendChild(g);
+        bands.push(g);
+      }
+      function lerpHex(a, c, t) {
+        var pa = [parseInt(a.slice(1, 3), 16), parseInt(a.slice(3, 5), 16), parseInt(a.slice(5, 7), 16)];
+        var pc = [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16)];
+        var o = "#";
+        for (var i = 0; i < 3; i++) { var v = Math.round(pa[i] + (pc[i] - pa[i]) * t); o += (v < 16 ? "0" : "") + v.toString(16); }
+        return o;
+      }
+      var row = 0;
+      for (var y = TOP; y <= 1920; y += PITCH * 0.866, row++) {
+        var off = (row % 2) ? PITCH / 2 : 0;
+        for (var x = off; x <= 1080; x += PITCH) {
+          var r, col;
+          var dxs = x - CX, dys = y - HZ;
+          var sun = Math.exp(-Math.sqrt(dxs * dxs + dys * dys) / 170);
+          if (y < HZ) {
+            r = 6.2 * sun;
+            col = sun > 0.45 ? "#38bdf8" : "#0284c7";
+          } else {
+            var d = (y - HZ) / (1920 - HZ);
+            var ang = Math.atan2(x - CX, (y - HZ) + 8);
+            var c = Math.cos(ang * 22);
+            r = 7 * c * c * (0.18 + 0.82 * d) + 4.5 * sun;
+            col = lerpHex("#0d9488", "#059669", Math.min(1, d * 1.2));
+          }
+          if (r < 0.7) continue;
+          var circle = document.createElementNS(NS, "circle");
+          circle.setAttribute("cx", x.toFixed(1));
+          circle.setAttribute("cy", y.toFixed(1));
+          circle.setAttribute("r", Math.min(r, 7.6).toFixed(2));
+          circle.setAttribute("fill", col);
+          var dist = Math.sqrt(dxs * dxs + dys * dys);
+          var bi = Math.min(BANDS - 1, Math.floor(dist / 160));
+          bands[bi].appendChild(circle);
+        }
+      }
+
+      /* ---- timeline ---- */
+      var tl = gsap.timeline({ paused: true });
+
+      // Scene 1 (0–0.5): ground swell, halftone bloom from the horizon, chrome
+      tl.fromTo("#oh01-swell", { scale: 0.9, opacity: 0.4 }, { scale: 1, opacity: 1, duration: 1.2, ease: "power3.out" }, 0);
+      bands.forEach(function (g, i) {
+        tl.fromTo(g, { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power2.out" }, 0.05 + i * 0.12);
+      });
+      tl.fromTo("#oh01-chrome", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0);
+
+      // Scene 2 — @0.60 "खरीफ़": card A slides up, tilted −4°
+      tl.fromTo("#oh01-cardA", { y: 140, opacity: 0, rotation: -1 }, { y: 0, opacity: 1, rotation: -4, duration: 0.8, ease: "power3.out" }, 0.47);
+      tl.fromTo("#oh01-cardA .oh01-mA", { backgroundColor: "#e2e9f0" }, { backgroundColor: "#38bdf8", duration: 0.25, stagger: 0.08, ease: "power1.out" }, 0.95);
+      // @1.51 "सीमा": chip pops
+      tl.fromTo("#oh01-chipA", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.4)", transformOrigin: "0% 50%" }, 1.39);
+
+      // Scene 3 — @2.33 "रबी": card B slides in lower-right, tilted +4°
+      tl.fromTo("#oh01-cardB", { x: 160, y: 60, opacity: 0, rotation: 1 }, { x: 0, y: 0, opacity: 1, rotation: 4, duration: 0.8, ease: "power3.out" }, 2.2);
+      tl.fromTo("#oh01-cardB .oh01-mB", { backgroundColor: "#e2e9f0" }, { backgroundColor: "#34d399", duration: 0.25, stagger: 0.08, ease: "power1.out" }, 2.6);
+      // hairline dashed gap line draws from A toward B
+      tl.fromTo("#oh01-splitline", { attr: { x1: 400, y1: 620, x2: 400, y2: 620 } }, { attr: { x2: 680, y2: 1080 }, duration: 0.55, ease: "power2.out" }, 2.55);
+      // @3.15 "तारीख़": chip pops
+      tl.fromTo("#oh01-chipB", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.4)", transformOrigin: "0% 50%" }, 3.03);
+      // the split: cards drift apart, the gap line stretches with them
+      tl.to("#oh01-cardA", { x: -18, y: -44, duration: 2.9, ease: "sine.inOut" }, 3.2);
+      tl.to("#oh01-cardB", { x: 22, y: 50, duration: 2.9, ease: "sine.inOut" }, 3.2);
+      tl.to("#oh01-splitline", { attr: { x1: 382, y1: 576, x2: 702, y2: 1130 }, duration: 2.9, ease: "sine.inOut" }, 3.2);
+
+      // Scene 4 — @3.99 "और हर बार": ghost calculation marks scatter in
+      var ghosts = [["#oh01-g1", 3.88, -3], ["#oh01-g2", 4.12, 4], ["#oh01-g3", 4.34, 2], ["#oh01-g4", 4.61, -4], ["#oh01-g5", 4.61, 3]];
+      ghosts.forEach(function (gd) {
+        tl.fromTo(gd[0], { opacity: 0, y: 24, rotation: 0 }, { opacity: 1, y: 0, rotation: gd[2], duration: 0.5, ease: "power3.out" }, gd[1]);
+      });
+      // @4.96 "हिसाब": big ink ? punches in between the cards
+      tl.fromTo("#oh01-q", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.7)" }, 4.85);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines[ID] = tl;
+    })();
+  </script>
+</template>

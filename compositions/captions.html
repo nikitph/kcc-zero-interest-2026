@@ -1,0 +1,211 @@
+<template id="captions-template" data-composition-id="captions" data-width="1080" data-height="1920">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+
+
+<style data-brand-tokens="">
+      @font-face { font-family: 'Noto Sans Devanagari'; src: url('assets/fonts/noto-sans-devanagari-devanagari-400-normal.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: 'Noto Sans Devanagari'; src: url('assets/fonts/noto-sans-devanagari-devanagari-500-normal.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+      @font-face { font-family: 'Noto Sans Devanagari'; src: url('assets/fonts/noto-sans-devanagari-devanagari-600-normal.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: block; }
+      @font-face { font-family: 'Noto Sans Devanagari'; src: url('assets/fonts/noto-sans-devanagari-devanagari-700-normal.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: 'Noto Sans Devanagari'; src: url('assets/fonts/noto-sans-devanagari-devanagari-800-normal.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: block; }
+      :root {
+      --canvas: #f3f7fa;
+      --paper-2: #dfe6ee;
+      --ink: #0f172a;
+      --body: #35455c;
+      --muted: #64748b;
+      --faint: #94a3b8;
+      --line: #e2e9f0;
+      --card: #ffffff;
+      --sky: #38bdf8;
+      --sky-deep: #0284c7;
+      --teal: #0d9488;
+      --emerald: #34d399;
+      --emerald-deep: #059669;
+      --mint: #e7f8f1;
+      --skywash: #e6f5fd;
+      --cap-ink: #0f172a;
+      --cap-canvas: #f3f7fa;
+      --cap-accent: #0284c7;
+      --cap-accent-2: #38bdf8;
+      --font-display: "Noto Sans Devanagari", system-ui, serif;
+      --font-body: "Noto Sans Devanagari", system-ui, sans-serif;
+      --cap-band-top: 1600px;
+      --cap-band-height: 320px;
+      }
+    </style>
+
+<style>
+  #captions-root {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .caption-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+  }
+  /* the keep-out band, from captionBand(H) — frame content stays above it */
+  .caption-stage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--cap-band-top, 900px);
+    height: var(--cap-band-height, 180px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .caption-group {
+    /* every group is absolutely stacked over the SAME band — exactly one shown at a
+       time via opacity. Must be absolute: in-flow groups would lay out side-by-side. */
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+
+  /* SahkarAI caption: white rounded elevated card on paper, Devanagari ink type,
+     current word = teal ramp chip. Devanagari is never letter-spaced. */
+  .caption-pill {
+    max-width: 90%;
+    padding: 18px 36px 24px;
+    background: #ffffff;
+    border: 1.5px solid #e2e9f0;
+    border-radius: 36px;
+    box-shadow: 0 2px 4px rgba(15,23,42,.04), 0 18px 48px -12px rgba(15,23,42,.16);
+  }
+  .caption-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.08em 0.28em;
+    font-family: "Noto Sans Devanagari", sans-serif;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 1.5;
+    letter-spacing: normal;
+  }
+  .caption-word {
+    display: inline-block;
+    padding: 0 0.22em;
+    border-radius: 0.5em;
+    color: #7a889e;
+  }
+  .caption-word.is-active {
+    color: #ffffff;
+    background: linear-gradient(90deg, #0284c7 0%, #0d9488 55%, #059669 100%);
+    box-shadow: none;
+  }
+  .caption-word.is-spoken {
+    color: #0f172a;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  /* optional per-word accents (dormant until a word-classer tags them) */
+  /* brand / key term — cobalt, the system's one accent on a key word */
+  .caption-word.cap-brand {
+    color: var(--cap-accent, #1e2bfa);
+  }
+  /* numerals / data — cobalt 700, the figure voice */
+  .caption-word.cap-num {
+    font-family: "Noto Sans Devanagari", system-ui, sans-serif;
+    font-weight: 700;
+    color: var(--cap-accent, #1e2bfa);
+  }
+  /* emphasis — a directional-red hairline underline (inline only, never a fill) */
+  .caption-word.cap-cta {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--cap-accent-2, #dc2626);
+    text-underline-offset: 0.1em;
+  }
+
+</style>
+
+<div data-hf-id="hf-h1yb" id="captions-root" data-composition-id="captions" data-timeline-locked="" data-start="0" data-duration="120.35" data-fps="30" data-width="1080" data-height="1920">
+  <div data-hf-id="hf-9flp" class="caption-layer" aria-hidden="true">
+    <div data-hf-id="hf-ajrg" id="caption-stage" class="caption-stage"></div>
+  </div>
+</div>
+
+<script>
+  // captions.mjs injects the engine's scene-aware groups + real duration here.
+  var GROUPS = [{"id":"caption-group-0","frame":1,"start":0.6,"end":2.03,"text":"खरीफ़ की अलग सीमा…","words":[{"id":"caption-word-0-0","text":"खरीफ़","start":0.6,"end":1.03},{"id":"caption-word-0-1","text":"की","start":1.052,"end":1.159},{"id":"caption-word-0-2","text":"अलग","start":1.234,"end":1.46},{"id":"caption-word-0-3","text":"सीमा…","start":1.514,"end":2.03}]},{"id":"caption-group-1","frame":1,"start":2.331,"end":3.793,"text":"रबी की अलग तारीख़…","words":[{"id":"caption-word-1-0","text":"रबी","start":2.331,"end":2.621},{"id":"caption-word-1-1","text":"की","start":2.675,"end":2.782},{"id":"caption-word-1-2","text":"अलग","start":2.857,"end":3.094},{"id":"caption-word-1-3","text":"तारीख़…","start":3.148,"end":3.793}]},{"id":"caption-group-2","frame":1,"start":3.986,"end":5.674,"text":"और हर बार नया हिसाब।","words":[{"id":"caption-word-2-0","text":"और","start":3.986,"end":4.18},{"id":"caption-word-2-1","text":"हर","start":4.233,"end":4.362},{"id":"caption-word-2-2","text":"बार","start":4.448,"end":4.642},{"id":"caption-word-2-3","text":"नया","start":4.718,"end":4.921},{"id":"caption-word-2-4","text":"हिसाब।","start":4.965,"end":5.674}]},{"id":"caption-group-3","frame":2,"start":6.43,"end":8.097,"text":"अब यह सब बदल गया है।","words":[{"id":"caption-word-3-0","text":"अब","start":6.43,"end":6.602},{"id":"caption-word-3-1","text":"यह","start":6.71,"end":6.817},{"id":"caption-word-3-2","text":"सब","start":6.957,"end":7.139},{"id":"caption-word-3-3","text":"बदल","start":7.193,"end":7.44},{"id":"caption-word-3-4","text":"गया","start":7.505,"end":7.71},{"id":"caption-word-3-5","text":"है।","start":7.785,"end":8.097}]},{"id":"caption-group-4","frame":2,"start":8.451,"end":11.052,"text":"शून्य प्रतिशत ब्याज फसल ऋण","words":[{"id":"caption-word-4-0","text":"शून्य","start":8.451,"end":8.827},{"id":"caption-word-4-1","text":"प्रतिशत","start":8.892,"end":9.429},{"id":"caption-word-4-2","text":"ब्याज","start":9.784,"end":10.117},{"id":"caption-word-4-3","text":"फसल","start":10.192,"end":10.548},{"id":"caption-word-4-4","text":"ऋण","start":10.687,"end":11.052}]},{"id":"caption-group-5","frame":2,"start":11.171,"end":13.611,"text":"योजना में चार बड़े बदलाव।","words":[{"id":"caption-word-5-0","text":"योजना","start":11.171,"end":11.579},{"id":"caption-word-5-1","text":"में","start":11.654,"end":11.826},{"id":"caption-word-5-2","text":"चार","start":12.235,"end":12.493},{"id":"caption-word-5-3","text":"बड़े","start":12.558,"end":12.773},{"id":"caption-word-5-4","text":"बदलाव।","start":12.826,"end":13.611}]},{"id":"caption-group-6","frame":3,"start":14.37,"end":17.014,"text":"पहला बदलाव खरीफ़ और रबी,","words":[{"id":"caption-word-6-0","text":"पहला","start":14.37,"end":14.746},{"id":"caption-word-6-1","text":"बदलाव","start":14.811,"end":15.23},{"id":"caption-word-6-2","text":"खरीफ़","start":15.66,"end":16.154},{"id":"caption-word-6-3","text":"और","start":16.24,"end":16.401},{"id":"caption-word-6-4","text":"रबी,","start":16.466,"end":17.014}]},{"id":"caption-group-7","frame":3,"start":17.273,"end":18.745,"text":"दोनों के लिए अब पूरे","words":[{"id":"caption-word-7-0","text":"दोनों","start":17.273,"end":17.627},{"id":"caption-word-7-1","text":"के","start":17.66,"end":17.735},{"id":"caption-word-7-2","text":"लिए","start":17.8,"end":18.057},{"id":"caption-word-7-3","text":"अब","start":18.218,"end":18.38},{"id":"caption-word-7-4","text":"पूरे","start":18.423,"end":18.745}]},{"id":"caption-group-8","frame":3,"start":18.81,"end":20.615,"text":"साल की एक ही साख सीमा।","words":[{"id":"caption-word-8-0","text":"साल","start":18.81,"end":19.036},{"id":"caption-word-8-1","text":"की","start":19.122,"end":19.251},{"id":"caption-word-8-2","text":"एक","start":19.39,"end":19.563},{"id":"caption-word-8-3","text":"ही","start":19.605,"end":19.67},{"id":"caption-word-8-4","text":"साख","start":19.756,"end":20.035},{"id":"caption-word-8-5","text":"सीमा।","start":20.111,"end":20.615}]},{"id":"caption-group-9","frame":3,"start":21.089,"end":22.594,"text":"नकद और वस्तु ऋण,","words":[{"id":"caption-word-9-0","text":"नकद","start":21.089,"end":21.433},{"id":"caption-word-9-1","text":"और","start":21.54,"end":21.637},{"id":"caption-word-9-2","text":"वस्तु","start":21.701,"end":22.046},{"id":"caption-word-9-3","text":"ऋण,","start":22.121,"end":22.594}]},{"id":"caption-group-10","frame":3,"start":22.755,"end":24.389,"text":"दोनों इसी के अंदर।","words":[{"id":"caption-word-10-0","text":"दोनों","start":22.755,"end":23.142},{"id":"caption-word-10-1","text":"इसी","start":23.228,"end":23.476},{"id":"caption-word-10-2","text":"के","start":23.539,"end":23.615},{"id":"caption-word-10-3","text":"अंदर।","start":23.658,"end":24.389}]},{"id":"caption-group-11","frame":4,"start":25.15,"end":26.419,"text":"और चुकाने की तारीख़?","words":[{"id":"caption-word-11-0","text":"और","start":25.15,"end":25.301},{"id":"caption-word-11-1","text":"चुकाने","start":25.355,"end":25.719},{"id":"caption-word-11-2","text":"की","start":25.763,"end":25.849},{"id":"caption-word-11-3","text":"तारीख़?","start":25.903,"end":26.419}]},{"id":"caption-group-12","frame":4,"start":26.773,"end":28.471,"text":"पहली बार ऋण लेने के","words":[{"id":"caption-word-12-0","text":"पहली","start":26.773,"end":27.128},{"id":"caption-word-12-1","text":"बार","start":27.193,"end":27.472},{"id":"caption-word-12-2","text":"ऋण","start":27.773,"end":28.063},{"id":"caption-word-12-3","text":"लेने","start":28.117,"end":28.332},{"id":"caption-word-12-4","text":"के","start":28.386,"end":28.471}]},{"id":"caption-group-13","frame":4,"start":28.536,"end":30.955,"text":"दिन से पूरे बारह महीने।","words":[{"id":"caption-word-13-0","text":"दिन","start":28.536,"end":28.687},{"id":"caption-word-13-1","text":"से","start":28.773,"end":28.944},{"id":"caption-word-13-2","text":"पूरे","start":29.439,"end":29.74},{"id":"caption-word-13-3","text":"बारह","start":29.805,"end":30.127},{"id":"caption-word-13-4","text":"महीने।","start":30.213,"end":30.955}]},{"id":"caption-group-14","frame":5,"start":31.71,"end":34.354,"text":"दूसरा बदलाव नया किसान क्रेडिट","words":[{"id":"caption-word-14-0","text":"दूसरा","start":31.71,"end":32.151},{"id":"caption-word-14-1","text":"बदलाव","start":32.204,"end":32.624},{"id":"caption-word-14-2","text":"नया","start":33.268,"end":33.538},{"id":"caption-word-14-3","text":"किसान","start":33.591,"end":33.935},{"id":"caption-word-14-4","text":"क्रेडिट","start":34.011,"end":34.354}]},{"id":"caption-group-15","frame":5,"start":34.408,"end":36.956,"text":"कार्ड, अब पूरी तरह ऑनलाइन।","words":[{"id":"caption-word-15-0","text":"कार्ड,","start":34.408,"end":34.881},{"id":"caption-word-15-1","text":"अब","start":35.075,"end":35.247},{"id":"caption-word-15-2","text":"पूरी","start":35.301,"end":35.58},{"id":"caption-word-15-3","text":"तरह","start":35.634,"end":36.01},{"id":"caption-word-15-4","text":"ऑनलाइन।","start":36.204,"end":36.956}]},{"id":"caption-group-16","frame":5,"start":37.838,"end":39.902,"text":"समग्र आईडी से केवाईसी,","words":[{"id":"caption-word-16-0","text":"समग्र","start":37.838,"end":38.289},{"id":"caption-word-16-1","text":"आईडी","start":38.365,"end":38.654},{"id":"caption-word-16-2","text":"से","start":38.729,"end":38.955},{"id":"caption-word-16-3","text":"केवाईसी,","start":39.095,"end":39.902}]},{"id":"caption-group-17","frame":5,"start":40.095,"end":42.041,"text":"और भू-अभिलेख से ज़मीन की","words":[{"id":"caption-word-17-0","text":"और","start":40.095,"end":40.267},{"id":"caption-word-17-1","text":"भू-अभिलेख","start":40.331,"end":40.998},{"id":"caption-word-17-2","text":"से","start":41.063,"end":41.278},{"id":"caption-word-17-3","text":"ज़मीन","start":41.471,"end":41.912},{"id":"caption-word-17-4","text":"की","start":41.954,"end":42.041}]},{"id":"caption-group-18","frame":5,"start":42.116,"end":44.18,"text":"जानकारी अपने आप।","words":[{"id":"caption-word-18-0","text":"जानकारी","start":42.116,"end":42.686},{"id":"caption-word-18-1","text":"अपने","start":43.245,"end":43.6},{"id":"caption-word-18-2","text":"आप।","start":43.675,"end":44.18}]},{"id":"caption-group-19","frame":6,"start":44.94,"end":47.23,"text":"फसल और रकबा भरिए साख","words":[{"id":"caption-word-19-0","text":"फसल","start":44.94,"end":45.381},{"id":"caption-word-19-1","text":"और","start":45.488,"end":45.607},{"id":"caption-word-19-2","text":"रकबा","start":45.671,"end":45.983},{"id":"caption-word-19-3","text":"भरिए","start":46.036,"end":46.445},{"id":"caption-word-19-4","text":"साख","start":46.918,"end":47.23}]},{"id":"caption-group-20","frame":6,"start":47.295,"end":48.896,"text":"सीमा ख़ुद गिनी जाएगी।","words":[{"id":"caption-word-20-0","text":"सीमा","start":47.295,"end":47.682},{"id":"caption-word-20-1","text":"ख़ुद","start":47.843,"end":48.079},{"id":"caption-word-20-2","text":"गिनी","start":48.122,"end":48.305},{"id":"caption-word-20-3","text":"जाएगी।","start":48.359,"end":48.896}]},{"id":"caption-group-21","frame":6,"start":49.455,"end":51.906,"text":"अधिकतम, तीन लाख रुपये तक।","words":[{"id":"caption-word-21-0","text":"अधिकतम,","start":49.455,"end":50.164},{"id":"caption-word-21-1","text":"तीन","start":50.326,"end":50.637},{"id":"caption-word-21-2","text":"लाख","start":50.713,"end":50.949},{"id":"caption-word-21-3","text":"रुपये","start":51.003,"end":51.293},{"id":"caption-word-21-4","text":"तक।","start":51.347,"end":51.906}]},{"id":"caption-group-22","frame":7,"start":52.66,"end":54.262,"text":"फिर पैक्स जाँच करेगी,","words":[{"id":"caption-word-22-0","text":"फिर","start":52.66,"end":52.95},{"id":"caption-word-22-1","text":"पैक्स","start":53.015,"end":53.294},{"id":"caption-word-22-2","text":"जाँच","start":53.359,"end":53.628},{"id":"caption-word-22-3","text":"करेगी,","start":53.692,"end":54.262}]},{"id":"caption-group-23","frame":7,"start":54.488,"end":56.734,"text":"संचालक मंडल अनुशंसा करेगा,","words":[{"id":"caption-word-23-0","text":"संचालक","start":54.488,"end":55.079},{"id":"caption-word-23-1","text":"मंडल","start":55.143,"end":55.423},{"id":"caption-word-23-2","text":"अनुशंसा","start":55.498,"end":56.046},{"id":"caption-word-23-3","text":"करेगा,","start":56.1,"end":56.734}]},{"id":"caption-group-24","frame":7,"start":56.928,"end":59.766,"text":"और ज़िला बैंक शाखा स्वीकृति देगी।","words":[{"id":"caption-word-24-0","text":"और","start":56.928,"end":57.175},{"id":"caption-word-24-1","text":"ज़िला","start":57.401,"end":57.691},{"id":"caption-word-24-2","text":"बैंक","start":57.799,"end":58.078},{"id":"caption-word-24-3","text":"शाखा","start":58.154,"end":58.572},{"id":"caption-word-24-4","text":"स्वीकृति","start":58.712,"end":59.196},{"id":"caption-word-24-5","text":"देगी।","start":59.25,"end":59.766}]},{"id":"caption-group-25","frame":7,"start":59.991,"end":63.195,"text":"स्वीकृति पत्र सीधे लॉगिन से डाउनलोड।","words":[{"id":"caption-word-25-0","text":"स्वीकृति","start":59.991,"end":60.497},{"id":"caption-word-25-1","text":"पत्र","start":60.561,"end":60.884},{"id":"caption-word-25-2","text":"सीधे","start":61.325,"end":61.701},{"id":"caption-word-25-3","text":"लॉगिन","start":61.754,"end":62.077},{"id":"caption-word-25-4","text":"से","start":62.153,"end":62.292},{"id":"caption-word-25-5","text":"डाउनलोड।","start":62.367,"end":63.195}]},{"id":"caption-group-26","frame":8,"start":63.95,"end":67.411,"text":"तीसरा बदलाव ऑनलाइन केसीसी अब","words":[{"id":"caption-word-26-0","text":"तीसरा","start":63.95,"end":64.433},{"id":"caption-word-26-1","text":"बदलाव","start":64.487,"end":64.929},{"id":"caption-word-26-2","text":"ऑनलाइन","start":65.584,"end":66.089},{"id":"caption-word-26-3","text":"केसीसी","start":66.154,"end":66.756},{"id":"caption-word-26-4","text":"अब","start":67.229,"end":67.411}]},{"id":"caption-group-27","frame":8,"start":67.487,"end":69.421,"text":"पाँच साल के लिए मान्य।","words":[{"id":"caption-word-27-0","text":"पाँच","start":67.487,"end":67.777},{"id":"caption-word-27-1","text":"साल","start":67.842,"end":68.056},{"id":"caption-word-27-2","text":"के","start":68.131,"end":68.218},{"id":"caption-word-27-3","text":"लिए","start":68.282,"end":68.572},{"id":"caption-word-27-4","text":"मान्य।","start":68.766,"end":69.421}]},{"id":"caption-group-28","frame":8,"start":69.894,"end":71.916,"text":"ज़मीन या फसल न बदले,","words":[{"id":"caption-word-28-0","text":"ज़मीन","start":69.894,"end":70.325},{"id":"caption-word-28-1","text":"या","start":70.379,"end":70.475},{"id":"caption-word-28-2","text":"फसल","start":70.54,"end":70.894},{"id":"caption-word-28-3","text":"न","start":71.088,"end":71.228},{"id":"caption-word-28-4","text":"बदले,","start":71.314,"end":71.916}]},{"id":"caption-group-29","frame":8,"start":72.077,"end":74.743,"text":"तो हर साल नया आवेदन नहीं।","words":[{"id":"caption-word-29-0","text":"तो","start":72.077,"end":72.228},{"id":"caption-word-29-1","text":"हर","start":72.314,"end":72.475},{"id":"caption-word-29-2","text":"साल","start":72.582,"end":72.905},{"id":"caption-word-29-3","text":"नया","start":73.206,"end":73.506},{"id":"caption-word-29-4","text":"आवेदन","start":73.614,"end":74.077},{"id":"caption-word-29-5","text":"नहीं।","start":74.098,"end":74.743}]},{"id":"caption-group-30","frame":9,"start":75.51,"end":79.079,"text":"चौथा बदलाव ब्याज की शर्तें।","words":[{"id":"caption-word-30-0","text":"चौथा","start":75.51,"end":76.058},{"id":"caption-word-30-1","text":"बदलाव","start":76.466,"end":76.972},{"id":"caption-word-30-2","text":"ब्याज","start":77.886,"end":78.219},{"id":"caption-word-30-3","text":"की","start":78.305,"end":78.38},{"id":"caption-word-30-4","text":"शर्तें।","start":78.455,"end":79.079}]},{"id":"caption-group-31","frame":9,"start":79.831,"end":81.755,"text":"इस साल बेस रेट,","words":[{"id":"caption-word-31-0","text":"इस","start":79.831,"end":80.015},{"id":"caption-word-31-1","text":"साल","start":80.079,"end":80.412},{"id":"caption-word-31-2","text":"बेस","start":80.82,"end":81.132},{"id":"caption-word-31-3","text":"रेट,","start":81.218,"end":81.755}]},{"id":"caption-group-32","frame":9,"start":81.949,"end":84.518,"text":"नौ दशमलव सात पाँच प्रतिशत।","words":[{"id":"caption-word-32-0","text":"नौ","start":81.949,"end":82.142},{"id":"caption-word-32-1","text":"दशमलव","start":82.229,"end":82.745},{"id":"caption-word-32-2","text":"सात","start":83.1,"end":83.401},{"id":"caption-word-32-3","text":"पाँच","start":83.465,"end":83.723},{"id":"caption-word-32-4","text":"प्रतिशत।","start":83.798,"end":84.518}]},{"id":"caption-group-33","frame":9,"start":84.777,"end":86.916,"text":"हर किसान को सवा प्रतिशत","words":[{"id":"caption-word-33-0","text":"हर","start":84.777,"end":84.97},{"id":"caption-word-33-1","text":"किसान","start":85.045,"end":85.432},{"id":"caption-word-33-2","text":"को","start":85.507,"end":85.722},{"id":"caption-word-33-3","text":"सवा","start":86.024,"end":86.356},{"id":"caption-word-33-4","text":"प्रतिशत","start":86.411,"end":86.916}]},{"id":"caption-group-34","frame":9,"start":87.174,"end":88.303,"text":"ब्याज अनुदान…","words":[{"id":"caption-word-34-0","text":"ब्याज","start":87.174,"end":87.496},{"id":"caption-word-34-1","text":"अनुदान…","start":87.582,"end":88.303}]},{"id":"caption-group-35","frame":9,"start":88.862,"end":90.754,"text":"और समय पर चुकाने वालों","words":[{"id":"caption-word-35-0","text":"और","start":88.862,"end":89.13},{"id":"caption-word-35-1","text":"समय","start":89.431,"end":89.743},{"id":"caption-word-35-2","text":"पर","start":89.807,"end":89.915},{"id":"caption-word-35-3","text":"चुकाने","start":89.979,"end":90.378},{"id":"caption-word-35-4","text":"वालों","start":90.441,"end":90.754}]},{"id":"caption-group-36","frame":9,"start":90.796,"end":94.043,"text":"को, चार प्रतिशत अतिरिक्त प्रोत्साहन।","words":[{"id":"caption-word-36-0","text":"को,","start":90.796,"end":91.173},{"id":"caption-word-36-1","text":"चार","start":91.334,"end":91.614},{"id":"caption-word-36-2","text":"प्रतिशत","start":91.667,"end":92.194},{"id":"caption-word-36-3","text":"अतिरिक्त","start":92.452,"end":92.957},{"id":"caption-word-36-4","text":"प्रोत्साहन।","start":93.022,"end":94.043}]},{"id":"caption-group-37","frame":10,"start":94.8,"end":96.638,"text":"ध्यान रहे नए केसीसी के","words":[{"id":"caption-word-37-0","text":"ध्यान","start":94.8,"end":95.122},{"id":"caption-word-37-1","text":"रहे","start":95.187,"end":95.413},{"id":"caption-word-37-2","text":"नए","start":95.843,"end":96.036},{"id":"caption-word-37-3","text":"केसीसी","start":96.08,"end":96.509},{"id":"caption-word-37-4","text":"के","start":96.563,"end":96.638}]},{"id":"caption-group-38","frame":10,"start":96.692,"end":98.487,"text":"लिए, कम से कम शून्य","words":[{"id":"caption-word-38-0","text":"लिए,","start":96.692,"end":97.057},{"id":"caption-word-38-1","text":"कम","start":97.197,"end":97.38},{"id":"caption-word-38-2","text":"से","start":97.466,"end":97.552},{"id":"caption-word-38-3","text":"कम","start":97.606,"end":97.831},{"id":"caption-word-38-4","text":"शून्य","start":98.132,"end":98.487}]},{"id":"caption-group-39","frame":10,"start":98.541,"end":101.637,"text":"दशमलव एक हेक्टेयर ज़मीन ज़रूरी है।","words":[{"id":"caption-word-39-0","text":"दशमलव","start":98.541,"end":99.025},{"id":"caption-word-39-1","text":"एक","start":99.251,"end":99.422},{"id":"caption-word-39-2","text":"हेक्टेयर","start":99.53,"end":99.949},{"id":"caption-word-39-3","text":"ज़मीन","start":100.014,"end":100.336},{"id":"caption-word-39-4","text":"ज़रूरी","start":100.637,"end":101.089},{"id":"caption-word-39-5","text":"है।","start":101.153,"end":101.637}]},{"id":"caption-group-40","frame":11,"start":102.39,"end":104.4,"text":"तो समय पर चुकाइए,","words":[{"id":"caption-word-40-0","text":"तो","start":102.39,"end":102.712},{"id":"caption-word-40-1","text":"समय","start":103.067,"end":103.379},{"id":"caption-word-40-2","text":"पर","start":103.454,"end":103.584},{"id":"caption-word-40-3","text":"चुकाइए,","start":103.659,"end":104.4}]},{"id":"caption-group-41","frame":11,"start":104.701,"end":107.733,"text":"और योजना का पूरा लाभ उठाइए।","words":[{"id":"caption-word-41-0","text":"और","start":104.701,"end":105.002},{"id":"caption-word-41-1","text":"योजना","start":105.303,"end":105.766},{"id":"caption-word-41-2","text":"का","start":105.83,"end":106.077},{"id":"caption-word-41-3","text":"पूरा","start":106.271,"end":106.604},{"id":"caption-word-41-4","text":"लाभ","start":106.679,"end":106.926},{"id":"caption-word-41-5","text":"उठाइए।","start":107.002,"end":107.733}]},{"id":"caption-group-42","frame":11,"start":108.087,"end":110.517,"text":"ज़्यादा जानकारी के लिए अपनी","words":[{"id":"caption-word-42-0","text":"ज़्यादा","start":108.087,"end":108.442},{"id":"caption-word-42-1","text":"जानकारी","start":108.507,"end":109.045},{"id":"caption-word-42-2","text":"के","start":109.109,"end":109.216},{"id":"caption-word-42-3","text":"लिए","start":109.281,"end":109.56},{"id":"caption-word-42-4","text":"अपनी","start":110.162,"end":110.517}]},{"id":"caption-group-43","frame":11,"start":110.603,"end":112.495,"text":"पैक्स समिति से मिलिए।","words":[{"id":"caption-word-43-0","text":"पैक्स","start":110.603,"end":110.947},{"id":"caption-word-43-1","text":"समिति","start":111.172,"end":111.603},{"id":"caption-word-43-2","text":"से","start":111.657,"end":111.743},{"id":"caption-word-43-3","text":"मिलिए।","start":111.796,"end":112.495}]},{"id":"caption-group-44","frame":12,"start":113.7,"end":115.925,"text":"सहकार ए आई नियम,","words":[{"id":"caption-word-44-0","text":"सहकार","start":113.7,"end":114.269},{"id":"caption-word-44-1","text":"ए","start":114.377,"end":114.517},{"id":"caption-word-44-2","text":"आई","start":114.593,"end":114.807},{"id":"caption-word-44-3","text":"नियम,","start":115.452,"end":115.925}]},{"id":"caption-group-45","frame":12,"start":116.119,"end":117.355,"text":"आपकी भाषा में।","words":[{"id":"caption-word-45-0","text":"आपकी","start":116.119,"end":116.431},{"id":"caption-word-45-1","text":"भाषा","start":116.495,"end":116.818},{"id":"caption-word-45-2","text":"में।","start":116.882,"end":117.355}]}];
+  var DURATION = 120.35;
+
+  (function () {
+    var stage = document.getElementById("caption-stage");
+
+    // build DOM: one .caption-group per group, .caption-word per word
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.createElement("div");
+      groupEl.className = "caption-group";
+      groupEl.id = "caption-group-" + g;
+      var pill = document.createElement("div");
+      pill.className = "caption-pill";
+      var line = document.createElement("div");
+      line.className = "caption-line";
+      (group.words || []).forEach(function (w, i) {
+        var span = document.createElement("span");
+        span.className = "caption-word";
+        span.id = "caption-word-" + g + "-" + i;
+        span.textContent = String(w.text);
+        line.appendChild(span);
+      });
+      pill.appendChild(line);
+      groupEl.appendChild(pill);
+      stage.appendChild(groupEl);
+    });
+
+    window.__timelines = window.__timelines || {};
+    var tl = gsap.timeline({ paused: true });
+
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.getElementById("caption-group-" + g);
+      var words = group.words || [];
+      var next = GROUPS[g + 1];
+      var isLast = g === GROUPS.length - 1;
+      var start = Math.max(0, Number(group.start));
+      var end = isLast ? DURATION : Math.min(Number(next.start), Number(group.end) + 0.3);
+      if (end <= start) end = start + 0.01;
+
+      // group on/off — exactly one group visible at a time
+      tl.set(groupEl, { opacity: 1 }, start);
+      tl.set(groupEl, { opacity: 0 }, end);
+
+      // 3-state karaoke via className SETS — seek-safe (gsap.set applies on the
+      // engine's frame-by-frame seek; .call callbacks would NOT fire).
+      words.forEach(function (w, i) {
+        var el = document.getElementById("caption-word-" + g + "-" + i);
+        var at = Math.max(start, Number(w.start));
+        tl.set(el, { className: "caption-word" }, start); // upcoming (also resets on reverse-seek)
+        tl.set(el, { className: "caption-word is-active" }, at); // current
+        tl.fromTo(el, { scale: 0.985 }, { scale: 1, duration: 0.18, ease: "power1.out" }, at);
+        if (i + 1 < words.length) {
+          var nextAt = Math.max(start, Number(words[i + 1].start));
+          tl.set(el, { className: "caption-word is-spoken" }, nextAt); // demote when next activates
+        }
+      });
+      if (words.length) {
+        var lastEl = document.getElementById("caption-word-" + g + "-" + (words.length - 1));
+        var lastSpoken = Math.min(end, Number(words[words.length - 1].end) + 0.1);
+        tl.set(lastEl, { className: "caption-word is-spoken" }, lastSpoken);
+      }
+    });
+
+    // full-span anchor so the sub-comp timeline spans the whole video
+    tl.to({}, { duration: DURATION }, 0);
+    window.__timelines["captions"] = tl;
+  })();
+</script>
+
+<style>
+  .caption-line { line-height: 1.1 !important; }
+</style>
+</template>

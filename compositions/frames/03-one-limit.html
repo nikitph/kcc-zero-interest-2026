@@ -1,0 +1,264 @@
+<template>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 500; font-display: block;
+      src: url("assets/fonts/noto-sans-devanagari-devanagari-500-normal.woff2") format("woff2");
+      unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 500; font-display: block;
+      src: url("assets/fonts/noto-sans-devanagari-latin-500-normal.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 600; font-display: block;
+      src: url("assets/fonts/noto-sans-devanagari-devanagari-600-normal.woff2") format("woff2");
+      unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 600; font-display: block;
+      src: url("assets/fonts/noto-sans-devanagari-latin-600-normal.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 700; font-display: block;
+      src: url("assets/fonts/noto-sans-devanagari-devanagari-700-normal.woff2") format("woff2");
+      unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 700; font-display: block;
+      src: url("assets/fonts/noto-sans-devanagari-latin-700-normal.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Heebo"; font-style: normal; font-weight: 700; font-display: block;
+      src: url("assets/fonts/heebo-latin-700-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Heebo"; font-style: normal; font-weight: 900; font-display: block;
+      src: url("assets/fonts/heebo-latin-900-normal.woff2") format("woff2"); }
+
+    #root {
+      --paper: #f3f7fa; --paper-2: #dfe6ee; --ink: #0f172a; --body: #35455c; --muted: #64748b;
+      --faint: #94a3b8; --line: #e2e9f0; --card: #ffffff; --sky: #38bdf8; --sky-deep: #0284c7;
+      --teal: #0d9488; --emerald: #34d399; --emerald-deep: #059669; --mint: #e7f8f1; --skywash: #e6f5fd;
+      --ramp: linear-gradient(90deg, #0284c7 0%, #0ea5e9 25%, #0d9488 45%, #10b981 65%, #059669 100%);
+      --shadow-card: 0 2px 4px rgba(15,23,42,.04), 0 18px 48px -12px rgba(15,23,42,.14);
+      position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden;
+      font-family: "Noto Sans Devanagari", "Heebo", sans-serif; letter-spacing: normal; color: var(--ink);
+    }
+    #f03-bg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; background: var(--paper); overflow: hidden; }
+    #f03-swell-sky { position: absolute; width: 1900px; height: 1900px; left: 380px; top: -1320px; border-radius: 50%; background: var(--skywash); }
+    #f03-swell-mint { position: absolute; width: 2300px; height: 2300px; left: -1250px; top: 1080px; border-radius: 50%; background: var(--mint); }
+    #f03-halftone { position: absolute; left: 0; top: 1240px; width: 1080px; height: 340px; overflow: visible; }
+
+    .f03-dev { font-family: "Noto Sans Devanagari", "Heebo", sans-serif; letter-spacing: normal; }
+
+    /* chrome */
+    #f03-brand { position: absolute; left: 80px; top: 96px; height: 30px; display: flex; align-items: center; }
+    .f03-head { position: absolute; top: 4px; width: 22px; height: 22px; border-radius: 50%; }
+    #f03-head-sky { left: 0; background: radial-gradient(circle at 35% 30%, #7dd3fc, #0284c7); }
+    #f03-head-em { left: 14px; background: radial-gradient(circle at 35% 30%, #6ee7b7, #059669); }
+    #f03-brand-text { position: absolute; left: 52px; top: 0; white-space: nowrap; font-family: "Heebo", "Noto Sans Devanagari", sans-serif;
+      font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: .14em; color: var(--muted); }
+    #f03-step { position: absolute; right: 80px; top: 84px; display: flex; align-items: center; gap: 12px;
+      padding: 12px 24px; border-radius: 999px; background: var(--card); box-shadow: var(--shadow-card); }
+    #f03-step-text { font-weight: 600; font-size: 28px; line-height: 1.3; padding: 2px 0; color: var(--ink); white-space: nowrap; }
+
+    /* titles */
+    #f03-eyebrow { position: absolute; left: 80px; top: 272px; font-size: 32px; font-weight: 500; line-height: 1.4; padding: 6px 0; color: var(--muted); }
+    #f03-headline { position: absolute; left: 80px; top: 360px; width: 920px; font-size: 60px; font-weight: 700; line-height: 1.25; padding: 10px 0; color: var(--ink); white-space: nowrap; }
+
+    /* card */
+    #f03-card { position: absolute; left: 80px; top: 560px; width: 920px; height: 660px; background: var(--card);
+      border: 1.5px solid var(--line); border-radius: 36px; box-shadow: var(--shadow-card); }
+    .f03-chip { position: absolute; top: 118px; height: 64px; display: flex; align-items: center; gap: 12px; padding: 0 26px;
+      border-radius: 999px; font-size: 32px; font-weight: 600; line-height: 1.4; color: var(--ink); white-space: nowrap; }
+    .f03-chip-dot { width: 18px; height: 18px; border-radius: 50%; flex: none; }
+    #f03-chip-kharif { left: 170px; width: 170px; justify-content: center; background: var(--skywash); }
+    #f03-chip-rabi { left: 590px; width: 150px; justify-content: center; background: var(--mint); }
+    #f03-chip-limit { left: 358px; width: 204px; justify-content: center; background: var(--mint); top: 108px; }
+
+    #f03-track { position: absolute; left: 80px; top: 280px; width: 760px; height: 128px; }
+    .f03-seg { position: absolute; top: 0; height: 128px; border-radius: 999px; }
+    #f03-seg-kharif { left: 0; width: 350px; background: linear-gradient(90deg, #0284c7, #38bdf8); }
+    #f03-seg-rabi { left: 410px; width: 350px; background: linear-gradient(90deg, #34d399, #059669); }
+    #f03-ramp { position: absolute; left: 0; top: 0; width: 760px; height: 128px; border-radius: 999px; background: var(--ramp);
+      box-shadow: 0 30px 80px -20px rgba(13,148,136,.28); }
+    #f03-seam { position: absolute; left: 330px; top: -10px; width: 100px; height: 148px; border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,.95) 0%, rgba(255,255,255,0) 70%); }
+    #f03-divider { position: absolute; left: 454px; top: 14px; width: 5px; height: 100px; border-radius: 3px; background: #ffffff; }
+    .f03-inchip { position: absolute; top: 30px; height: 68px; display: flex; align-items: center; justify-content: center;
+      border-radius: 999px; background: #ffffff; font-size: 32px; font-weight: 600; line-height: 1.4; color: var(--ink);
+      box-shadow: 0 6px 18px -6px rgba(15,23,42,.25); white-space: nowrap; }
+    #f03-in-cash { left: 143px; width: 170px; }
+    #f03-in-kind { left: 528px; width: 160px; }
+
+    #f03-bracket { position: absolute; left: 0; top: 0; width: 920px; height: 300px; overflow: visible; }
+
+    #f03-ruler { position: absolute; left: 80px; top: 452px; width: 760px; height: 80px; }
+    .f03-tick { position: absolute; top: 0; width: 2px; background: var(--faint); border-radius: 1px; }
+    .f03-mon { position: absolute; top: 30px; width: 40px; margin-left: -20px; text-align: center;
+      font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 700; font-size: 22px; line-height: 1; color: var(--faint); }
+    #f03-ruler-line { position: absolute; left: 0; top: 0; width: 760px; height: 2px; background: var(--line); }
+
+    #f03-year { position: absolute; left: 0; top: 556px; width: 920px; display: flex; justify-content: center; align-items: baseline; gap: 14px; }
+    #f03-year-num { font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 900; font-size: 44px; line-height: 1.2; color: var(--ink); font-variant-numeric: tabular-nums; }
+    #f03-year-word { font-size: 32px; font-weight: 500; line-height: 1.4; padding: 4px 0; color: var(--muted); }
+  </style>
+
+  <div data-hf-id="hf-gatv" id="root" data-composition-id="03-one-limit" data-width="1080" data-height="1920" data-start="0" data-duration="11.28">
+    <div data-hf-id="hf-g57d" id="f03-bg" class="clip" data-start="0" data-duration="11.28" data-track-index="0">
+      <div data-hf-id="hf-nrzu" id="f03-swell-sky"></div>
+      <div data-hf-id="hf-ali3" id="f03-swell-mint"></div>
+      <svg data-hf-id="hf-yxub" id="f03-halftone" viewBox="0 0 1080 340" width="1080" height="340">
+        <g data-hf-id="hf-mblk" id="f03-ht-b0" /><g data-hf-id="hf-n39d" id="f03-ht-b1" /><g data-hf-id="hf-r1de" id="f03-ht-b2" /><g data-hf-id="hf-uzhf" id="f03-ht-b3" />
+      </svg>
+    </div>
+
+    <!-- chrome -->
+    <div data-hf-id="hf-y2ny" id="f03-brand">
+      <div data-hf-id="hf-a9sy" class="f03-head" id="f03-head-sky"></div>
+      <div data-hf-id="hf-ev2l" class="f03-head" id="f03-head-em"></div>
+      <div data-hf-id="hf-nj5u" id="f03-brand-text">SAHKARAI EXPLAINS</div>
+    </div>
+    <div data-hf-id="hf-bdft" id="f03-step">
+      <svg data-hf-id="hf-gkqi" width="30" height="30" viewBox="0 0 30 30">
+        <defs data-hf-id="hf-mh0t">
+          <lineargradient data-hf-id="hf-ztt1" id="f03-ring-grad" x1="0" y1="0" x2="1" y2="0">
+            <stop data-hf-id="hf-7dpr" offset="0%" stop-color="#0284c7" /><stop data-hf-id="hf-zvlx" offset="25%" stop-color="#0ea5e9" /><stop data-hf-id="hf-4gkp" offset="45%" stop-color="#0d9488" />
+            <stop data-hf-id="hf-3bsp" offset="65%" stop-color="#10b981" /><stop data-hf-id="hf-nhdp" offset="100%" stop-color="#059669" />
+          </lineargradient>
+        </defs>
+        <circle data-hf-id="hf-5l8g" cx="15" cy="15" r="12" fill="none" stroke="#e2e9f0" stroke-width="4" />
+        <circle data-hf-id="hf-vt24" cx="15" cy="15" r="12" fill="none" stroke="url(#f03-ring-grad)" stroke-width="4" stroke-linecap="round" stroke-dasharray="18.85 75.4" transform="rotate(-90 15 15)" />
+      </svg>
+      <div data-hf-id="hf-zb82" id="f03-step-text" class="f03-dev">बदलाव १ / ४</div>
+    </div>
+
+    <!-- titles -->
+    <div data-hf-id="hf-dm4s" id="f03-eyebrow" class="f03-dev">पहला बदलाव</div>
+    <div data-hf-id="hf-erpj" id="f03-headline" class="f03-dev">पूरे साल की एक साख सीमा</div>
+
+    <!-- card -->
+    <div data-hf-id="hf-ldcp" id="f03-card">
+      <div data-hf-id="hf-fzk0" class="f03-chip f03-dev" id="f03-chip-kharif"><span data-hf-id="hf-k5g1" class="f03-chip-dot" style="background:#38bdf8"></span>खरीफ़</div>
+      <div data-hf-id="hf-e9ea" class="f03-chip f03-dev" id="f03-chip-rabi"><span data-hf-id="hf-7cmk" class="f03-chip-dot" style="background:#34d399"></span>रबी</div>
+
+      <svg data-hf-id="hf-eii0" id="f03-bracket" viewBox="0 0 920 300" width="920" height="300">
+        <defs data-hf-id="hf-vl9d">
+          <lineargradient data-hf-id="hf-yds9" id="f03-br-grad" x1="80" y1="0" x2="840" y2="0" gradientUnits="userSpaceOnUse">
+            <stop data-hf-id="hf-er7z" offset="0%" stop-color="#0284c7" /><stop data-hf-id="hf-d7a1" offset="25%" stop-color="#0ea5e9" /><stop data-hf-id="hf-gkbh" offset="45%" stop-color="#0d9488" />
+            <stop data-hf-id="hf-kqq5" offset="65%" stop-color="#10b981" /><stop data-hf-id="hf-foi9" offset="100%" stop-color="#059669" />
+          </lineargradient>
+        </defs>
+        <path data-hf-id="hf-ubqs" id="f03-bracket-path" d="M 96 262 L 96 246 A 1250 1250 0 0 1 824 246 L 824 262" fill="none" stroke="url(#f03-br-grad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <div data-hf-id="hf-672x" class="f03-chip f03-dev" id="f03-chip-limit"><span data-hf-id="hf-xd6b" class="f03-chip-dot" style="background:#0d9488"></span>एक सीमा</div>
+
+      <div data-hf-id="hf-rqf4" id="f03-track">
+        <div data-hf-id="hf-tgrg" class="f03-seg" id="f03-seg-kharif"></div>
+        <div data-hf-id="hf-n6yh" class="f03-seg" id="f03-seg-rabi"></div>
+        <div data-hf-id="hf-1h73" id="f03-ramp"></div>
+        <div data-hf-id="hf-n8yl" id="f03-seam"></div>
+        <div data-hf-id="hf-yzqm" id="f03-divider"></div>
+        <div data-hf-id="hf-eui4" class="f03-inchip f03-dev" id="f03-in-cash">नकद</div>
+        <div data-hf-id="hf-awrd" class="f03-inchip f03-dev" id="f03-in-kind">वस्तु</div>
+      </div>
+
+      <div data-hf-id="hf-yesd" id="f03-ruler"><div data-hf-id="hf-8nu4" id="f03-ruler-line"></div></div>
+
+      <div data-hf-id="hf-mxgg" id="f03-year">
+        <span data-hf-id="hf-b43z" id="f03-year-num">12</span><span data-hf-id="hf-jo5y" id="f03-year-word" class="f03-dev">महीने</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var ID = "03-one-limit";
+      var root = document.querySelector('[data-composition-id="' + ID + '"]');
+      var q = function (s) { return root.querySelector(s); };
+      var SVGNS = "http://www.w3.org/2000/svg";
+
+      // ---- month ruler (13 ticks, 12 month letters) ----
+      var ruler = q("#f03-ruler");
+      var months = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
+      var tickEls = [];
+      for (var i = 0; i <= 12; i++) {
+        var t = document.createElement("div");
+        t.className = "f03-tick";
+        t.style.left = (i * 760 / 12 - 1) + "px";
+        t.style.height = (i % 3 === 0 ? 18 : 12) + "px";
+        ruler.appendChild(t);
+        tickEls.push(t);
+      }
+      var monEls = [];
+      for (var m = 0; m < 12; m++) {
+        var ml = document.createElement("div");
+        ml.className = "f03-mon";
+        ml.style.left = ((m + 0.5) * 760 / 12) + "px";
+        ml.textContent = months[m];
+        ruler.appendChild(ml);
+        monEls.push(ml);
+      }
+
+      // ---- halftone furrows (deterministic) ----
+      var bands = [q("#f03-ht-b0"), q("#f03-ht-b1"), q("#f03-ht-b2"), q("#f03-ht-b3")];
+      var pitch = 16, vx = 540, vy = -120, y0 = 24, y1 = 330;
+      var c0 = [13, 148, 136], c1 = [16, 185, 129];
+      var row = 0;
+      for (var y = y0; y <= y1; y += pitch * 0.9, row++) {
+        var tDepth = (y - y0) / (y1 - y0);
+        var off = (row % 2) * (pitch / 2);
+        var col = "rgb(" + Math.round(c0[0] + (c1[0] - c0[0]) * tDepth) + "," + Math.round(c0[1] + (c1[1] - c0[1]) * tDepth) + "," + Math.round(c0[2] + (c1[2] - c0[2]) * tDepth) + ")";
+        var band = bands[Math.min(3, Math.floor(tDepth * 4))];
+        for (var x = 8 + off; x < 1080; x += pitch) {
+          var ang = Math.atan2(x - vx, y - vy);
+          var furrow = Math.pow(Math.cos(ang * 22), 2);
+          var r = (0.9 + 5.2 * tDepth) * (0.18 + 0.82 * furrow);
+          if (r < 0.7) continue;
+          r = Math.min(r, pitch * 0.46);
+          var c = document.createElementNS(SVGNS, "circle");
+          c.setAttribute("cx", x.toFixed(1));
+          c.setAttribute("cy", y.toFixed(1));
+          c.setAttribute("r", r.toFixed(2));
+          c.setAttribute("fill", col);
+          band.appendChild(c);
+        }
+      }
+
+      var bracket = q("#f03-bracket-path");
+      var bLen = bracket.getTotalLength();
+
+      var tl = gsap.timeline({ paused: true });
+
+      // Scene 1 (0.0–1.5): chrome, eyebrow, card + ruler + ground
+      tl.fromTo("#f03-brand", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0);
+      tl.fromTo("#f03-step", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.04);
+      tl.fromTo("#f03-swell-sky", { scale: 0.94, transformOrigin: "50% 50%" }, { scale: 1, duration: 10.78, ease: "none" }, 0);
+      bands.forEach(function (b, i) {
+        tl.fromTo(b, { opacity: 0 }, { opacity: 0.5, duration: 0.7, ease: "power2.out" }, 0.25 + i * 0.22);
+      });
+      tl.fromTo("#f03-eyebrow", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.18);
+      tl.fromTo("#f03-card", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0.35);
+      tl.fromTo("#f03-ruler-line", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, 0.7);
+      tl.fromTo(tickEls, { opacity: 0, scaleY: 0, transformOrigin: "50% 0%" }, { opacity: 1, scaleY: 1, duration: 0.3, ease: "power2.out", stagger: 0.04 }, 0.75);
+      tl.fromTo(monEls, { opacity: 0, y: -6 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", stagger: 0.04 }, 0.8);
+
+      // Scene 2 (1.5–4.0): Kharif @1.59, Rabi @2.40 with a visible gap
+      tl.fromTo("#f03-seg-kharif", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, 1.47);
+      tl.fromTo("#f03-chip-kharif", { opacity: 0, y: 16, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.4)" }, 1.49);
+      tl.fromTo("#f03-seg-rabi", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, 2.28);
+      tl.fromTo("#f03-chip-rabi", { opacity: 0, y: 16, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.4)" }, 2.30);
+
+      // Scene 3 (4.0–6.6): gap closes @4.35 — segments slide together and fuse into one ramp bar
+      tl.to("#f03-seg-kharif", { scaleX: 380 / 350, duration: 0.45, ease: "power3.inOut" }, 4.22);
+      tl.fromTo("#f03-seg-rabi", { scaleX: 1, transformOrigin: "100% 50%" }, { scaleX: 380 / 350, duration: 0.45, ease: "power3.inOut", immediateRender: false }, 4.22);
+      tl.to(["#f03-chip-kharif", "#f03-chip-rabi"], { opacity: 0, y: -10, duration: 0.35, ease: "power2.in" }, 4.3);
+      tl.fromTo("#f03-seam", { opacity: 0, scaleY: 0.6 }, { opacity: 1, scaleY: 1.1, duration: 0.2, ease: "power2.out" }, 4.55);
+      tl.to("#f03-seam", { opacity: 0, scaleY: 1.3, duration: 0.45, ease: "power2.out" }, 4.75);
+      tl.fromTo("#f03-ramp", { opacity: 0, scaleY: 1.14 }, { opacity: 1, scaleY: 1, duration: 0.5, ease: "back.out(1.4)" }, 4.6);
+      tl.fromTo("#f03-year", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 4.7);
+      // headline @5.32
+      tl.fromTo("#f03-headline", { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 5.2);
+
+      // Scene 4 (6.6–10.78): divider + cash @7.02, kind @7.63, bracket @8.69
+      tl.fromTo("#f03-divider", { scaleY: 0, transformOrigin: "50% 50%" }, { scaleY: 1, duration: 0.4, ease: "power3.out" }, 6.9);
+      tl.fromTo("#f03-in-cash", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.4)" }, 6.92);
+      tl.fromTo("#f03-in-kind", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.4)" }, 7.5);
+      tl.fromTo(bracket, { opacity: 0, strokeDasharray: bLen + " " + (bLen + 4), strokeDashoffset: bLen + 2 }, { opacity: 1, strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, 8.56);
+      tl.fromTo("#f03-chip-limit", { opacity: 0, y: 16, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.4)" }, 8.7);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines[ID] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,225 @@
+<template>
+  <meta charset="utf-8">
+  <style>
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 500; font-style: normal; src: url("assets/fonts/noto-sans-devanagari-devanagari-500-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 500; font-style: normal; src: url("assets/fonts/noto-sans-devanagari-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 600; font-style: normal; src: url("assets/fonts/noto-sans-devanagari-devanagari-600-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 600; font-style: normal; src: url("assets/fonts/noto-sans-devanagari-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 700; font-style: normal; src: url("assets/fonts/noto-sans-devanagari-devanagari-700-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 700; font-style: normal; src: url("assets/fonts/noto-sans-devanagari-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Heebo"; font-weight: 700; font-style: normal; src: url("assets/fonts/heebo-latin-700-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Heebo"; font-weight: 900; font-style: normal; src: url("assets/fonts/heebo-latin-900-normal.woff2") format("woff2"); }
+
+    #root {
+      --paper: #f3f7fa; --paper-2: #dfe6ee; --ink: #0f172a; --body: #35455c; --muted: #64748b;
+      --faint: #94a3b8; --line: #e2e9f0; --card: #ffffff; --sky: #38bdf8; --sky-deep: #0284c7;
+      --teal: #0d9488; --emerald: #34d399; --emerald-deep: #059669; --mint: #e7f8f1; --skywash: #e6f5fd;
+      position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden;
+      font-family: "Noto Sans Devanagari", "Heebo", sans-serif; color: var(--ink);
+    }
+    .al06-bg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; background: var(--paper); overflow: hidden; }
+    .al06-swell { position: absolute; border-radius: 50%; }
+    .al06-swell-a { width: 2100px; height: 2100px; left: -510px; top: 1020px; background: var(--paper-2); }
+    .al06-swell-b { width: 1500px; height: 1500px; left: 420px; top: -1060px; background: var(--skywash); }
+    .al06-glow { position: absolute; left: 140px; top: 780px; width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(52,211,153,.30) 0%, rgba(52,211,153,.12) 38%, rgba(52,211,153,0) 68%); }
+
+    .al06-stage { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 540px 1000px; }
+
+    /* chrome */
+    .al06-brand { position: absolute; left: 80px; top: 96px; display: flex; align-items: center; height: 26px; }
+    .al06-heads { position: relative; width: 36px; height: 22px; margin-right: 16px; }
+    .al06-head { position: absolute; top: 0; width: 22px; height: 22px; border-radius: 50%; }
+    .al06-head-sky { left: 0; background: radial-gradient(circle at 35% 35%, #7dd3fc, #0284c7); }
+    .al06-head-em { left: 14px; background: radial-gradient(circle at 35% 35%, #6ee7b7, #059669); }
+    .al06-eyebrow { font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 700; font-size: 24px;
+      letter-spacing: .14em; color: var(--muted); line-height: 1; }
+    .al06-change { position: absolute; right: 80px; top: 84px; display: flex; align-items: center; gap: 12px;
+      background: var(--card); border-radius: 999px; padding: 12px 24px;
+      box-shadow: 0 2px 4px rgba(15,23,42,.04), 0 18px 48px -12px rgba(15,23,42,.14); }
+    .al06-change-txt { font-weight: 600; font-size: 28px; line-height: 1.3; letter-spacing: normal; color: var(--ink); padding: 2px 0; }
+
+    /* input chips */
+    .al06-chip { position: absolute; top: 340px; height: 88px; display: flex; align-items: center; gap: 16px;
+      padding: 0 34px 0 26px; border-radius: 999px; background: var(--card); border: 1.5px solid var(--line);
+      box-shadow: 0 2px 4px rgba(15,23,42,.04), 0 18px 48px -12px rgba(15,23,42,.14); white-space: nowrap; }
+    .al06-chip-l { left: 80px; }
+    .al06-chip-r { right: 80px; }
+    .al06-chip-dot { width: 22px; height: 22px; border-radius: 50%; flex: none; }
+    .al06-chip-l .al06-chip-dot { background: radial-gradient(circle at 35% 35%, #6ee7b7, #059669); }
+    .al06-chip-r .al06-chip-dot { background: radial-gradient(circle at 35% 35%, #7dd3fc, #0284c7); }
+    .al06-chip-k { font-weight: 500; font-size: 32px; line-height: 1.4; color: var(--muted); letter-spacing: normal; padding: 4px 0; }
+    .al06-chip-v { font-weight: 700; font-size: 38px; line-height: 1.4; color: var(--ink); letter-spacing: normal; padding: 4px 0; }
+
+    .al06-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+
+    /* gauge text */
+    .al06-glabel { position: absolute; left: 290px; width: 500px; top: 948px; text-align: center;
+      font-weight: 500; font-size: 36px; line-height: 1.4; color: var(--muted); letter-spacing: normal; padding: 4px 0; }
+    .al06-num { position: absolute; left: 190px; width: 700px; top: 1030px; height: 140px;
+      display: flex; align-items: center; justify-content: center; transform-origin: 350px 90px; }
+    .al06-rs { font-family: "Noto Sans Devanagari", sans-serif; font-weight: 700; font-size: 84px; line-height: 1.2;
+      color: var(--ink); margin-right: 14px; letter-spacing: normal; }
+    .al06-val { font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 900; font-size: 118px; line-height: 1;
+      color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+
+    .al06-zero { position: absolute; left: 100px; width: 120px; top: 1222px; text-align: center;
+      font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 700; font-size: 30px; line-height: 1.3; color: var(--faint); }
+    .al06-max { position: absolute; left: 820px; width: 200px; top: 1232px; display: flex; justify-content: center; }
+    .al06-max-pill { background: var(--mint); border-radius: 999px; padding: 4px 26px; font-weight: 600; font-size: 32px;
+      line-height: 1.4; color: var(--ink); letter-spacing: normal; }
+
+    .al06-h2 { position: absolute; left: 80px; width: 920px; top: 1318px; text-align: center; font-weight: 700;
+      font-size: 60px; line-height: 1.25; color: var(--ink); letter-spacing: normal; padding: 8px 0; }
+    .al06-note { position: absolute; left: 80px; width: 920px; top: 1432px; text-align: center; font-weight: 500;
+      font-size: 32px; line-height: 1.4; color: var(--muted); letter-spacing: normal; padding: 4px 0; }
+  </style>
+
+  <div data-hf-id="hf-g8zp" id="root" data-composition-id="06-auto-limit" data-width="1080" data-height="1920" data-start="0" data-duration="8.22">
+    <div data-hf-id="hf-ezfq" class="clip al06-bg" id="al06-bg" data-start="0" data-duration="8.22" data-track-index="0">
+      <div data-hf-id="hf-sbb9" class="al06-swell al06-swell-b" id="al06-swell-b"></div>
+      <div data-hf-id="hf-6d7t" class="al06-swell al06-swell-a" id="al06-swell-a"></div>
+      <div data-hf-id="hf-wb6s" class="al06-glow" id="al06-glow"></div>
+    </div>
+
+    <div data-hf-id="hf-1n0b" class="clip al06-stage" id="al06-stage" data-start="0" data-duration="8.22" data-track-index="1">
+      <!-- chrome -->
+      <div data-hf-id="hf-pmlu" class="al06-brand" id="al06-brand">
+        <div data-hf-id="hf-nwlb" class="al06-heads"><div data-hf-id="hf-1glg" class="al06-head al06-head-sky"></div><div data-hf-id="hf-zvvv" class="al06-head al06-head-em"></div></div>
+        <div data-hf-id="hf-u8v9" class="al06-eyebrow">SAHKARAI EXPLAINS</div>
+      </div>
+      <div data-hf-id="hf-jxqq" class="al06-change" id="al06-change">
+        <svg data-hf-id="hf-gkqi" width="30" height="30" viewBox="0 0 30 30">
+          <defs data-hf-id="hf-mh0t">
+            <lineargradient data-hf-id="hf-s269" id="al06-ramp-s" x1="0" y1="0" x2="30" y2="0" gradientUnits="userSpaceOnUse">
+              <stop data-hf-id="hf-urok" offset="0" stop-color="#0284c7" /><stop data-hf-id="hf-ltpa" offset=".25" stop-color="#0ea5e9" /><stop data-hf-id="hf-j8k6" offset=".45" stop-color="#0d9488" /><stop data-hf-id="hf-dem6" offset=".65" stop-color="#10b981" /><stop data-hf-id="hf-xvnc" offset="1" stop-color="#059669" />
+            </lineargradient>
+          </defs>
+          <circle data-hf-id="hf-rqm5" cx="15" cy="15" r="11.5" fill="none" stroke="#e2e9f0" stroke-width="5" />
+          <circle data-hf-id="hf-pjij" cx="15" cy="15" r="11.5" fill="none" stroke="url(#al06-ramp-s)" stroke-width="5" pathLength="100" stroke-dasharray="50 100" transform="rotate(-90 15 15)" />
+        </svg>
+        <span data-hf-id="hf-8ugc" class="al06-change-txt">बदलाव २ / ४</span>
+      </div>
+
+      <!-- input chips -->
+      <div data-hf-id="hf-6a98" class="al06-chip al06-chip-l" id="al06-chip-l">
+        <span data-hf-id="hf-zdjh" class="al06-chip-dot"></span><span data-hf-id="hf-7e3g" class="al06-chip-k">फसल:</span><span data-hf-id="hf-e2w2" class="al06-chip-v">गेहूँ</span>
+      </div>
+      <div data-hf-id="hf-a5pg" class="al06-chip al06-chip-r" id="al06-chip-r">
+        <span data-hf-id="hf-e6pt" class="al06-chip-dot"></span><span data-hf-id="hf-wei8" class="al06-chip-k">रकबा:</span><span data-hf-id="hf-hsw5" class="al06-chip-v">हेक्टेयर</span>
+      </div>
+
+      <!-- arcs + gauge -->
+      <svg data-hf-id="hf-gbod" class="al06-svg" viewBox="0 0 1080 1920">
+        <defs data-hf-id="hf-vl9d">
+          <lineargradient data-hf-id="hf-kf8c" id="al06-ramp" x1="160" y1="0" x2="920" y2="0" gradientUnits="userSpaceOnUse">
+            <stop data-hf-id="hf-6noc" offset="0" stop-color="#0284c7" /><stop data-hf-id="hf-rw5e" offset=".25" stop-color="#0ea5e9" /><stop data-hf-id="hf-ijui" offset=".45" stop-color="#0d9488" /><stop data-hf-id="hf-cgma" offset=".65" stop-color="#10b981" /><stop data-hf-id="hf-nej4" offset="1" stop-color="#059669" />
+          </lineargradient>
+        </defs>
+        <!-- feeder arcs (struck from circles) -->
+        <path data-hf-id="hf-9gcm" id="al06-feed-l" d="M 250 440 A 520 520 0 0 0 540 740" fill="none" stroke="#34d399" stroke-width="4" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" />
+        <path data-hf-id="hf-7a7e" id="al06-feed-r" d="M 830 440 A 520 520 0 0 1 540 740" fill="none" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" />
+        <circle data-hf-id="hf-6i6n" id="al06-feed-dot" cx="540" cy="740" r="10" fill="#0d9488" />
+
+        <!-- concentric chrome + track -->
+        <path data-hf-id="hf-b5e4" id="al06-inner" d="M 250 1180 A 290 290 0 0 1 830 1180" fill="none" stroke="#94a3b8" stroke-opacity=".45" stroke-width="2" stroke-dasharray="2 14" />
+        <path data-hf-id="hf-ypbq" id="al06-track" d="M 160 1180 A 380 380 0 0 1 920 1180" fill="none" stroke="#e2e9f0" stroke-width="56" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" />
+        <path data-hf-id="hf-uf8z" id="al06-fill" d="M 160 1180 A 380 380 0 0 1 920 1180" fill="none" stroke="url(#al06-ramp)" stroke-width="56" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" opacity="0" />
+
+        <!-- max tick at the gauge end -->
+        <g data-hf-id="hf-adxo" id="al06-tick">
+          <line data-hf-id="hf-uz4g" x1="952" y1="1180" x2="1000" y2="1180" stroke="#0d9488" stroke-width="8" stroke-linecap="round" />
+          <circle data-hf-id="hf-rgtf" cx="920" cy="1180" r="36" fill="none" stroke="#0d9488" stroke-width="4" />
+        </g>
+      </svg>
+
+      <div data-hf-id="hf-o3zo" class="al06-glabel" id="al06-glabel">साख सीमा</div>
+      <div data-hf-id="hf-ae9e" class="al06-num" id="al06-num">
+        <span data-hf-id="hf-vwjb" class="al06-rs">₹</span><span data-hf-id="hf-10qp" class="al06-val" id="al06-val">0</span>
+      </div>
+      <div data-hf-id="hf-2mna" class="al06-zero" id="al06-zero">0</div>
+      <div data-hf-id="hf-0aa2" class="al06-max" id="al06-max"><span data-hf-id="hf-8519" class="al06-max-pill">अधिकतम</span></div>
+
+      <div data-hf-id="hf-8w0w" class="al06-h2" id="al06-h2">तीन लाख रुपये तक</div>
+      <div data-hf-id="hf-uy6o" class="al06-note" id="al06-note">SLTC ऋणमान के अनुसार</div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      var FID = "06-auto-limit";
+      var $ = function (s) { return document.getElementById("al06-" + s); };
+      var tl = gsap.timeline({ paused: true });
+
+      // Indian digit grouping: 300000 -> 3,00,000
+      function inr(n) {
+        var s = String(Math.round(n));
+        if (s.length <= 3) return s;
+        var last3 = s.slice(-3), rest = s.slice(0, -3);
+        rest = rest.replace(/\B(?=(\d{2})+(?!\d))/g, ",");
+        return rest + "," + last3;
+      }
+
+      var val = $("val"), fill = $("fill");
+
+      // Background: slow swell drift under everything (seek-safe, no loop)
+      tl.fromTo($("swell-a"), { scale: 1 }, { scale: 1.05, duration: 7.72, ease: "none", transformOrigin: "50% 0%" }, 0);
+      tl.fromTo($("swell-b"), { scale: 1 }, { scale: 1.04, duration: 7.72, ease: "none" }, 0);
+      tl.fromTo($("glow"), { opacity: 0, scale: 0.6 }, { opacity: 0.5, scale: 0.9, duration: 1.0, ease: "power2.out" }, 2.2);
+      // Slow camera push on the stage, settles before the hold
+      tl.fromTo($("stage"), { scale: 1 }, { scale: 1.025, duration: 6.4, ease: "power1.inOut" }, 0);
+
+      // Chrome 0–0.4
+      tl.fromTo($("brand"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0);
+      tl.fromTo($("change"), { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.05);
+
+      // Scene 1 — inputs
+      tl.fromTo($("chip-l"), { opacity: 0, scale: 0.7, y: 24 }, { opacity: 1, scale: 1, y: 0, duration: 0.55, ease: "back.out(1.4)" }, 0.20);
+      tl.fromTo($("chip-r"), { opacity: 0, scale: 0.7, y: 24 }, { opacity: 1, scale: 1, y: 0, duration: 0.55, ease: "back.out(1.4)" }, 0.92);
+      tl.fromTo($("feed-l"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, 0.60);
+      tl.fromTo($("feed-r"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, 1.30);
+      tl.fromTo($("feed-dot"), { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.4)" }, 1.95);
+
+      // Scene 2 — gauge draws on @2.28
+      tl.fromTo($("track"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.9, ease: "power3.out" }, 2.16);
+      tl.fromTo($("inner"), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power2.out" }, 2.3);
+      tl.fromTo($("glabel"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 2.18);
+      tl.fromTo($("zero"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 2.6);
+
+      // @3.20 count-up + arc fill; lands on @6.07 exactly
+      var C0 = 3.10, C1 = 6.07, CD = C1 - C0;
+      tl.fromTo($("num"), { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "none" }, C0 - 0.05);
+      tl.fromTo(fill, { opacity: 0 }, { opacity: 1, duration: 0.05, ease: "none" }, C0);
+      var st = { p: 0 };
+      tl.fromTo(st, { p: 0 }, {
+        p: 1, duration: CD, ease: "power1.inOut",
+        onUpdate: function () {
+          var v = st.p >= 0.9999 ? 300000 : Math.round((st.p * 300000) / 1000) * 1000;
+          val.textContent = inr(v);
+          fill.style.strokeDashoffset = String(1 - st.p);
+        }
+      }, C0);
+      tl.fromTo($("num"), { scale: 0.72 }, { scale: 1, duration: CD, ease: "power1.inOut" }, C0);
+
+      // Scene 3 — @4.82 max tick + label
+      tl.fromTo($("tick"), { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 4.72);
+      tl.fromTo($("max"), { opacity: 0, scale: 0.7, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.4)" }, 4.74);
+
+      // Landing punctuation on @6.07
+      tl.to($("num"), { scale: 1.06, duration: 0.14, ease: "power2.out" }, C1);
+      tl.to($("num"), { scale: 1, duration: 0.45, ease: "power3.out" }, C1 + 0.14);
+      tl.to($("glow"), { opacity: 1, scale: 1.05, duration: 0.6, ease: "power2.out" }, C1 - 0.05);
+      tl.fromTo($("tick"), { scale: 1, svgOrigin: "920 1180" }, { scale: 1.12, duration: 0.14, ease: "power2.out", immediateRender: false }, C1);
+      tl.to($("tick"), { scale: 1, duration: 0.4, ease: "power3.out" }, C1 + 0.14);
+
+      // @6.36 caption line rises; note follows; hold
+      tl.fromTo($("h2"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 6.24);
+      tl.fromTo($("note"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 6.55);
+
+      tl.set({}, {}, 7.72);
+      window.__timelines = window.__timelines || {};
+      window.__timelines[FID] = tl;
+    })();
+  </script>
+</template>

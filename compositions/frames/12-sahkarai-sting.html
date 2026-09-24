@@ -1,0 +1,203 @@
+<template>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 500; font-display: block; src: url("assets/fonts/noto-sans-devanagari-devanagari-500-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 500; font-display: block; src: url("assets/fonts/noto-sans-devanagari-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/noto-sans-devanagari-devanagari-700-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/noto-sans-devanagari-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+    #root {
+      --paper: #f3f7fa; --paper-2: #dfe6ee; --ink: #0f172a; --body: #35455c; --muted: #64748b;
+      --faint: #94a3b8; --line: #e2e9f0; --card: #ffffff; --sky: #38bdf8; --sky-deep: #0284c7;
+      --teal: #0d9488; --emerald: #34d399; --emerald-deep: #059669; --mint: #e7f8f1; --skywash: #e6f5fd;
+      position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden;
+      font-family: "Noto Sans Devanagari", sans-serif; letter-spacing: normal;
+    }
+    #root * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ---------- ground: paper + soft double-circle swell centred on the mark ---------- */
+    #st12-ground { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; background: var(--paper); overflow: hidden; }
+    #st12-swells { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    .st12-swell { position: absolute; border-radius: 50%; }
+    /* mark centre on canvas ≈ (540, 672) */
+    #st12-swell-out { width: 2300px; height: 2300px; left: -610px; top: -478px; background: var(--paper-2); opacity: .55; }
+    #st12-swell-in  { width: 1460px; height: 1460px; left: -190px; top: -58px;  background: var(--skywash); opacity: .9; }
+
+    /* ---------- content ---------- */
+    #st12-content { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #st12-lockup { position: absolute; left: 110px; top: 330px; width: 860px; height: 795px; overflow: visible; }
+
+    #st12-tagline {
+      position: absolute; left: 80px; top: 1178px; width: 920px; text-align: center;
+      font-size: 60px; font-weight: 700; line-height: 1.3; color: var(--ink); letter-spacing: normal;
+      padding: .14em 0; white-space: nowrap;
+    }
+    .st12-w { display: inline-block; letter-spacing: normal; }
+
+    #st12-hair { position: absolute; left: 480px; top: 1448px; width: 120px; height: 3px; border-radius: 999px;
+      background: linear-gradient(90deg,#0284c7 0%,#0ea5e9 25%,#0d9488 45%,#10b981 65%,#059669 100%); }
+    #st12-source {
+      position: absolute; left: 80px; top: 1474px; width: 920px; text-align: center;
+      font-size: 32px; font-weight: 500; line-height: 1.4; color: var(--muted); letter-spacing: normal;
+      padding: .12em 0; white-space: nowrap;
+    }
+  </style>
+
+  <div data-hf-id="hf-7jaz" id="root" data-composition-id="12-sahkarai-sting" data-start="0" data-duration="6.95" data-width="1080" data-height="1920">
+
+    <div data-hf-id="hf-3wri" id="st12-ground" class="clip" data-start="0" data-duration="6.95" data-track-index="0">
+      <div data-hf-id="hf-bjgw" id="st12-swells">
+        <div data-hf-id="hf-i8it" id="st12-swell-out" class="st12-swell"></div>
+        <div data-hf-id="hf-q5ay" id="st12-swell-in" class="st12-swell"></div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-6xbn" id="st12-content" class="clip" data-start="0" data-duration="6.95" data-track-index="1">
+      <!-- SahkarAI lockup — geometry copied verbatim from assets/sahkarai-lockup-light.svg -->
+      <svg data-hf-id="hf-1rqa" id="st12-lockup" xmlns="http://www.w3.org/2000/svg" viewBox="161 100 478 442" width="860" height="795">
+        <defs data-hf-id="hf-mh0t">
+          <lineargradient data-hf-id="hf-6q6j" id="st12-ribbon" gradientUnits="userSpaceOnUse" x1="230" y1="200" x2="570" y2="360">
+            <stop data-hf-id="hf-7dpr" offset="0%" stop-color="#0284c7" />
+            <stop data-hf-id="hf-zvlx" offset="25%" stop-color="#0ea5e9" />
+            <stop data-hf-id="hf-4gkp" offset="45%" stop-color="#0d9488" />
+            <stop data-hf-id="hf-3bsp" offset="65%" stop-color="#10b981" />
+            <stop data-hf-id="hf-nhdp" offset="100%" stop-color="#059669" />
+          </lineargradient>
+          <lineargradient data-hf-id="hf-d3vs" id="st12-head-sky" gradientUnits="userSpaceOnUse" x1="-121.2" y1="-110" x2="121.2" y2="70">
+            <stop data-hf-id="hf-wvrs" offset="0%" stop-color="#7dd3fc" /><stop data-hf-id="hf-6cxy" offset="100%" stop-color="#0284c7" />
+          </lineargradient>
+          <lineargradient data-hf-id="hf-zfgn" id="st12-head-em" gradientUnits="userSpaceOnUse" x1="-121.2" y1="-110" x2="121.2" y2="70">
+            <stop data-hf-id="hf-vgt1" offset="0%" stop-color="#6ee7b7" /><stop data-hf-id="hf-foi9" offset="100%" stop-color="#059669" />
+          </lineargradient>
+          <lineargradient data-hf-id="hf-efdk" id="st12-ai-a" x1="0" y1="0" x2="1" y2="1">
+            <stop data-hf-id="hf-mow2" offset="0%" stop-color="#38bdf8" /><stop data-hf-id="hf-ivii" offset="100%" stop-color="#0284c7" />
+          </lineargradient>
+          <lineargradient data-hf-id="hf-x3zk" id="st12-ai-i" x1="0" y1="0" x2="1" y2="1">
+            <stop data-hf-id="hf-061z" offset="0%" stop-color="#34d399" /><stop data-hf-id="hf-gvfc" offset="100%" stop-color="#059669" />
+          </lineargradient>
+          <filter data-hf-id="hf-lxde" id="st12-head-shadow" x="-60%" y="-60%" width="220%" height="220%">
+            <fedropshadow data-hf-id="hf-z0bl" dx="3" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity=".2" />
+          </filter>
+          <filter data-hf-id="hf-d2w5" id="st12-crossover" x="-35%" y="-35%" width="170%" height="170%">
+            <fedropshadow data-hf-id="hf-g0z1" dx="-4" dy="4" stdDeviation="6" flood-color="#022c22" flood-opacity=".28" />
+          </filter>
+        </defs>
+
+        <g data-hf-id="hf-nqn9" id="st12-mark" transform="translate(0 15)">
+          <path data-hf-id="hf-5fr3" id="st12-ribbon-a" d="M237.5 216.4A85 85 0 1 0 340.1 350.1L459.9 229.9A85 85 0 0 1 477.5 216.4" fill="none" stroke="url(#st12-ribbon)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" />
+          <path data-hf-id="hf-s469" id="st12-ribbon-b" d="M562.5 216.4A85 85 0 1 1 459.9 350.1L340.1 229.9A85 85 0 0 0 322.5 216.4" fill="none" stroke="url(#st12-ribbon)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" filter="url(#st12-crossover)" />
+          <!-- sky head: rides ribbon B (starts right), crosses, rests at (280,132) -->
+          <g data-hf-id="hf-tx1e" id="st12-rider-sky" transform="translate(280 132)">
+            <g data-hf-id="hf-9pd1" id="st12-pop-sky" filter="url(#st12-head-shadow)">
+              <circle data-hf-id="hf-dpuw" r="34" fill="url(#st12-head-sky)" />
+              <circle data-hf-id="hf-edgt" r="34" fill="none" stroke="#38bdf8" stroke-width="2.5" opacity=".45" />
+              <ellipse data-hf-id="hf-9zm9" cx="-11" cy="-13" rx="11" ry="7.5" transform="rotate(-32)" fill="#fff" opacity=".16" />
+            </g>
+          </g>
+          <!-- emerald head: rides ribbon A (starts left), crosses, rests at (520,132) -->
+          <g data-hf-id="hf-9gto" id="st12-rider-em" transform="translate(520 132)">
+            <g data-hf-id="hf-43ck" id="st12-pop-em" filter="url(#st12-head-shadow)">
+              <circle data-hf-id="hf-tuu9" r="34" fill="url(#st12-head-em)" />
+              <circle data-hf-id="hf-ccxi" r="34" fill="none" stroke="#34d399" stroke-width="2.5" opacity=".45" />
+              <ellipse data-hf-id="hf-itj9" cx="-11" cy="-13" rx="11" ry="7.5" transform="rotate(-32)" fill="#fff" opacity=".16" />
+            </g>
+          </g>
+        </g>
+
+        <g data-hf-id="hf-1h2v" id="st12-wordmark">
+          <g data-hf-id="hf-7mpk" fill="#fff" stroke="#0f172a" stroke-opacity=".42" stroke-width="2.19" stroke-linejoin="round" paint-order="stroke">
+          <path data-hf-id="hf-wvqg" d="M219.87 529.94Q213.76 529.94 207.90 528.39Q202.04 526.84 197.31 523.57Q192.57 520.31 189.76 515.19Q186.95 510.08 186.95 502.96H207.07Q207.07 506.18 207.85 508.32Q208.63 510.46 210.23 511.77Q211.84 513.08 214.25 513.64Q216.65 514.20 219.87 514.20Q223.18 514.20 225.14 513.29Q227.09 512.38 227.95 510.94Q228.80 509.49 228.80 507.89Q228.80 505.80 227.92 504.19Q227.04 502.59 224.28 501.01Q221.53 499.43 215.91 497.56Q210.87 495.85 206.11 493.65Q201.35 491.46 197.55 488.49Q193.75 485.51 191.50 481.47Q189.25 477.43 189.25 472.03Q189.25 465.18 193.21 460.22Q197.17 455.27 204.02 452.57Q210.87 449.87 219.60 449.87Q228.22 449.87 234.83 452.78Q241.44 455.70 245.21 461.16Q248.98 466.62 248.98 474.22H228.97Q228.97 471.71 227.92 469.78Q226.88 467.85 224.71 466.78Q222.54 465.71 219.17 465.71Q215.91 465.71 213.68 466.62Q211.46 467.53 210.37 469.00Q209.27 470.47 209.27 472.29Q209.27 474.38 210.98 475.93Q212.69 477.49 215.74 478.82Q218.80 480.16 222.81 481.50Q231.16 484.18 236.97 487.74Q242.77 491.30 245.83 496.19Q248.88 501.09 248.88 507.78Q248.88 514.90 245.32 519.85Q241.76 524.80 235.23 527.37Q228.70 529.94 219.87 529.94Z" />
+          <path data-hf-id="hf-35d6" d="M283.65 490.81Q283.65 487.60 282.29 485.70Q280.92 483.80 277.60 483.80Q275.84 483.80 274.63 484.34Q273.43 484.87 272.81 486.05Q272.20 487.23 272.20 489.21H252.93Q252.93 483.53 256.09 479.20Q259.24 474.86 265.02 472.37Q270.80 469.89 278.62 469.89Q285.58 469.89 291.09 472.21Q296.60 474.54 299.81 479.23Q303.03 483.91 303.03 490.92V513.78Q303.03 520.04 303.70 522.88Q304.36 525.71 305.54 527.91V528.87H286.27Q284.93 526.03 284.29 521.91Q283.65 517.79 283.65 513.29ZM285.95 503.77H278.62Q274.07 503.77 272.46 506.23Q270.86 508.69 270.86 511.42Q270.86 513.40 272.33 514.61Q273.80 515.81 276.00 515.81Q278.73 515.81 280.63 514.82Q282.53 513.83 283.49 512.49Q284.45 511.15 284.29 510.14L288.41 518.22Q287.34 520.31 286.03 522.37Q284.72 524.43 282.79 526.14Q280.87 527.85 278.08 528.90Q275.30 529.94 271.34 529.94Q266.04 529.94 261.52 527.75Q257.00 525.55 254.27 521.59Q251.54 517.63 251.54 512.38Q251.54 503.45 258.12 498.36Q264.70 493.28 278.78 493.28H285.95Z" />
+          <path data-hf-id="hf-fr15" d="M327.89 528.87H308.57V446.66H327.89ZM321.20 498.52Q321.15 490.17 323.75 483.72Q326.34 477.27 331.08 473.58Q335.82 469.89 342.19 469.89Q347.91 469.89 352.33 472.16Q356.74 474.44 359.23 479.57Q361.72 484.71 361.72 493.33V528.87H342.35V493.22Q342.35 490.06 341.44 488.38Q340.53 486.69 338.81 486.05Q337.10 485.41 334.69 485.41Q331.70 485.41 329.90 486.29Q328.11 487.17 327.17 488.86Q326.24 490.55 325.94 492.90Q325.65 495.26 325.65 498.15Z" />
+          <path data-hf-id="hf-l03y" d="M387.24 528.87H367.92V446.60H387.24ZM399.39 501.04 385.95 514.31 377.44 502.11 388.63 487.07 401.21 470.96H424.28ZM389.06 503.07 403.35 493.06 425.56 528.87H403.51Z" />
+          <path data-hf-id="hf-znxn" d="M454.71 490.81Q454.71 487.60 453.34 485.70Q451.98 483.80 448.66 483.80Q446.89 483.80 445.69 484.34Q444.49 484.87 443.87 486.05Q443.25 487.23 443.25 489.21H423.99Q423.99 483.53 427.14 479.20Q430.30 474.86 436.08 472.37Q441.86 469.89 449.68 469.89Q456.64 469.89 462.15 472.21Q467.66 474.54 470.87 479.23Q474.09 483.91 474.09 490.92V513.78Q474.09 520.04 474.75 522.88Q475.42 525.71 476.60 527.91V528.87H457.33Q455.99 526.03 455.35 521.91Q454.71 517.79 454.71 513.29ZM457.01 503.77H449.68Q445.13 503.77 443.52 506.23Q441.92 508.69 441.92 511.42Q441.92 513.40 443.39 514.61Q444.86 515.81 447.06 515.81Q449.78 515.81 451.69 514.82Q453.59 513.83 454.55 512.49Q455.51 511.15 455.35 510.14L459.47 518.22Q458.40 520.31 457.09 522.37Q455.78 524.43 453.85 526.14Q451.93 527.85 449.14 528.90Q446.36 529.94 442.40 529.94Q437.10 529.94 432.58 527.75Q428.05 525.55 425.32 521.59Q422.59 517.63 422.59 512.38Q422.59 503.45 429.18 498.36Q435.76 493.28 449.84 493.28H457.01Z" />
+          <path data-hf-id="hf-tsvs" d="M499.54 528.87H480.27V470.96H498.26L499.54 486.42ZM515.92 489.37Q514.80 489.26 512.90 489.10Q511.00 488.94 509.82 488.94Q505.75 488.94 503.21 489.98Q500.67 491.03 499.54 493.22Q498.42 495.42 498.47 499.00L495.10 496.11Q495.10 488.24 497.08 482.33Q499.06 476.42 502.67 473.15Q506.29 469.89 511.16 469.89Q512.50 469.89 513.86 470.02Q515.23 470.15 516.24 470.53Z" />
+          </g>
+          <path data-hf-id="hf-ues1" d="M535.22 528.87H513.65L542.23 450.94H555.83L553.47 469.73ZM549.94 469.73 547.32 450.94H561.07L589.82 528.87H568.25ZM568.03 515.81H528.05V499.59H568.03Z" fill="url(#st12-ai-a)" />
+          <path data-hf-id="hf-m757" d="M612.92 528.87H592.91V450.94H612.92Z" fill="url(#st12-ai-i)" />
+        </g>
+      </svg>
+
+      <div data-hf-id="hf-xhk0" id="st12-tagline"><span data-hf-id="hf-3ys7" class="st12-w">नियम,</span> <span data-hf-id="hf-h5b0" class="st12-w">आपकी</span> <span data-hf-id="hf-0unn" class="st12-w">भाषा</span> <span data-hf-id="hf-rmf4" class="st12-w">में</span></div>
+
+      <div data-hf-id="hf-ijfa" id="st12-hair"></div>
+      <div data-hf-id="hf-ru0k" id="st12-source">स्रोत: आयुक्त सहकारिता, म.प्र. — परिपत्र क्र. 1458/2026</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var ID = "12-sahkarai-sting";
+      var tl = gsap.timeline({ paused: true });
+
+      // ---- ribbon draw + head riders (one driver per ribbon, seek-safe) ----
+      var ribA = document.getElementById("st12-ribbon-a");
+      var ribB = document.getElementById("st12-ribbon-b");
+      var riderEm = document.getElementById("st12-rider-em");
+      var riderSky = document.getElementById("st12-rider-sky");
+      var lenA = ribA.getTotalLength();
+      var lenB = ribB.getTotalLength();
+      ribA.setAttribute("stroke-dasharray", lenA + " " + (lenA + 200));
+      ribB.setAttribute("stroke-dasharray", lenB + " " + (lenB + 200));
+
+      // u: 0→1 rides the ribbon tip (ribbon draws in step), 1→2 hops from the ribbon end to the rest spot
+      function place(path, len, rider, u, restX, restY) {
+        var d = Math.min(u, 1) * len;
+        path.setAttribute("stroke-dashoffset", String(len - d));
+        var x, y;
+        if (u <= 1) {
+          var p = path.getPointAtLength(d);
+          x = p.x; y = p.y;
+        } else {
+          var k = Math.min(u - 1, 1);
+          var e = path.getPointAtLength(len);
+          x = e.x + (restX - e.x) * k;
+          y = e.y + (restY - e.y) * k - 70 * Math.sin(Math.PI * k);
+        }
+        rider.setAttribute("transform", "translate(" + x.toFixed(2) + " " + y.toFixed(2) + ")");
+      }
+      var drvA = { u: 0 }, drvB = { u: 0 };
+      function updA() { place(ribA, lenA, riderEm, drvA.u, 520, 132); }
+      function updB() { place(ribB, lenB, riderSky, drvB.u, 280, 132); }
+      updA(); updB();
+
+      // Scene 1 — @0.30 "सहकार": both ribbons draw from their outer ends through the crossover
+      tl.to(drvB, { u: 1, duration: 1.52, ease: "power2.inOut", onUpdate: updB }, 0.20);
+      tl.to(drvA, { u: 1, duration: 1.52, ease: "power2.inOut", onUpdate: updA }, 0.24);
+      // heads pop onto the riding tips — sky @0.98, emerald @1.19 ("ए आई")
+      tl.fromTo("#st12-pop-sky", { scale: 0, opacity: 0, svgOrigin: "0 0" }, { scale: 1, opacity: 1, duration: 0.42, ease: "back.out(2.2)" }, 0.88);
+      tl.fromTo("#st12-pop-em",  { scale: 0, opacity: 0, svgOrigin: "0 0" }, { scale: 1, opacity: 1, duration: 0.42, ease: "back.out(2.2)" }, 1.09);
+      // after crossing, each head hops off its ribbon end to its rest spot
+      tl.to(drvB, { u: 2, duration: 0.34, ease: "power2.out", onUpdate: updB }, 1.72);
+      tl.to(drvA, { u: 2, duration: 0.34, ease: "power2.out", onUpdate: updA }, 1.76);
+      // landing squash
+      tl.to("#st12-pop-sky", { scaleX: 1.14, scaleY: 0.86, duration: 0.08, ease: "power1.out" }, 2.06);
+      tl.to("#st12-pop-sky", { scaleX: 1, scaleY: 1, duration: 0.22, ease: "back.out(2)" }, 2.14);
+      tl.to("#st12-pop-em",  { scaleX: 1.14, scaleY: 0.86, duration: 0.08, ease: "power1.out" }, 2.10);
+      tl.to("#st12-pop-em",  { scaleX: 1, scaleY: 1, duration: 0.22, ease: "back.out(2)" }, 2.18);
+
+      // background double-circle swell under the build
+      tl.fromTo("#st12-swell-out", { scale: 0.86, opacity: 0 }, { scale: 1, opacity: 0.55, duration: 2.4, ease: "power3.out" }, 0);
+      tl.fromTo("#st12-swell-in",  { scale: 0.8,  opacity: 0 }, { scale: 1, opacity: 0.9,  duration: 2.2, ease: "power3.out" }, 0.1);
+
+      // Scene 2 — wordmark rises under the mark, then tagline per word
+      tl.fromTo("#st12-wordmark", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 1.86);
+      var words = document.querySelectorAll("#st12-tagline .st12-w");
+      var cues = [2.05, 2.72, 3.10, 3.48];
+      for (var i = 0; i < words.length; i++) {
+        tl.fromTo(words[i], { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power3.out" }, cues[i] - 0.12);
+      }
+
+      // Scene 3 — hairline + source line; still to the end
+      tl.fromTo("#st12-hair", { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.6, ease: "power3.out" }, 3.90);
+      tl.fromTo("#st12-source", { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 4.00);
+
+      // final frame: last 0.5s fade the whole frame to paper
+      tl.to(["#st12-content", "#st12-swells"], { opacity: 0, duration: 0.5, ease: "power1.inOut" }, 6.45);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines[ID] = tl;
+    })();
+  </script>
+</template>

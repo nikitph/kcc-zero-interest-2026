@@ -1,0 +1,42 @@
+SOURCE: कार्यालय आयुक्त सहकारिता एवं पंजीयक सहकारी संस्थाएं, म.प्र. — क्रमांक /2026/1458, भोपाल
+To: Joint/Deputy/Assistant Commissioners (all divisions/districts); CEOs of all District Central Cooperative Banks, MP.
+Subject: New Kisan Credit Card application, approval and operation process under the State Government's zero-percent interest crop loan scheme.
+References: office letter 15.07.2004; NABARD circular 2152/KCC-1/2017-18 dt 25.09.2017; GoMP Cooperation Dept letter 12-01/2020/15-1 dt 30.06.2026.
+
+Preamble: In farmers' interest the State has simplified KCC — instead of separate Kharif and Rabi loan limits and due dates, one credit limit for the whole year; the due date is 12 months from the first drawal date. New KCC approval has been made ONLINE, so farmers get the scheme's benefit easily, quickly and transparently. Supersedes earlier directions.
+
+A) Member farmer:
+ 1. Farmer applies online on the department portal. KYC details come automatically from the Aadhaar-verified Samagra ID, and land details from the Bhu-Abhilekh (land records) portal via Aadhaar number.
+ 2. When the farmer enters the crop and area per land parcel, the total credit limit is calculated automatically from the scale of finance set by the SLTC (State Level Technical Committee) — maximum Rs 3.00 lakh. The application can be sent fully digitally by the farmer.
+B) PACS (primary agricultural credit society):
+ 1. Applications appear on the PACS login. PACS manager verifies membership, that the land is free of other banks' KCC charge, ownership/possession. Eligible applications go to the PACS board/administrator committee for recommendation. Incomplete/false applications may be returned for correction or rejected, with reasons.
+ 2. Board resolution recorded on the portal; forwarded to the DCCB branch.
+C) DCCB branch:
+ 1. Branch manager examines and approves, or returns/rejects with reasons.
+ 2. Cash and kind sub-limits are calculated in the ratio fixed by the district level technical committee.
+ 3. Farmer is informed of the new KCC approval — downloadable from farmer / PACS / branch login.
+D) After approval:
+ 1. Farmer submits consent to terms, a Demand Promissory Note and a Letter of Continuity at the PACS office (Annexures 1,2,3).
+ 2. Drawal: farmer submits documents as needed for Kharif and Rabi; PACS and DCCB branch disburse.
+ 3. Due date: 12 months from the first drawal in the financial year.
+E) Other conditions:
+ 1. Online KCC approval valid for FIVE years (SLTC 2026-27 decision). If no change in land or crop, next year's limit is computed automatically — no new application; only fresh DPN and continuity letter before drawal.
+ 2. In later years, land area verified from Bhu-Abhilekh portal at first drawal.
+ 3. Minimum landholding for a new KCC: 0.10 hectare.
+ 4. Credit limit rounded to the nearest Rs 1,000.
+ 5. PACS records crop hypothecation on the Bhu-Abhilekh portal.
+ 6. Base rate under the zero-percent scheme: 9.75% for the current year. PACS margin stays 1.5%.
+ 7. Interest subvention claims: first claim at end of March; rest rolled over as additional claims. Fisheries and dairy KCC unchanged.
+ 8. Liquidity management for weak banks.
+ 9. With one annual limit, CBS keeps 2 DMR accounts (1 cash + 1 kind) instead of 4.
+ 10. Month-wise KCC loan accounts of societies at branch level for NPA management.
+ 11. Applies to online applications. Special cases (land not Aadhaar-linked, revenue/forest lease holders) — offline application (Annexure 4), approval for 1 year.
+ 12. KCC renewal continues as now; online renewal is in progress, separate instructions later.
+Signed: Deepak Singh, Commissioner Cooperation & Registrar, MP.
+
+ATTACHED GoMP ORDER F 12-01/2020/15-1, Bhopal, 30.06.2026 — terms of the scheme for 2026-27 (short-term crop loans to farmers at zero-percent interest through cooperative banks):
+ (1) Base rate for 2026-27: 9.75%.
+ (2) No separate due dates for Kharif and Rabi; one annual single credit limit with cash and kind sub-limits.
+ (3) Due date: 12 months from the first drawal against the approved annual limit.
+ (4) All farmers taking short-term crop loans get 1.25% (general) interest subvention; farmers who repay by the due date get a further 4% incentive (additional interest subvention) from the State.
+ The decision is to be widely publicised among farmers.

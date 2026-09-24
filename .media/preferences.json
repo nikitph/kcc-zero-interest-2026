@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "preferences": {
+    "language": {
+      "value": "hi",
+      "confirmed_in": [
+        "kcc-zero-interest-2026"
+      ],
+      "updated_at": "2026-09-24T05:01:28.444Z"
+    },
+    "aspect": {
+      "value": "1080x1920",
+      "confirmed_in": [
+        "kcc-zero-interest-2026"
+      ],
+      "updated_at": "2026-09-24T05:02:30.853Z"
+    }
+  },
+  "sightings": {}
+}

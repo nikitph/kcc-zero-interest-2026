@@ -1,0 +1,235 @@
+<template>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 500; src: url("assets/fonts/noto-sans-devanagari-devanagari-500-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 600; src: url("assets/fonts/noto-sans-devanagari-devanagari-600-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 700; src: url("assets/fonts/noto-sans-devanagari-devanagari-700-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 500; src: url("assets/fonts/noto-sans-devanagari-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 600; src: url("assets/fonts/noto-sans-devanagari-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Noto Sans Devanagari"; font-weight: 700; src: url("assets/fonts/noto-sans-devanagari-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Heebo"; font-weight: 700; src: url("assets/fonts/heebo-latin-700-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Heebo"; font-weight: 900; src: url("assets/fonts/heebo-latin-900-normal.woff2") format("woff2"); }
+
+    #root {
+      --paper: #f3f7fa; --paper-2: #dfe6ee; --ink: #0f172a; --body: #35455c; --muted: #64748b;
+      --faint: #94a3b8; --line: #e2e9f0; --card: #ffffff; --sky: #38bdf8; --sky-deep: #0284c7;
+      --teal: #0d9488; --emerald: #34d399; --emerald-deep: #059669; --mint: #e7f8f1; --skywash: #e6f5fd;
+      --shadow: 0 2px 4px rgba(15,23,42,.04), 0 18px 48px -12px rgba(15,23,42,.14);
+      position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden;
+      font-family: "Noto Sans Devanagari", "Heebo", sans-serif;
+    }
+    #root * { box-sizing: border-box; margin: 0; padding: 0; }
+    .hi { font-family: "Noto Sans Devanagari", "Heebo", sans-serif; letter-spacing: normal; }
+
+    /* ground */
+    #f07-bg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; background: var(--paper); overflow: hidden; }
+    .f07-swell { position: absolute; border-radius: 50%; }
+    #f07-swell-a { width: 2000px; height: 2000px; left: 260px; top: -1320px; background: var(--skywash); }
+    #f07-swell-b { width: 1700px; height: 1700px; left: -1180px; top: 760px; background: var(--mint); }
+    #f07-swell-c { width: 2300px; height: 2300px; left: -600px; top: 1540px; background: var(--paper-2); opacity: .55; }
+
+    /* chrome */
+    #f07-brand { position: absolute; left: 80px; top: 96px; height: 34px; display: flex; align-items: center; }
+    .f07-head { width: 22px; height: 22px; border-radius: 50%; position: absolute; top: 6px; }
+    #f07-head-a { left: 0; background: radial-gradient(circle at 35% 30%, #7dd3fc, #0284c7); }
+    #f07-head-b { left: 14px; background: radial-gradient(circle at 35% 30%, #6ee7b7, #059669); }
+    #f07-brand-txt { margin-left: 52px; font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 700; font-size: 24px; letter-spacing: .14em; color: var(--muted); line-height: 34px; }
+    #f07-chip { position: absolute; right: 80px; top: 84px; display: flex; align-items: center; gap: 14px; padding: 12px 24px; background: var(--card); border-radius: 999px; box-shadow: var(--shadow); }
+    #f07-chip-txt { font-weight: 600; font-size: 28px; line-height: 1.3; color: var(--ink); padding: 2px 0; }
+
+    /* path */
+    #f07-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+    .f07-node { position: absolute; width: 96px; height: 96px; margin-left: -48px; margin-top: -48px; left: 230px; }
+    .f07-halo { position: absolute; left: -28px; top: -28px; width: 152px; height: 152px; border-radius: 50%; background: var(--skywash); }
+    .f07-disc { position: absolute; inset: 0; border-radius: 50%; background: var(--card); box-shadow: var(--shadow); }
+    .f07-ring { position: absolute; left: 0; top: 0; width: 96px; height: 96px; }
+    .f07-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: "Heebo", "Noto Sans Devanagari", sans-serif; font-weight: 900; font-size: 44px; color: var(--ink); font-variant-numeric: tabular-nums; }
+    .f07-label { position: absolute; left: 318px; }
+    .f07-h2 { font-weight: 700; font-size: 60px; line-height: 1.25; color: var(--ink); padding: 8px 0 4px; white-space: nowrap; }
+    .f07-sub { display: inline-flex; align-items: center; gap: 12px; margin-top: 6px; padding: 6px 22px 6px 16px; border-radius: 999px; background: var(--card); box-shadow: var(--shadow); font-weight: 500; font-size: 34px; line-height: 1.4; color: var(--body); }
+    .f07-dot { width: 14px; height: 14px; border-radius: 50%; flex: none; }
+    #f07-badge { position: absolute; left: 64px; top: 52px; width: 58px; height: 58px; }
+
+    /* letter card */
+    #f07-card { position: absolute; left: 330px; top: 1080px; width: 670px; height: 340px; background: var(--card); border: 1.5px solid var(--line); border-radius: 36px; box-shadow: 0 2px 4px rgba(15,23,42,.04), 0 30px 80px -20px rgba(13,148,136,.28); padding: 40px 44px; }
+    #f07-card-title { font-weight: 700; font-size: 46px; line-height: 1.25; color: var(--ink); padding: 4px 0; white-space: nowrap; }
+    #f07-card-bar { width: 132px; height: 8px; border-radius: 999px; margin: 14px 0 30px; background: linear-gradient(90deg,#0284c7 0%,#0ea5e9 25%,#0d9488 45%,#10b981 65%,#059669 100%); }
+    .f07-fl { height: 16px; border-radius: 999px; background: var(--paper-2); margin-bottom: 24px; }
+    #f07-dl { position: absolute; left: 928px; top: 1036px; width: 112px; height: 112px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #7dd3fc, #0284c7); box-shadow: 0 16px 36px -10px rgba(2,132,199,.55); border: 6px solid var(--card); }
+    #f07-dl svg { position: absolute; left: 22px; top: 22px; width: 56px; height: 56px; }
+
+    /* login pills */
+    #f07-pills { position: absolute; left: 330px; top: 1456px; display: flex; gap: 16px; }
+    .f07-pill { display: flex; align-items: center; gap: 12px; padding: 8px 26px 8px 20px; border-radius: 999px; background: var(--card); box-shadow: var(--shadow); border: 1.5px solid var(--line); font-weight: 600; font-size: 32px; line-height: 1.4; color: var(--ink); }
+  </style>
+
+  <div data-hf-id="hf-r5c9" id="root" data-composition-id="07-approval-path" data-start="0" data-duration="11.89" data-width="1080" data-height="1920">
+    <div data-hf-id="hf-2q92" id="f07-bg" class="clip" data-start="0" data-duration="11.89" data-track-index="0">
+      <div data-hf-id="hf-ff1m" id="f07-swell-a" class="f07-swell"></div>
+      <div data-hf-id="hf-bgxl" id="f07-swell-b" class="f07-swell"></div>
+      <div data-hf-id="hf-ap9s" id="f07-swell-c" class="f07-swell"></div>
+    </div>
+
+    <!-- chrome -->
+    <div data-hf-id="hf-8uje" id="f07-brand">
+      <div data-hf-id="hf-6a18" id="f07-head-a" class="f07-head"></div>
+      <div data-hf-id="hf-h5iv" id="f07-head-b" class="f07-head"></div>
+      <div data-hf-id="hf-nly3" id="f07-brand-txt">SAHKARAI EXPLAINS</div>
+    </div>
+    <div data-hf-id="hf-zn3x" id="f07-chip">
+      <svg data-hf-id="hf-gkqi" width="30" height="30" viewBox="0 0 30 30">
+        <defs data-hf-id="hf-mh0t">
+          <lineargradient data-hf-id="hf-y1s3" id="f07-chipramp" x1="0" y1="0" x2="1" y2="1">
+            <stop data-hf-id="hf-urok" offset="0" stop-color="#0284c7" /><stop data-hf-id="hf-j8k6" offset=".45" stop-color="#0d9488" /><stop data-hf-id="hf-xvnc" offset="1" stop-color="#059669" />
+          </lineargradient>
+        </defs>
+        <circle data-hf-id="hf-6cw9" cx="15" cy="15" r="12" fill="none" stroke="#e2e9f0" stroke-width="5" />
+        <circle data-hf-id="hf-nnjd" cx="15" cy="15" r="12" fill="none" stroke="url(#f07-chipramp)" stroke-width="5" stroke-linecap="round" stroke-dasharray="37.7 75.4" transform="rotate(-90 15 15)" />
+      </svg>
+      <div data-hf-id="hf-vrci" id="f07-chip-txt" class="hi">बदलाव २ / ४</div>
+    </div>
+
+    <!-- spine + ramp segments -->
+    <svg data-hf-id="hf-1n1a" id="f07-svg" viewBox="0 0 1080 1920">
+      <defs data-hf-id="hf-vl9d">
+        <lineargradient data-hf-id="hf-dx4p" id="f07-ramp-v" gradientUnits="userSpaceOnUse" x1="0" y1="330" x2="0" y2="1250">
+          <stop data-hf-id="hf-6noc" offset="0" stop-color="#0284c7" /><stop data-hf-id="hf-ltpa" offset=".25" stop-color="#0ea5e9" /><stop data-hf-id="hf-ijui" offset=".45" stop-color="#0d9488" /><stop data-hf-id="hf-dem6" offset=".65" stop-color="#10b981" /><stop data-hf-id="hf-nej4" offset="1" stop-color="#059669" />
+        </lineargradient>
+        <lineargradient data-hf-id="hf-5re4" id="f07-ramp-n" x1="0" y1="0" x2="1" y2="1">
+          <stop data-hf-id="hf-5gr9" offset="0" stop-color="#0284c7" /><stop data-hf-id="hf-iy5j" offset=".45" stop-color="#0d9488" /><stop data-hf-id="hf-m7m1" offset="1" stop-color="#059669" />
+        </lineargradient>
+      </defs>
+      <line data-hf-id="hf-zc90" id="f07-spine" x1="230" y1="330" x2="230" y2="1250" stroke="#dfe6ee" stroke-width="8" stroke-linecap="round" />
+      <path data-hf-id="hf-fib2" id="f07-seg1" d="M230 410 L230 680" fill="none" stroke="url(#f07-ramp-v)" stroke-width="10" stroke-linecap="round" stroke-dasharray="270" stroke-dashoffset="270" />
+      <path data-hf-id="hf-ppnu" id="f07-seg2" d="M230 680 L230 950" fill="none" stroke="url(#f07-ramp-v)" stroke-width="10" stroke-linecap="round" stroke-dasharray="270" stroke-dashoffset="270" />
+      <path data-hf-id="hf-0jdt" id="f07-seg3" d="M230 950 L230 1250 L330 1250" fill="none" stroke="url(#f07-ramp-v)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="400" stroke-dashoffset="400" />
+    </svg>
+
+    <!-- node 1 -->
+    <div data-hf-id="hf-8tpd" id="f07-n1" class="f07-node" style="top:410px">
+      <div data-hf-id="hf-w250" class="f07-halo"></div><div data-hf-id="hf-jd0d" class="f07-disc"></div>
+      <svg data-hf-id="hf-bmkq" class="f07-ring" viewBox="0 0 96 96"><circle data-hf-id="hf-s0lv" cx="48" cy="48" r="43" fill="none" stroke="url(#f07-ramp-n)" stroke-width="7" /></svg>
+      <div data-hf-id="hf-kcnx" class="f07-num">1</div>
+    </div>
+    <div data-hf-id="hf-rb70" id="f07-l1" class="f07-label" style="top:352px">
+      <div data-hf-id="hf-p13v" class="f07-h2 hi">पैक्स</div>
+    </div>
+    <div data-hf-id="hf-gvp6" id="f07-s1" class="f07-label" style="top:452px">
+      <div data-hf-id="hf-qa24" class="f07-sub hi"><span data-hf-id="hf-avxd" class="f07-dot" style="background:#0284c7"></span>जाँच</div>
+    </div>
+
+    <!-- node 2 -->
+    <div data-hf-id="hf-jgzb" id="f07-n2" class="f07-node" style="top:680px">
+      <div data-hf-id="hf-t0j0" class="f07-halo"></div><div data-hf-id="hf-bz5d" class="f07-disc"></div>
+      <svg data-hf-id="hf-nfta" class="f07-ring" viewBox="0 0 96 96"><circle data-hf-id="hf-q54j" cx="48" cy="48" r="43" fill="none" stroke="url(#f07-ramp-n)" stroke-width="7" /></svg>
+      <div data-hf-id="hf-ljl0" class="f07-num">2</div>
+    </div>
+    <div data-hf-id="hf-q8zf" id="f07-l2" class="f07-label" style="top:622px">
+      <div data-hf-id="hf-yy8l" class="f07-h2 hi">संचालक मंडल</div>
+    </div>
+    <div data-hf-id="hf-sosv" id="f07-s2" class="f07-label" style="top:722px">
+      <div data-hf-id="hf-10gt" class="f07-sub hi"><span data-hf-id="hf-hfgi" class="f07-dot" style="background:#0d9488"></span>अनुशंसा</div>
+    </div>
+
+    <!-- node 3 -->
+    <div data-hf-id="hf-cfj6" id="f07-n3" class="f07-node" style="top:950px">
+      <div data-hf-id="hf-ixhw" class="f07-halo" style="background:#e7f8f1"></div><div data-hf-id="hf-d62g" class="f07-disc"></div>
+      <svg data-hf-id="hf-nu4b" class="f07-ring" viewBox="0 0 96 96"><circle data-hf-id="hf-pqti" cx="48" cy="48" r="43" fill="none" stroke="url(#f07-ramp-n)" stroke-width="7" /></svg>
+      <div data-hf-id="hf-l59z" class="f07-num">3</div>
+      <svg data-hf-id="hf-9y2o" id="f07-badge" viewBox="0 0 64 64">
+        <circle data-hf-id="hf-mf30" cx="32" cy="32" r="29" fill="#0d9488" stroke="#ffffff" stroke-width="5" />
+        <path data-hf-id="hf-6kfe" d="M19 33 L28 42 L45 23" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+    <div data-hf-id="hf-wi6d" id="f07-l3" class="f07-label" style="top:892px">
+      <div data-hf-id="hf-xff5" class="f07-h2 hi">ज़िला बैंक शाखा</div>
+    </div>
+    <div data-hf-id="hf-td35" id="f07-s3" class="f07-label" style="top:992px">
+      <div data-hf-id="hf-3oz6" class="f07-sub hi"><span data-hf-id="hf-ubei" class="f07-dot" style="background:#059669"></span>स्वीकृति</div>
+    </div>
+
+    <!-- letter card -->
+    <div data-hf-id="hf-64r9" id="f07-card">
+      <div data-hf-id="hf-oyc3" id="f07-card-title" class="hi">KCC स्वीकृति पत्र</div>
+      <div data-hf-id="hf-37ql" id="f07-card-bar"></div>
+      <div data-hf-id="hf-8ii0" class="f07-fl" style="width:100%"></div>
+      <div data-hf-id="hf-xf4v" class="f07-fl" style="width:84%"></div>
+      <div data-hf-id="hf-nnuu" class="f07-fl" style="width:58%"></div>
+      <div data-hf-id="hf-dow7" class="f07-fl" style="width:30%;background:#e7f8f1"></div>
+    </div>
+    <div data-hf-id="hf-brzb" id="f07-dl">
+      <svg data-hf-id="hf-tdp7" viewBox="0 0 56 56">
+        <path data-hf-id="hf-a0sg" d="M28 8 L28 36 M16 25 L28 37 L40 25" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+        <path data-hf-id="hf-ebrk" d="M12 46 L44 46" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+      </svg>
+    </div>
+
+    <!-- login pills -->
+    <div data-hf-id="hf-m3vt" id="f07-pills">
+      <div data-hf-id="hf-hn36" class="f07-pill hi"><span data-hf-id="hf-b1ck" class="f07-dot" style="background:#38bdf8"></span>किसान</div>
+      <div data-hf-id="hf-zpgs" class="f07-pill hi"><span data-hf-id="hf-isx2" class="f07-dot" style="background:#0d9488"></span>पैक्स</div>
+      <div data-hf-id="hf-vg30" class="f07-pill hi"><span data-hf-id="hf-min2" class="f07-dot" style="background:#059669"></span>शाखा</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      const R = '[data-composition-id="07-approval-path"] ';
+      const q = (s) => document.querySelector(R + s);
+      const qa = (s) => document.querySelectorAll(R + s);
+      const tl = gsap.timeline({ paused: true });
+
+      // ambient: slow circle-swell drift underneath (background only)
+      tl.fromTo(q("#f07-swell-a"), { scale: 1 }, { scale: 1.04, duration: 11.29, ease: "none" }, 0);
+      tl.fromTo(q("#f07-swell-b"), { x: 0 }, { x: 30, duration: 11.29, ease: "none" }, 0);
+
+      // chrome 0–0.4
+      tl.fromTo(q("#f07-brand"), { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0);
+      tl.fromTo(q("#f07-chip"), { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.05);
+
+      // faint spine
+      tl.fromTo(q("#f07-spine"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.1);
+
+      function node(id, at) {
+        tl.fromTo(q(id), { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.4)" }, at);
+        tl.fromTo(q(id + " .f07-halo"), { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.7, ease: "power3.out" }, at + 0.05);
+      }
+      function label(id, at) {
+        tl.fromTo(q(id), { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, at);
+      }
+      function draw(id, len, at, dur) {
+        tl.fromTo(q(id), { attr: { "stroke-dashoffset": len } }, { attr: { "stroke-dashoffset": 0 }, duration: dur, ease: "power2.inOut" }, at);
+      }
+
+      // Scene 1 — @0.66 पैक्स, @1.00 जाँच
+      node("#f07-n1", 0.54);
+      label("#f07-l1", 0.56);
+      label("#f07-s1", 0.88);
+
+      // Scene 2 — @2.13 संचालक मंडल, @3.14 अनुशंसा
+      draw("#f07-seg1", 270, 1.72, 0.36);
+      node("#f07-n2", 2.02);
+      label("#f07-l2", 2.04);
+      label("#f07-s2", 3.03);
+
+      // Scene 3 — @5.04 ज़िला बैंक शाखा, @6.35 स्वीकृति (check stamp)
+      draw("#f07-seg2", 270, 4.62, 0.36);
+      node("#f07-n3", 4.92);
+      label("#f07-l3", 4.94);
+      tl.fromTo(q("#f07-badge"), { scale: 2.2, opacity: 0, rotation: -25 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.42, ease: "back.out(1.4)" }, 6.23);
+      label("#f07-s3", 6.25);
+
+      // Scene 4 — @7.63 स्वीकृति पत्र, @8.96 सीधे लॉगिन से, @10.01 डाउनलोड
+      draw("#f07-seg3", 400, 7.2, 0.45);
+      tl.fromTo(q("#f07-card"), { opacity: 0, y: 140 }, { opacity: 1, y: 0, duration: 0.7, ease: "expo.out" }, 7.52);
+      tl.fromTo(qa("#f07-card .f07-fl"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out", stagger: 0.1 }, 7.8);
+      tl.fromTo(qa("#f07-pills .f07-pill"), { opacity: 0, y: 24, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.4)", stagger: 0.14 }, 8.85);
+      tl.fromTo(q("#f07-dl"), { opacity: 0, y: -220, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "bounce.out" }, 9.86);
+      tl.set({}, {}, 11.29);
+
+      window.__timelines["07-approval-path"] = tl;
+    })();
+  </script>
+</template>
